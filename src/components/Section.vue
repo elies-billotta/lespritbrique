@@ -47,13 +47,13 @@ const backgroundStyle = computed(() => ({
 .section h2 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
-  color: #fff;
+  color: var(--black);
 }
 
 .content {
   font-size: 1.2rem;
   max-width: 800px;
-  color: #fff;
+  color: var(--black);
 }
 
 @media (max-width: 768px) {

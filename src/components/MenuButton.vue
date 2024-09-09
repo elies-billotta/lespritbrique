@@ -37,13 +37,17 @@ const leave = (el, done) => {
 .menu-button {
   position: fixed;
   bottom: 20px;
-  right: 20px; /* Aligné à gauche */
-  width: 60px; /* Largeur fixe */
-  height: 60px; /* Hauteur fixe, égale à la largeur pour un cercle parfait */
-  background-color: #3498db;
+  right: 20px;
+  /* Aligné à gauche */
+  width: 60px;
+  /* Largeur fixe */
+  height: 60px;
+  /* Hauteur fixe, égale à la largeur pour un cercle parfait */
+  background-color: var(--black);
   color: white;
   border: none;
-  border-radius: 50%; /* Rend le bouton rond */
+  border-radius: 50%;
+  /* Rend le bouton rond */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,7 +59,7 @@ const leave = (el, done) => {
 }
 
 .menu-button:hover {
-  background-color: #2980b9;
+  background-color: #25201b;
 }
 
 .menu-icon {

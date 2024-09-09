@@ -1,30 +1,16 @@
 <template>
   <div>
     <!-- Overlay avec transition d'opacité -->
-    <transition
-      name="fade"
-      @before-enter="beforeEnterOverlay"
-      @enter="enterOverlay"
-      @leave="leaveOverlay"
-    >
+    <transition name="fade" @before-enter="beforeEnterOverlay" @enter="enterOverlay" @leave="leaveOverlay">
       <div v-if="showOverlay" class="overlay" @click="closeDrawer"></div>
     </transition>
 
     <!-- Drawer avec transition de translation -->
-    <transition
-      name="slide"
-      @before-enter="beforeEnterDrawer"
-      @enter="enterDrawer"
-      @leave="leaveDrawer"
-    >
+    <transition name="slide" @before-enter="beforeEnterDrawer" @enter="enterDrawer" @leave="leaveDrawer">
       <div v-if="isDrawerOpen" class="drawer">
         <div class="button-container">
-          <button
-            v-for="(section, index) in sections"
-            :key="index"
-            class="drawer-button"
-            @click="handleSectionClick(index)"
-          >
+          <button v-for="(section, index) in sections" :key="index" class="drawer-button"
+            @click="handleSectionClick(index)">
             {{ section }}
           </button>
         </div>
@@ -120,8 +106,10 @@ const leaveDrawer = (el, done) => {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-  opacity: 0; /* Initialement invisible */
+  z-index: 9998;
+  /* En dessous du drawer */
+  opacity: 0;
+  /* Initialement invisible */
 }
 
 /* Drawer avec position fixe et hors de la vue par défaut */
@@ -129,23 +117,30 @@ const leaveDrawer = (el, done) => {
   position: fixed;
   top: 0;
   right: 0;
-  width: 250px;
+  width: 300px;
   height: 100vh;
-  background-color: #2c3e50;
-  color: white;
-  padding: 20px;
+  background-color: var(--secondary-color);
   box-shadow: -5px 0 5px rgba(0, 0, 0, 0.1);
   transform: translateX(100%);
-  z-index: 2;
+  z-index: 9999;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center buttons vertically */
+  justify-content: center;
+  /* Center buttons vertically */
+}
+
+@media (max-width: 768px) {
+  .drawer {
+    width: 100%;
+    /* Sur mobile, le drawer prend toute la largeur */
+  }
 }
 
 /* Conteneur des boutons */
 .button-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 /* Boutons dans le drawer */
@@ -154,24 +149,25 @@ const leaveDrawer = (el, done) => {
   padding: 15px;
   margin-bottom: 15px;
   text-align: left;
-  background-color: #34495e;
-  color: white;
+  background-color: var(--secondary-color);
+  color: var(--black);
   border: none;
-  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .drawer-button:hover {
-  background-color: #3498db;
+  background-color: rgba(228, 129, 36, 0.32);
 }
 
 /* Transition du drawer */
-.slide-enter-active, .slide-leave-active {
+.slide-enter-active,
+.slide-leave-active {
   transition: transform 0.3s ease;
 }
 
-.slide-enter, .slide-leave-to {
+.slide-enter,
+.slide-leave-to {
   transform: translateX(100%);
 }
 
@@ -180,11 +176,13 @@ const leaveDrawer = (el, done) => {
 }
 
 /* Transition de l'overlay */
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.3s ease;
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 
