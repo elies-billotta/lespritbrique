@@ -36,18 +36,14 @@ const leave = (el, done) => {
 <style scoped>
 .menu-button {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  /* Aligné à gauche */
-  width: 60px;
-  /* Largeur fixe */
-  height: 60px;
-  /* Hauteur fixe, égale à la largeur pour un cercle parfait */
+  bottom: 30px;
+  right: 30px;
+  width: 80px;
+  height: 80px;
   background-color: var(--black);
   color: white;
   border: none;
   border-radius: 50%;
-  /* Rend le bouton rond */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,6 +63,7 @@ const leave = (el, done) => {
 }
 
 .menu-text {
+  font-family: 'Bevellier-Regular', sans-serif;
   font-size: 12px;
   margin-top: 4px;
 }

@@ -6,17 +6,8 @@
   }
 
   @font-face {
-    font-family: 'CustomFont';
-    src: url('@/assets/fonts/CustomFont.woff2') format('woff2'),
-         url('@/assets/fonts/CustomFont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    user-select: none;
-  }
-
-  @font-face {
     font-family: 'Super Carnival';
-    src: url('@/assets/fonts/Super Carnival.ttf') format('ttf');
+    src: url('@/assets/fonts/Super Carnival.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     user-select: none;
