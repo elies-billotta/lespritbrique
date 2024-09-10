@@ -24,12 +24,12 @@
   const props = defineProps({
     backgroundColor: {
       type: String,
-      default: 'var(--white)', 
+      default: '#E9B58F', 
     },
     cardsData: {
       type: Array,
       default : [
-        { title: 'Briques exposition', imageSrc: 'art-of-brick.png', sizeX:400 },
+        { title: "BRIQUES D'EXPOSITION", imageSrc: 'art-of-brick.png', sizeX:400 },
         { title: 'Projet 2', imageSrc: 'image2.jpg' },
         { title: 'Projet 3', imageSrc: 'image3.jpg' },
       ],

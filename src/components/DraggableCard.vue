@@ -110,6 +110,7 @@ onMounted(() => {
   white-space: nowrap;
   height: 20px; /* Correspond à l'épaisseur de la bordure */
   line-height: 20px; /* Centrer verticalement le texte */
+  font-family: 'Bevellier-Regular', sans-serif;
 }
 
 .card-image {

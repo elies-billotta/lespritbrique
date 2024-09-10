@@ -1,8 +1,10 @@
+@import url('bevellier.css');
+
 :root {
     --primary-color: #ffd167;
     --secondary-color: #ff9229;
     --black: #1c1713;
-    --white: #FEFEFA;
+    --white: #E9DCCA;
   }
 
   @font-face {

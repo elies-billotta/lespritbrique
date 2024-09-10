@@ -17,8 +17,14 @@ import Section from '@/components/Section.vue';
 }
 
 .main-image {
-    width: 100%;
-    max-width: 1000px;
+    height: 100%;
+    max-width: 50%;
     height: auto;
+}
+
+@media (max-width: 1024px) {
+    .main-image {
+        max-width: 100%;
+    }
 }
 </style>
