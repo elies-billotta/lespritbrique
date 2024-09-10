@@ -1,12 +1,7 @@
 <template>
-  <section class="section" :style="backgroundStyle">
-    <div class="section-content">
-      <h2>{{ title }}</h2>
-      <div class="content">
-        <slot></slot>
-      </div>
-    </div>
-  </section>
+  <div class="section" :style="backgroundStyle">
+    <slot></slot>
+  </div>
 </template>
 
 <script setup>
@@ -35,7 +30,6 @@ const backgroundStyle = computed(() => ({
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
   box-sizing: border-box;
   overflow: hidden;
 }

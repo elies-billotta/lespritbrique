@@ -1,22 +1,25 @@
 <template>
-    <section class="section" :style="backgroundStyle">
+    <Section :style="backgroundStyle">
       <div class="cards-container">
         <DraggableCard
           v-for="(card, cardIndex) in cards"
           :key="cardIndex"
           :title="card.title"
-          :imageSrc="card.imageSrc"
+          :imageSrc="`src/assets/images/${card.imageSrc}`"
           :zIndex="card.zIndex"
           :style="card.positions"
           @bring-to-front="bringToFront(cardIndex)"
+          :size-x="card.sizeX"
+          :size-y="card.sizeY"
         />
       </div>
-    </section>
+    </Section>
   </template>
   
   <script setup>
   import { ref, computed,  onMounted } from 'vue';
-  import DraggableCard from './DraggableCard.vue';
+  import DraggableCard from '@/components/DraggableCard.vue';
+  import Section from '@/components/Section.vue';
   
   const props = defineProps({
     backgroundColor: {
@@ -26,7 +29,7 @@
     cardsData: {
       type: Array,
       default : [
-        { title: 'Projet 1', imageSrc: 'image1.jpg' },
+        { title: 'Briques exposition', imageSrc: 'art-of-brick.png', sizeX:400 },
         { title: 'Projet 2', imageSrc: 'image2.jpg' },
         { title: 'Projet 3', imageSrc: 'image3.jpg' },
       ],

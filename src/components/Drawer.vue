@@ -9,7 +9,7 @@
     <transition name="slide" @before-enter="beforeEnterDrawer" @enter="enterDrawer" @leave="leaveDrawer">
       <div v-if="isDrawerOpen" class="drawer">
         <div class="logo-container">
-          <img src="@/assets/images/logo_NB.png" alt="Image" class="logo-image" />
+          <img src="@/assets/images/logo-nb.png" alt="Image" class="logo-image" />
         </div>
         <div class="button-container">
           <button v-for="(section, index) in sections" :key="index" class="drawer-button"
@@ -55,7 +55,7 @@ const handleSectionClick = (index) => {
 };
 
 const scrollToSection = (index) => {
-  const section = document.querySelectorAll('section')[index];
+  const section = document.getElementById(props.sections[index]);
   section.scrollIntoView({ behavior: 'smooth' });
 };
 
@@ -112,7 +112,7 @@ const leaveDrawer = (el, done) => {
   right: 0;
   width: 350px;
   height: 100vh;
-  background-color: var(--secondary-color);
+  background-color: var(--white);
   box-shadow: -5px 0 5px rgba(0, 0, 0, 0.1);
   transform: translateX(100%);
   z-index: 9999;
@@ -140,7 +140,7 @@ const leaveDrawer = (el, done) => {
   padding: 15px;
   margin-bottom: 15px;
   text-align: left;
-  background-color: var(--secondary-color);
+  background-color: var(--white);
   color: var(--black);
   border: none;
   cursor: pointer;
@@ -148,7 +148,7 @@ const leaveDrawer = (el, done) => {
 }
 
 .drawer-button:hover {
-  background-color: rgba(228, 129, 36, 0.32);
+  background-color: rgba(216, 213, 211, 0.32);
 }
 
 .slide-enter-active,
@@ -182,10 +182,11 @@ const leaveDrawer = (el, done) => {
 .logo-container {
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .logo-image {
-  width: 200px;
+  width: 280px;
   /* Ajustez la taille selon vos besoins */
   height: auto;
   object-fit: contain;

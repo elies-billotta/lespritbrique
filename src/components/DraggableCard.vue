@@ -1,7 +1,9 @@
 <template>
   <div class="card" :style="cardStyle" @mousedown="startDrag" @touchstart="startDrag">
-    <img :src="imageSrc" alt="Image" class="card-image" />
-    <h3 class="card-title">{{ title }}</h3>
+    <div class="image-wrapper" :style="wrapperStyle">
+      <div class="card-title">{{ title }}</div>
+      <img :src="imageSrc" alt="Image" class="card-image" />
+    </div>
   </div>
 </template>
 
@@ -12,18 +14,38 @@ const props = defineProps({
   title: String,
   imageSrc: String,
   zIndex: Number,
+  sizeX: Number,
+  sizeY: Number,
 });
 
-const emit = defineEmits(['bring-to-front']); // On émet l'événement pour amener la carte au premier plan
+const emit = defineEmits(['bring-to-front']);
 
 const isDragging = ref(false);
 const startPosition = ref({ x: 0, y: 0 });
 const currentPosition = ref({ x: 0, y: 0 });
 
-const cardStyle = computed(() => ({
-  transform: `translate(${currentPosition.value.x}px, ${currentPosition.value.y}px)`,
-  zIndex: props.zIndex,
-}));
+const cardStyle = computed(() => {
+  return {
+    transform: `translate(${currentPosition.value.x}px, ${currentPosition.value.y}px)`,
+    zIndex: props.zIndex,
+    boxSizing: 'border-box',
+    position: 'relative',
+  };
+});
+
+const wrapperStyle = computed(() => {
+  let width = props.sizeX ? `${props.sizeX}px` : 'auto';
+  let height = props.sizeY ? `${props.sizeY}px` : 'auto';
+
+  // If only one dimension is specified, use auto for the other dimension
+  if (!props.sizeX) width = 'auto';
+  if (!props.sizeY) height = 'auto';
+
+  return {
+    width,
+    height,
+  };
+});
 
 const startDrag = (event) => {
   isDragging.value = true;
@@ -57,31 +79,42 @@ onMounted(() => {
   document.addEventListener('touchmove', onDrag);
   document.addEventListener('touchend', endDrag);
 });
-
 </script>
 
 <style scoped>
 .card {
   position: absolute;
-  width: 150px;
-  height: 200px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-wrapper {
+  position: relative;
+  border: 20px solid var(--white); /* Bordure uniforme */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-title {
+  position: absolute;
+  top: -20px; /* Le texte est placé en haut, exactement dans la bordure */
+  left: 50%;
+  transform: translateX(-50%); /* Centrage horizontal */
+  color: var(--black);
+  padding: 0; /* Pas de padding pour correspondre à l'épaisseur de la bordure */
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  height: 20px; /* Correspond à l'épaisseur de la bordure */
+  line-height: 20px; /* Centrer verticalement le texte */
 }
 
 .card-image {
   width: 100%;
-  height: 60%;
-  object-fit: cover;
-}
-
-.card-title {
-  text-align: center;
-  padding: 10px;
-  font-size: 1.2rem;
-  background-color: var(--primary-color);
-  color: white;
+  height: 100%;
+  object-fit: contain;
 }
 </style>

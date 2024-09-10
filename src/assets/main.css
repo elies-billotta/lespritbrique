@@ -2,7 +2,7 @@
     --primary-color: #ffd167;
     --secondary-color: #ff9229;
     --black: #1c1713;
-    --white: #fefaef;
+    --white: #FEFEFA;
   }
 
   @font-face {
@@ -76,4 +76,12 @@
     .content {
       font-size: 0.9rem;
     }
+  }
+
+  img{
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
   }

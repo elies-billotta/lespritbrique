@@ -2,42 +2,36 @@
   <Loader/>
   <div id="app">
     <MenuButton :isFirstSectionVisible="isFirstSectionVisible" :toggleDrawer="toggleDrawer" />
-
     <!-- Drawer avec événement de fermeture -->
     <Drawer :isDrawerOpen="isDrawerOpen" :sections="sectionNames" @close-drawer="toggleDrawer" />
-
     <!-- Les sections -->
-    <Section v-for="(section, index) in sectionNames" :key="index" :title="section"
-      :backgroundColor="getBackgroundColor(index)" :ref="'section-' + index">
-    </Section>
-    <CardSection/>
+    <HomeSection id="ACCUEIL"/>
+    <AboutSection id="A PROPOS"/>
+    <CardSection id="RÉALISATIONS"/>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import MenuButton from './components/MenuButton.vue';
-import Drawer from './components/Drawer.vue';
-import Section from './components/Section.vue';
-import CardSection from './components/CardSection.vue';
-import Loader from './components/Loader.vue';
+import MenuButton from '@/components/MenuButton.vue';
+import Drawer from '@/components/Drawer.vue';
+import CardSection from '@/components/sections/CardSection.vue';
+import Loader from '@/components/Loader.vue';
+import HomeSection from '@/components/sections/HomeSection.vue';
+import AboutSection from '@/components/sections/AboutSection.vue';
 
 const isDrawerOpen = ref(false);
 const isFirstSectionVisible = ref(true);
 
-const sectionNames = ['ACCUEIL', 'A PROPOS', 'REALISATIONS', 'CONTACT'];
+const sectionNames = ['ACCUEIL', 'A PROPOS', 'RÉALISATIONS', 'CONTACT'];
 
 const toggleDrawer = () => {
   isDrawerOpen.value = !isDrawerOpen.value;
 };
 
-const getBackgroundColor = (index) => {
-  const colors = ["var(--primary-color)", 'var(--white)', 'var(--white)', 'var(--primary-color)'];
-  return colors[index % colors.length];
-};
-
 const observeFirstSection = () => {
-  const firstSection = document.querySelector('section');
+  //select the first div with the class section
+  const firstSection = document.querySelector('.section');
 
   const observer = new IntersectionObserver(
     (entries) => {
