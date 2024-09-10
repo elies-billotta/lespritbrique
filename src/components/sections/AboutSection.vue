@@ -1,15 +1,15 @@
 <template>
-    <Section>
+    <Section :background-color="'var(--white)'">
       <div class="flex">
         <div>
-          <h2>À propos</h2>
+          <h2>À PROPOS</h2>
           <p>Je suis un développeur web passionné par la création de sites web modernes et performants. J'aime
             travailler avec les dernières technologies pour offrir des expériences utilisateur uniques et
             innovantes.
           </p>
         </div>
         <div>
-          <h2>Compétences</h2>
+          <h2>COMPÉTENCES</h2>
           <ul>
             <li>HTML5 / CSS3</li>
             <li>JavaScript (ES6+)</li>

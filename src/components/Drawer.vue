@@ -1,21 +1,32 @@
 <template>
   <div>
-    <!-- Overlay avec transition d'opacité -->
     <transition name="fade" @before-enter="beforeEnterOverlay" @enter="enterOverlay" @leave="leaveOverlay">
       <div v-if="showOverlay" class="overlay" @click="closeDrawer"></div>
     </transition>
-
-    <!-- Drawer avec transition de translation -->
     <transition name="slide" @before-enter="beforeEnterDrawer" @enter="enterDrawer" @leave="leaveDrawer">
       <div v-if="isDrawerOpen" class="drawer">
-        <div class="logo-container">
-          <img src="@/assets/images/logo-nb.png" alt="Image" class="logo-image" />
+        <div class="drawer-content">
+          <div class="logo-container">
+            <img src="@/assets/images/logo-nb.png" alt="Image" class="logo-image" />
+          </div>
+          <div class="button-container">
+            <button v-for="(section, index) in sections" :key="index" class="drawer-button"
+              @click="handleSectionClick(index)">
+              {{ section }}
+            </button>
+          </div>
         </div>
-        <div class="button-container">
-          <button v-for="(section, index) in sections" :key="index" class="drawer-button"
-            @click="handleSectionClick(index)">
-            {{ section }}
-          </button>
+        <!-- Bottom drawer with social icons and text -->
+        <div class="bottom-drawer">
+          <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/lesprit.brique" target="_blank" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+          <p class="drawer-text">©L'ESPRIT BRIQUE</p>
         </div>
       </div>
     </transition>
@@ -110,7 +121,8 @@ const leaveDrawer = (el, done) => {
   position: fixed;
   top: 0;
   right: 0;
-  width: 350px;
+  width: 300px;
+  /* Réduit la largeur pour éviter que le contenu dépasse */
   height: 100vh;
   background-color: var(--white);
   box-shadow: -5px 0 5px rgba(0, 0, 0, 0.1);
@@ -118,7 +130,6 @@ const leaveDrawer = (el, done) => {
   z-index: 9999;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 @media (max-width: 768px) {
@@ -127,18 +138,32 @@ const leaveDrawer = (el, done) => {
   }
 }
 
+.logo-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.logo-image {
+  width: 250px;
+  /* Ajustez la taille selon vos besoins */
+  height: auto;
+  object-fit: contain;
+}
+
 .button-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 .drawer-button {
   font-family: 'Super Carnival', sans-serif;
   font-size: 1.5rem;
+  /* Réduit la taille du texte */
   width: 100%;
-  padding: 15px;
-  margin-bottom: 15px;
+  padding: 10px;
+  margin-bottom: 10px;
+  /* Réduit l'espace entre les boutons */
   text-align: left;
   background-color: var(--white);
   color: var(--black);
@@ -148,47 +173,44 @@ const leaveDrawer = (el, done) => {
 }
 
 .drawer-button:hover {
-  background-color: rgba(216, 213, 211, 0.32);
+  background-color: var(--primary-color);
 }
 
-.slide-enter-active,
-.slide-leave-active {
-  transition: transform 0.3s ease;
-}
-
-.slide-enter,
-.slide-leave-to {
-  transform: translateX(100%);
-}
-
-.slide-enter-to {
-  transform: translateX(0);
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.fade-enter-to {
-  opacity: 1;
-}
-
-.logo-container {
+/* Bottom drawer styling */
+.bottom-drawer {
   display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
 }
 
-.logo-image {
-  width: 280px;
-  /* Ajustez la taille selon vos besoins */
-  height: auto;
-  object-fit: contain;
+.social-icons {
+  display: flex;
+}
+
+.social-icons a {
+  color: var(--black);
+  margin-right: 10px;
+  font-size: 1.2rem;
+  /* Réduit la taille des icônes */
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--primary-color);
+  /* Changez cette variable par votre couleur principale */
+}
+
+.drawer-text {
+  font-size: 1rem;
+  /* Réduit la taille du texte */
+  color: var(--black);
+}
+
+.drawer-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
 </style>

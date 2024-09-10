@@ -44,6 +44,7 @@
   }
   
   .section h2 {
+    font-family: 'Super Carnival', sans-serif;
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
     color: var(--black);
@@ -86,4 +87,8 @@
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+  }
+
+  p {
+    font-family: 'Bevellier', sans-serif;
   }
