@@ -23,7 +23,7 @@ import AboutSection from '@/components/sections/AboutSection.vue';
 const isDrawerOpen = ref(false);
 const isFirstSectionVisible = ref(true);
 
-const sectionNames = ['ACCUEIL', 'A PROPOS', 'RÉALISATIONS', 'CONTACT'];
+const sectionNames = ['ACCUEIL', 'BOUTIQUE', 'A PROPOS', 'RÉALISATIONS', 'CONTACT'];
 
 const toggleDrawer = () => {
   isDrawerOpen.value = !isDrawerOpen.value;

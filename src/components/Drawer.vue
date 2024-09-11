@@ -20,10 +20,10 @@
         <div class="bottom-drawer">
           <div class="social-icons">
             <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-              <i class="fab fa-facebook-f"></i>
+              <i class="fab fa-facebook-f fa-lg"></i>
             </a>
             <a href="https://www.instagram.com/lesprit.brique" target="_blank" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
+              <i class="fab fa-instagram fa-lg"></i>
             </a>
           </div>
           <p class="drawer-text">©L'ESPRIT BRIQUE</p>
@@ -142,6 +142,8 @@ const leaveDrawer = (el, done) => {
   display: flex;
   justify-content: center;
   padding: 10px;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
 .logo-image {
@@ -203,8 +205,7 @@ const leaveDrawer = (el, done) => {
 }
 
 .drawer-text {
-  font-size: 1rem;
-  /* Réduit la taille du texte */
+  font-size: 20px;
   color: var(--black);
 }
 
