@@ -26,7 +26,7 @@
               <i class="fab fa-instagram fa-lg"></i>
             </a>
           </div>
-          <p class="drawer-text">©L'ESPRIT BRIQUE</p>
+          <p class="drawer-text">CONTACT@LESPRITBRIQUE.COM</p>
         </div>
       </div>
     </transition>
@@ -176,7 +176,7 @@ const leaveDrawer = (el, done) => {
 }
 
 .drawer-button:hover {
-  background-color: var(--white);
+  background-color: var(--secondary-color);
 }
 
 /* Bottom drawer styling */

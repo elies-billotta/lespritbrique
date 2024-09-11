@@ -8,6 +8,9 @@
     <HomeSection id="ACCUEIL"/>
     <AboutSection id="A PROPOS"/>
     <CardSection id="RÉALISATIONS"/>
+    <ContactSection id="CONTACT"/>
+    <!-- Footer -->
+    <FooterSection/>
   </div>
 </template>
 
@@ -19,6 +22,8 @@ import CardSection from '@/components/sections/CardSection.vue';
 import Loader from '@/components/Loader.vue';
 import HomeSection from '@/components/sections/HomeSection.vue';
 import AboutSection from '@/components/sections/AboutSection.vue';
+import ContactSection from '@/components/sections/ContactSection.vue';
+import FooterSection from '@/components/Footer.vue';
 
 const isDrawerOpen = ref(false);
 const isFirstSectionVisible = ref(true);

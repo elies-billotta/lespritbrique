@@ -38,7 +38,7 @@ const leave = (el, done) => {
 .menu-button {
   position: absolute;
   bottom: 20px;
-  right: 40px;
+  right: 20px;
   width: 75px;
   height: 75px;
   background-color: var(--black);
