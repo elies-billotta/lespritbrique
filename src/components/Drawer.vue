@@ -7,7 +7,7 @@
       <div v-if="isDrawerOpen" class="drawer">
         <div class="drawer-content">
           <div class="logo-container">
-            <img src="@/assets/images/logo-nb.png" alt="Image" class="logo-image" />
+            <img src="@/assets/images/logo-color.png" alt="Image" class="logo-image" />
           </div>
           <div class="button-container">
             <button v-for="(section, index) in sections" :key="index" class="drawer-button"
@@ -124,7 +124,7 @@ const leaveDrawer = (el, done) => {
   width: 300px;
   /* Réduit la largeur pour éviter que le contenu dépasse */
   height: 100vh;
-  background-color: var(--white);
+  background-color: var(--primary-color);
   box-shadow: -5px 0 5px rgba(0, 0, 0, 0.1);
   transform: translateX(100%);
   z-index: 9999;
@@ -154,6 +154,7 @@ const leaveDrawer = (el, done) => {
 .button-container {
   display: flex;
   flex-direction: column;
+  border-bottom: 1px solid var(--black);
 }
 
 .drawer-button {
@@ -161,19 +162,19 @@ const leaveDrawer = (el, done) => {
   font-size: 1.5rem;
   /* Réduit la taille du texte */
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 15px;
   /* Réduit l'espace entre les boutons */
   text-align: left;
-  background-color: var(--white);
+  background-color: var(--primary-color);
   color: var(--black);
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-top: 1px solid var(--black);
 }
 
 .drawer-button:hover {
-  background-color: var(--primary-color);
+  background-color: var(--white);
 }
 
 /* Bottom drawer styling */
