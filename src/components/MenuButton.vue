@@ -56,7 +56,7 @@ const leave = (el, done) => {
 }
 
 .menu-button:hover {
-  background-color: #25201b;
+  background-color: var(--black-hover);
 }
 
 .i-container {

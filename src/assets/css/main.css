@@ -5,6 +5,7 @@
     --secondary-color: #FF9229;
     --black: #1c1713;
     --white: #E9DCCA;
+    --black-hover :#333333;
   }
 
   @font-face {
@@ -91,4 +92,5 @@
 
   p {
     font-family: 'Bevellier', sans-serif;
+    font-size: 1.2rem;
   }

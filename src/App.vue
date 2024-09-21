@@ -1,16 +1,19 @@
 <template>
-  <Loader/>
+  <Loader />
   <div id="app">
     <MenuButton :isFirstSectionVisible="isFirstSectionVisible" :toggleDrawer="toggleDrawer" />
     <!-- Drawer avec événement de fermeture -->
     <Drawer :isDrawerOpen="isDrawerOpen" :sections="sectionNames" @close-drawer="toggleDrawer" />
     <!-- Les sections -->
-    <HomeSection id="ACCUEIL"/>
-    <AboutSection id="A PROPOS"/>
-    <CardSection id="RÉALISATIONS"/>
-    <ContactSection id="CONTACT"/>
+    <div id="sections">
+      <HomeSection id="ACCUEIL" />
+      <AboutSection id="A PROPOS" />
+      <SkillsSection id="COMPETENCES" />
+      <CardSection id="RÉALISATIONS" />
+      <ShopSection id="BOUTIQUE"/>  
+    </div>
     <!-- Footer -->
-    <FooterSection/>
+    <FooterSection />
   </div>
 </template>
 
@@ -22,20 +25,20 @@ import CardSection from '@/components/sections/CardSection.vue';
 import Loader from '@/components/Loader.vue';
 import HomeSection from '@/components/sections/HomeSection.vue';
 import AboutSection from '@/components/sections/AboutSection.vue';
-import ContactSection from '@/components/sections/ContactSection.vue';
+import SkillsSection from '@/components/sections/SkillsSection.vue';
 import FooterSection from '@/components/Footer.vue';
+import ShopSection from '@/components/sections/ShopSection.vue';
 
 const isDrawerOpen = ref(false);
 const isFirstSectionVisible = ref(true);
-
-const sectionNames = ['ACCUEIL', 'BOUTIQUE', 'A PROPOS', 'RÉALISATIONS', 'CONTACT'];
+const sectionNames = ref([]); // ref([]) correctement initialisé
 
 const toggleDrawer = () => {
   isDrawerOpen.value = !isDrawerOpen.value;
 };
 
 const observeFirstSection = () => {
-  //select the first div with the class section
+  // Sélection de la première div avec la classe section
   const firstSection = document.querySelector('.section');
 
   const observer = new IntersectionObserver(
@@ -54,5 +57,8 @@ const observeFirstSection = () => {
 
 onMounted(() => {
   observeFirstSection();
+
+  // Correction : utilisation de .value pour modifier le ref sectionNames
+  sectionNames.value = Array.from(document.getElementById('sections').children).map((section) => section.id);
 });
 </script>

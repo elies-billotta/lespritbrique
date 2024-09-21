@@ -30,7 +30,7 @@
       type: Array,
       default : [
         { title: "BRIQUES D'EXPOSITION", imageSrc: 'art-of-brick.png', sizeX:400 },
-        { title: 'Projet 2', imageSrc: 'image2.jpg' },
+        { title: 'KITS SUR MESURE', imageSrc: 'image2.jpg' },
         { title: 'Projet 3', imageSrc: 'image3.jpg' },
       ],
     },
@@ -45,6 +45,11 @@
   const bringToFront = (cardIndex) => {
     const maxZIndex = Math.max(...cards.value.map(card => card.zIndex));
     cards.value[cardIndex].zIndex = maxZIndex + 1;
+    cards.value[cardIndex].positions.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+    const highestZIndexCard = cards.value.find(card => card.zIndex === maxZIndex);
+    if (highestZIndexCard) {
+      highestZIndexCard.positions.boxShadow = 'none';
+    }
   };
   
   // Fonction pour générer des positions aléatoires dans la section
@@ -62,8 +67,8 @@
     const centerX = sectionWidth / 2;
     const centerY = sectionHeight / 2;
 
-    const maxOffsetX = sectionWidth * 0.25;
-    const maxOffsetY = sectionHeight * 0.25; 
+    const maxOffsetX = sectionWidth * 0.05;
+    const maxOffsetY = sectionHeight * 0.05; 
 
     // Assigner des positions aléatoires proches du centre
     cards.value = props.cardsData.map((card) => {
