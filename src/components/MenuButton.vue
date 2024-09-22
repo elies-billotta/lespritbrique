@@ -12,7 +12,7 @@
 
 <script setup>
 const props = defineProps({
-  isFirstSectionVisible: Boolean,  // Nouveau prop pour gérer la visibilité
+  isFirstSectionVisible: Boolean,
   toggleDrawer: Function
 });
 
@@ -21,7 +21,7 @@ const beforeEnter = (el) => {
 };
 
 const enter = (el, done) => {
-  el.offsetHeight; // Trigger reflow
+  el.offsetHeight;
   el.style.transition = 'opacity 0.3s ease';
   el.style.opacity = 1;
   done();

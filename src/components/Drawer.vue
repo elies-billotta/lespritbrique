@@ -16,7 +16,6 @@
             </button>
           </div>
         </div>
-        <!-- Bottom drawer with social icons and text -->
         <div class="bottom-drawer">
           <div class="social-icons">
             <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
@@ -122,7 +121,6 @@ const leaveDrawer = (el, done) => {
   top: 0;
   right: 0;
   width: 300px;
-  /* Réduit la largeur pour éviter que le contenu dépasse */
   height: 100vh;
   background-color: var(--primary-color);
   box-shadow: -5px 0 5px rgba(0, 0, 0, 0.1);
@@ -148,7 +146,6 @@ const leaveDrawer = (el, done) => {
 
 .logo-image {
   width: 250px;
-  /* Ajustez la taille selon vos besoins */
   height: auto;
   object-fit: contain;
 }
@@ -162,10 +159,8 @@ const leaveDrawer = (el, done) => {
 .drawer-button {
   font-family: 'Super Carnival', sans-serif;
   font-size: 1.5rem;
-  /* Réduit la taille du texte */
   width: 100%;
   padding: 15px;
-  /* Réduit l'espace entre les boutons */
   text-align: left;
   background-color: var(--primary-color);
   color: var(--black);
@@ -179,7 +174,6 @@ const leaveDrawer = (el, done) => {
   background-color: var(--secondary-color);
 }
 
-/* Bottom drawer styling */
 .bottom-drawer {
   display: flex;
   justify-content: space-between;
@@ -195,13 +189,11 @@ const leaveDrawer = (el, done) => {
   color: var(--black);
   margin-right: 10px;
   font-size: 1.2rem;
-  /* Réduit la taille des icônes */
   transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
   color: var(--primary-color);
-  /* Changez cette variable par votre couleur principale */
 }
 
 .drawer-text {

@@ -36,8 +36,6 @@ const cardStyle = computed(() => {
 const wrapperStyle = computed(() => {
   let width = props.sizeX ? `${props.sizeX}px` : 'auto';
   let height = props.sizeY ? `${props.sizeY}px` : 'auto';
-
-  // If only one dimension is specified, use auto for the other dimension
   if (!props.sizeX) width = 'auto';
   if (!props.sizeY) height = 'auto';
 
@@ -91,7 +89,7 @@ onMounted(() => {
 
 .image-wrapper {
   position: relative;
-  border: 20px solid var(--white); /* Bordure uniforme */
+  border: 20px solid var(--white);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -100,16 +98,16 @@ onMounted(() => {
 
 .card-title {
   position: absolute;
-  top: -20px; /* Le texte est placé en haut, exactement dans la bordure */
+  top: -20px;
   left: 50%;
-  transform: translateX(-50%); /* Centrage horizontal */
+  transform: translateX(-50%);
   color: var(--black);
-  padding: 0; /* Pas de padding pour correspondre à l'épaisseur de la bordure */
+  padding: 0;
   font-size: 1rem;
   text-align: center;
   white-space: nowrap;
-  height: 20px; /* Correspond à l'épaisseur de la bordure */
-  line-height: 20px; /* Centrer verticalement le texte */
+  height: 20px;
+  line-height: 20px;
   font-family: 'Bevellier-Regular', sans-serif;
 }
 

@@ -94,3 +94,16 @@
     font-family: 'Bevellier', sans-serif;
     font-size: 1.2rem;
   }
+
+  .text-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .img-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }

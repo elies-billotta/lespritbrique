@@ -1,5 +1,5 @@
 <template>
-  <div class="section" :style="backgroundStyle">
+  <div :class="['section', { 'two-columns': columns === 2 }]" :style="backgroundStyle">
     <slot></slot>
   </div>
 </template>
@@ -14,7 +14,11 @@ const props = defineProps({
   },
   backgroundColor: {
     type: String,
-    default: "#ffffff", // Couleur de fond par défaut
+    default: "#var(--white)",
+  },
+  columns: {
+    type: Number,
+    default: 1,
   },
 });
 
@@ -26,37 +30,38 @@ const backgroundStyle = computed(() => ({
 <style scoped>
 .section {
   width: 100vw;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
   overflow: hidden;
+  padding: 10vh 10vw;
 }
 
-.section-content {
-  text-align: center;
+.section.two-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  color: var(--black);
+.section.two-columns > * {
+  flex: 1;
+  max-width: 50%;
 }
 
-.content {
-  font-size: 1.2rem;
-  max-width: 800px;
-  color: var(--black);
-}
-
-@media (max-width: 768px) {
-  .section h2 {
-    font-size: 2rem;
+@media (max-width: 1024px) {
+  .section.two-columns {
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
   }
 
-  .content {
-    font-size: 1rem;
+  .section.two-columns > * {
+    max-width: 100%;
+  }
+
+  .section {
+    padding: 50px 20px;
   }
 }
 
@@ -70,3 +75,4 @@ const backgroundStyle = computed(() => ({
   }
 }
 </style>
+

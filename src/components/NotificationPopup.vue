@@ -15,12 +15,12 @@ const props = defineProps({
     required: true
   },
   type: {
-    type: String, // 'success', 'error', 'info'
+    type: String,
     default: 'info'
   },
   duration: {
     type: Number,
-    default: 3000 // Durée de la notification
+    default: 3000
   }
 });
 
@@ -31,7 +31,7 @@ const closeNotification = () => {
 };
 
 watch(() => props.message, () => {
-  visible.value = true; // Réafficher si le message change
+  visible.value = true;
   setTimeout(() => {
     visible.value = false;
   }, props.duration);

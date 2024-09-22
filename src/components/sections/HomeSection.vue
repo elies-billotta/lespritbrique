@@ -1,14 +1,20 @@
 <template>
-    <Section :backgroundColor="'var(--primary-color)'">
+    <Section class="no-padding-section" :backgroundColor="'var(--primary-color)'" :columns="1">
         <div class="main-image-container">
             <img src="@/assets/images/logo-color.png" alt="Section 1" class="main-image" />
         </div>
     </Section>
 </template>
+
 <script setup>
 import Section from '@/components/Section.vue';
 </script>
+
 <style scoped>
+.no-padding-section {
+    padding: 0 !important;
+}
+
 .main-image-container {
     display: flex;
     justify-content: center;
@@ -17,7 +23,6 @@ import Section from '@/components/Section.vue';
 }
 
 .main-image {
-    height: 100%;
     max-width: 50%;
     height: auto;
 }

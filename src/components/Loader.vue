@@ -12,7 +12,6 @@ import { ref, onMounted } from 'vue';
 const isLoaded = ref(false);
 
 onMounted(() => {
-  // Attend que le document soit complètement chargé puis attend 1 seconde
   document.onreadystatechange = () => {
     if (document.readyState === 'complete') {
       setTimeout(() => {
