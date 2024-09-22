@@ -14,7 +14,7 @@ const props = defineProps({
   },
   backgroundColor: {
     type: String,
-    default: "#var(--white)",
+    default: "var(--white)",
   },
   columns: {
     type: Number,
