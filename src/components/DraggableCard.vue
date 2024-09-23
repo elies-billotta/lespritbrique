@@ -1,8 +1,11 @@
 <template>
   <div class="card" :style="cardStyle" @mousedown="startDrag" @touchstart="startDrag">
     <div class="image-wrapper" :style="wrapperStyle">
-      <div class="card-title">{{ title }}</div>
-      <img :src="imageSrc" alt="Image" class="card-image" />
+        <div class="card-title">{{ title }}</div>
+        <span class="dot">
+          <i class="fa-solid fa-box fa-2xl"></i>
+        </span>
+        <img :src="imageSrc" alt="Image" class="card-image" />
     </div>
   </div>
 </template>
@@ -85,35 +88,54 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 5px; 
 }
 
 .image-wrapper {
   position: relative;
-  border: 20px solid var(--white);
+  border: 10px solid var(--white);
+  border-bottom-width: 60px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 5px;
 }
 
 .card-title {
   position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: -40px;
   color: var(--black);
   padding: 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
   text-align: center;
   white-space: nowrap;
   height: 20px;
   line-height: 20px;
   font-family: 'Bevellier-Regular', sans-serif;
+  z-index: 2;
 }
 
 .card-image {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.dot {
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  background-color: var(--white);
+  border-radius: 50%;
+  bottom : -55px;
+  display: inline-block;
+}
+
+i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 23px;
 }
 </style>

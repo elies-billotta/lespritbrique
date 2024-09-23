@@ -6,7 +6,7 @@
     <div id="sections">
       <HomeSection id="ACCUEIL" />
       <AboutSection id="A PROPOS" />
-      <SkillsSection id="COMPETENCES" />
+      <!-- <SkillsSection id="COMPETENCES" /> -->
       <CardSection v-if="!isMobile" id="RÉALISATIONS" :cardsData="cardsData" />
       <CardSectionResponsive v-if="isMobile" id="RÉALISATIONS" :cardsData="cardsData" />
       <ShopSection id="BOUTIQUE" />  
@@ -32,8 +32,8 @@ const isDrawerOpen = ref(false);
 const isFirstSectionVisible = ref(true);
 const sectionNames = ref([]);
 const cardsData = [
-  { title: "BRIQUES D'EXPOSITION", imageSrc: 'art-of-brick.png', sizeX: 400 },
-  { title: 'KITS SUR MESURE', imageSrc: 'image2.jpg' },
+  { title: "BRIQUE D'EXPOSITION ARTOFBRICK 2025", imageSrc: 'art-of-brick.png', sizeX: 400 },
+  { title: 'KIT SUR MESURE - LE 4X4 DES GAZELLES', imageSrc: 'kit-maienga.png', sizeX:450 },
   { title: 'Projet 3', imageSrc: 'image3.jpg' },
 ];
 

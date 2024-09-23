@@ -1,7 +1,6 @@
 <template>
-    <Section class="text-section" :background-color="'var(--white)'" :columns="2">
+    <Section class="text-section" :background-color="'var(--white)'" :columns="2" :title="'BOUTIQUE'">
         <div class="text-column">
-            <h2>BOUTIQUE</h2>
             <p>Auto-entrepreneur spécialisé dans la communication, L'Esprit Brique propose des services sur mesure
                 incluant la
                 création de kits personnalisés en briques avec vos propres designs. Nous proposons également à la vente

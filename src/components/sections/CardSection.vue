@@ -1,5 +1,9 @@
 <template>
-  <Section :style="backgroundStyle" :columns="1">
+  <Section :style="backgroundStyle" :columns="0" :title="'RÉALISATIONS'">
+    <template #description>
+      <p>Voici quelques exemples de réalisations de L'Esprit Brique. N'hésitez pas à nous contacter pour toute demande
+        spécifique.</p>
+    </template>
     <div class="cards-container">
       <DraggableCard v-for="(card, cardIndex) in cards" :key="cardIndex" :title="card.title"
         :imageSrc="`src/assets/images/${card.imageSrc}`" :zIndex="card.zIndex" :style="card.positions"
@@ -16,7 +20,7 @@ import Section from '@/components/Section.vue';
 const props = defineProps({
   backgroundColor: {
     type: String,
-    default: '#E9B58F',
+    default: '#5B8E7D',
   },
   cardsData: {
     type: Array,

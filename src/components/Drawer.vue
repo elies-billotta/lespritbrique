@@ -5,6 +5,11 @@
     </transition>
     <transition name="slide" @before-enter="beforeEnterDrawer" @enter="enterDrawer" @leave="leaveDrawer">
       <div v-if="isDrawerOpen" class="drawer">
+        <div class="drawer-top">
+          <div class="menu-button" @click="closeDrawer">
+            <i class="fa-solid fa-xmark fa-2xl"></i>
+          </div>
+        </div>
         <div class="drawer-content">
           <div class="logo-container">
             <img src="@/assets/images/logo-color.png" alt="Image" class="logo-image" />
@@ -17,15 +22,8 @@
           </div>
         </div>
         <div class="bottom-drawer">
-          <div class="social-icons">
-            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-              <i class="fab fa-facebook-f fa-lg"></i>
-            </a>
-            <a href="https://www.instagram.com/lesprit.brique" target="_blank" aria-label="Instagram">
-              <i class="fab fa-instagram fa-lg"></i>
-            </a>
-          </div>
-          <p class="drawer-text">CONTACT@LESPRITBRIQUE.COM</p>
+          <div></div>
+          <p class="drawer-text">Mentions légales</p>
         </div>
       </div>
     </transition>
@@ -181,24 +179,14 @@ const leaveDrawer = (el, done) => {
   padding: 10px;
 }
 
-.social-icons {
-  display: flex;
-}
-
-.social-icons a {
-  color: var(--black);
-  margin-right: 10px;
-  font-size: 1.2rem;
-  transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-  color: var(--primary-color);
-}
-
 .drawer-text {
-  font-size: 20px;
+  font-size: 16px;
   color: var(--black);
+}
+
+.drawer-text:hover {
+  cursor: pointer;
+  color: var(--secondary-color);
 }
 
 .drawer-content {
@@ -206,5 +194,20 @@ const leaveDrawer = (el, done) => {
   flex-direction: column;
   justify-content: center;
   height: 100%;
+}
+
+.drawer-top {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px;
+}
+
+.menu-button i:hover {
+  cursor : pointer;
+}
+
+.menu-button i:focus {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
 }
 </style>
