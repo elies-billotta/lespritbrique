@@ -14,8 +14,8 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import DraggableCard from '@/components/DraggableCard.vue';
-import Section from '@/components/Section.vue';
+import DraggableCard from '@/components/elements/DraggableCard.vue';
+import Section from '@/components/sections/Section.vue';
 
 const props = defineProps({
   backgroundColor: {
@@ -83,6 +83,7 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   pointer-events: none;
+  z-index: 1;
 }
 
 .card {

@@ -6,7 +6,6 @@
     <div id="sections">
       <HomeSection id="ACCUEIL" />
       <AboutSection id="A PROPOS" />
-      <!-- <SkillsSection id="COMPETENCES" /> -->
       <CardSection v-if="!isMobile" id="RÉALISATIONS" :cardsData="cardsData" />
       <CardSectionResponsive v-if="isMobile" id="RÉALISATIONS" :cardsData="cardsData" />
       <ShopSection id="BOUTIQUE" />  
@@ -17,14 +16,13 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-import MenuButton from '@/components/MenuButton.vue';
-import Drawer from '@/components/Drawer.vue';
+import MenuButton from '@/components/buttons/MenuButton.vue';
+import Drawer from '@/components/elements/Drawer.vue';
 import CardSection from '@/components/sections/CardSection.vue';
-import Loader from '@/components/Loader.vue';
+import Loader from '@/components/elements/Loader.vue';
 import HomeSection from '@/components/sections/HomeSection.vue';
 import AboutSection from '@/components/sections/AboutSection.vue';
-import SkillsSection from '@/components/sections/SkillsSection.vue';
-import FooterSection from '@/components/Footer.vue';
+import FooterSection from '@/components/elements/Footer.vue';
 import ShopSection from '@/components/sections/ShopSection.vue';
 import CardSectionResponsive from '@/components/sections/CardSectionResponsive.vue';
 

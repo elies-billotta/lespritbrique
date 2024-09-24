@@ -17,8 +17,8 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import Section from '@/components/Section.vue';
-import DraggableCard from '../DraggableCard.vue';
+import Section from '@/components/sections/Section.vue';
+import DraggableCard from '../elements/DraggableCard.vue';
 
 const props = defineProps({
   backgroundColor: {

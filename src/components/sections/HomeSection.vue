@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import Section from '@/components/Section.vue';
+import Section from '@/components/sections/Section.vue';
 </script>
 
 <style scoped>

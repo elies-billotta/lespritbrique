@@ -14,15 +14,15 @@
     </Section>
 </template>
 <script setup>
-import Section from '@/components/Section.vue';
-import MyButton from '@/components/MyButton.vue';
+import Section from '@/components/sections/Section.vue';
+import MyButton from '@/components/buttons/MyButton.vue';
 </script>
 <style scoped>
 .text-column h2 {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .text-column p {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 </style>

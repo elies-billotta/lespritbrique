@@ -1,53 +1,28 @@
 <template>
-  <Section class="text-section" :background-color="'var(--white)'" :columns="4" :title="'A PROPOS'">
+  <Section class="text-section" :background-color="'var(--white)'" :columns="3" :title="'A PROPOS'"
+    :icon="'src/assets/icons/brick.svg'">
     <template #description>
-      <p>AUTO-ENTREPRENEUR BASE DANS LE SUD DE LA FRANCE</p>
+      <p>AUTO-ENTREPRENEUR BASÉ À NÎMES</p>
     </template>
-    <div class="text-column">
-      <div class="img-column">
-        <img src="@/assets/images/art-of-brick.png" alt="Description of image" />
-      </div>
-      <p>Auto-entrepreneur spécialisé dans la communication, L'Esprit Brique propose des services sur mesure incluant la
-        création de kits personnalisés en briques avec vos propres designs. Nous proposons également à la vente ou sur
-        demande des briques personnalisées. N'attendez plus et contactez nous pour soumettre votre demande !</p>
-    </div>
-    <div class="text-column">
-      <div class="img-column">
-        <img src="@/assets/images/art-of-brick.png" alt="Description of image" />
-      </div>
-      <p>Auto-entrepreneur spécialisé dans la communication, L'Esprit Brique propose des services sur mesure incluant la
-        création de kits personnalisés en briques avec vos propres designs. Nous proposons également à la vente ou sur
-        demande des briques personnalisées. N'attendez plus et contactez nous pour soumettre votre demande !</p>
-    </div>
-    <div class="text-column">
-      <div class="img-column">
-        <img src="@/assets/images/art-of-brick.png" alt="Description of image" />
-      </div>
-      <p>Auto-entrepreneur spécialisé dans la communication, L'Esprit Brique propose des services sur mesure incluant la
-        création de kits personnalisés en briques avec vos propres designs. Nous proposons également à la vente ou sur
-        demande des briques personnalisées. N'attendez plus et contactez nous pour soumettre votre demande !</p>
-    </div>
-    <div class="text-column">
-      <div class="img-column">
-        <img src="@/assets/images/art-of-brick.png" alt="Description of image" />
-      </div>
-      <p>Auto-entrepreneur spécialisé dans la communication, L'Esprit Brique propose des services sur mesure incluant la
-        création de kits personnalisés en briques avec vos propres designs. Nous proposons également à la vente ou sur
-        demande des briques personnalisées. N'attendez plus et contactez nous pour soumettre votre demande !</p>
-    </div>
+    <TextColumn :icon="'src/assets/icons/brick.svg'" :title="'IMPRESSION UV'" :subtitle="'Briques Personnalisées'">
+      <p>
+        Chez L'Esprit Brique, tous nos designs sont réalisés à la main avec soin et passion. Par respect pour l'art et l'authenticité, nous banissons l'utilisation d'intelligence artificielle dans le processus de création. Chaque design est unique et personnel, garantissant des briques personnalisées qui reflètent votre vision.
+      </p>
+    </TextColumn>
+    <TextColumn :icon="'src/assets/icons/brick.svg'" :title="'DESIGN'" :subtitle="'Un travail artisanal'">
+      <p>
+        Chez L'Esprit Brique, tous nos designs sont réalisés à la main avec soin et passion. Par respect pour l'art et l'authenticité, nous banissons l'utilisation d'intelligence artificielle dans le processus de création. Chaque design est unique et personnel, garantissant des briques personnalisées qui reflètent votre vision.
+      </p>
+    </TextColumn>
+    <TextColumn :icon="'src/assets/icons/brick.svg'" :title="'DESIGN'" :subtitle="'Un travail artisanal'">
+      <p>
+        En choisissant L'Esprit Brique, vous optez pour un service qui respecte <strong>l’art et la créativité</strong>. Par gage de qualité, par respect pour les artistes, <strong>l'utilisation de l'intelligence artificielle est bannie dans le processus de création</strong>, vous garantissant des designs uniques et personnels. Vous faites ainsi le choix de la <strong>qualité et de l’authenticité</strong>, tout en soutenant un avenir où le travail artistique est valorisé.
+      </p>
+    </TextColumn>
   </Section>
 </template>
 
 <script setup>
-import Section from '@/components/Section.vue';
+import Section from '@/components/sections/Section.vue';
+import TextColumn from '../elements/TextColumn.vue'
 </script>
-
-<style scoped>
-.text-column h2 {
-  margin-bottom: 20px;
-}
-
-.text-column p {
-  margin-bottom: 20px;
-}
-</style>

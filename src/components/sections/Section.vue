@@ -1,11 +1,11 @@
 <template>
   <div :class="['section', { 'two-columns': columns === 2 }]" :style="backgroundStyle">
     <div class="title-wrapper" v-if="title">
-      <h2>{{ title }}</h2>
+      <h1>{{ title }}</h1>
       <div class="bandeau">
-        <div class="line"></div>
-        <img class="small-icon" src="@/assets/icons/brick.svg" alt="brick icon" />
-        <div class="line"></div>
+        <Line/>
+        <img class="small-icon" :src="icon" alt="brick icon" />
+        <Line/>
       </div>
       <slot class="description" name="description"></slot>
     </div>
@@ -16,6 +16,7 @@
 </template>
 <script setup>
 import { computed } from 'vue';
+import Line from '@/components/elements/Line.vue';
 
 const props = defineProps({
   title: {
@@ -30,6 +31,10 @@ const props = defineProps({
     type: Number,
     default: 1,
   },
+  icon: {
+    type: String,
+    default: null,
+  }
 });
 
 const backgroundStyle = computed(() => ({
@@ -45,6 +50,7 @@ const backgroundStyle = computed(() => ({
   padding: 10vh 10vw;
   display: flex;
   flex-direction: column;
+  gap:30px;
 }
 
 .title-wrapper {
@@ -53,7 +59,7 @@ const backgroundStyle = computed(() => ({
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+
 }
 
 .bandeau {
@@ -83,13 +89,10 @@ const backgroundStyle = computed(() => ({
 .columns {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
+  gap : 20px;
 }
 
 .two-columns .columns {
-  display: flex;
   flex-wrap: wrap;
 }
 
@@ -98,17 +101,11 @@ const backgroundStyle = computed(() => ({
   max-width: 50%;
 }
 
-.line {
-  width: 50px;
-  height: 2px;
-  background-color: var(--black);
-}
-
 @media (max-width: 1024px) {
   .two-columns .columns {
     flex-direction: column;
     align-items: center;
-    gap: 0px;
+    gap: 20px;
   }
 
   .two-columns .columns>* {

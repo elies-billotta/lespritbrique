@@ -21,7 +21,7 @@
 <script setup>
 import { useClipboard } from '@vueuse/core';
 import { ref } from 'vue';
-import NotificationPopup from '@/components/NotificationPopup.vue';
+import NotificationPopup from '@/components/elements/NotificationPopup.vue';
 
 const { copy } = useClipboard();
 const showNotification = ref(false);

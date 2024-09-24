@@ -53,6 +53,13 @@
     font-size: 3rem;
     color: var(--black);
   }
+
+  .section h1 {
+    font-family: 'Super Carnival', sans-serif;
+    font-size: 4rem;
+    color: var(--black);
+    margin-bottom: -10px;
+  }
   
   .content {
     font-size: 1.2rem;
@@ -91,7 +98,7 @@
 
   p {
     font-family: 'Bevellier', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .text-section img {
@@ -106,3 +113,9 @@
     align-items: center;
     flex-wrap: wrap;
   }
+
+  h3 {
+    font-family: 'Super Carnival', sans-serif;
+    font-size: 2rem;
+    color: var(--black);
+  } 
