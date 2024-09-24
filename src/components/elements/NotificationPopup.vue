@@ -53,6 +53,7 @@ watch(() => props.message, () => {
   align-items: center;
   animation: slide-in 0.3s ease-out;
   z-index: 1000;
+  gap:10px;
 }
 
 .notification.success {
