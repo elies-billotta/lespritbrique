@@ -91,7 +91,7 @@ async function sendEmail() {
   };
 
   try {
-    const response = await fetch("http://localhost:3000/send-email", {
+    const response = await fetch("https://lespritbrique.com/send-email.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
