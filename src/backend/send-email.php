@@ -56,6 +56,9 @@ try {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Activer le chiffrement
     $mail->Port = 465;
 
+    // Définir le charset en UTF-8
+    $mail->CharSet = 'UTF-8';
+
     // Destinataires
     $mail->setFrom($data->email, $data->name);
     $mail->addAddress('contact@lespritbrique.com');
