@@ -1,7 +1,7 @@
 <template>
   <Section class="text-section" :background-color="'var(--white)'" :columns="2" :title="'CONTACT'">
     <template #description>
-      <p></p>
+      <p>UNE QUESTION ? UNE DEMANDE ? CONTACTEZ-NOUS</p>
     </template>
     <EmailForm/>
     <img class="img-column" src="@/assets/images/art-of-brick.png" alt="Contact us" /> 
