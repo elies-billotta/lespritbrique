@@ -1,28 +1,30 @@
 <template>
-    <button class="button" @click="onClick">
-        {{ text }}
+    <button class="button" :type="type" @click="onClick">
+      {{ text }}
     </button>
-</template>
-
-<script setup>
-import { defineProps } from 'vue';
-
-const props = defineProps({
+  </template>
+  
+  <script setup>
+  import { defineProps } from 'vue';
+  
+  const props = defineProps({
     onClick: {
-        type: Function,
-        required: true
+      type: Function,
+      required: false
     },
     text: {
-        type: String,
-        default: ''
+      type: String,
+      default: ''
+    },
+    type: {
+      type: String,
+      default: 'button' // Par défaut, c'est un bouton normal. On pourra le changer en "submit" dans le formulaire.
     }
-});
-
-const { onClick, text } = props;
-</script>
-
-<style scoped>
-.button {
+  });
+  </script>
+  
+  <style scoped>
+  .button {
     background-color: var(--black);
     color: var(--white);
     padding: 10px 20px;
@@ -32,9 +34,10 @@ const { onClick, text } = props;
     font-size: 16px;
     transition: background-color 0.3s;
     font-family: "Bevellier-Regular", sans-serif;
-}
-
-.button:hover {
+  }
+  
+  .button:hover {
     background-color: var(--black-hover);
-}
-</style>
+  }
+  </style>
+  

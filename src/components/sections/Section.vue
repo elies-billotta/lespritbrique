@@ -59,7 +59,6 @@ const backgroundStyle = computed(() => ({
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 .bandeau {

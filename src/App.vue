@@ -9,6 +9,7 @@
       <CardSection v-if="!isMobile" id="RÉALISATIONS" :cardsData="cardsData" />
       <CardSectionResponsive v-if="isMobile" id="RÉALISATIONS" :cardsData="cardsData" />
       <ShopSection id="BOUTIQUE" />  
+      <ContactSection id="CONTACT"/>
     </div>
     <FooterSection />
   </div>
@@ -25,6 +26,7 @@ import AboutSection from '@/components/sections/AboutSection.vue';
 import FooterSection from '@/components/elements/Footer.vue';
 import ShopSection from '@/components/sections/ShopSection.vue';
 import CardSectionResponsive from '@/components/sections/CardSectionResponsive.vue';
+import ContactSection from './components/sections/ContactSection.vue';
 
 const isDrawerOpen = ref(false);
 const isFirstSectionVisible = ref(true);

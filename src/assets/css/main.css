@@ -96,7 +96,7 @@
     -ms-user-select: none;
   }
 
-  p {
+  * {
     font-family: 'Bevellier', sans-serif;
     font-size: 1rem;
   }
@@ -119,3 +119,5 @@
     font-size: 2rem;
     color: var(--black);
   } 
+
+  
