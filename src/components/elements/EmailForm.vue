@@ -28,7 +28,7 @@
         <label for="message">Message:</label>
         <textarea v-model="formData.message" id="message" required></textarea>
       </div>
-      <div class="g-recaptcha" data-sitekey="6Lc-hlQqAAAAAF9jPADJctPZb2O78WjdNavtxMgE"></div>
+      <div class="g-recaptcha" data-sitekey="6LeLsFQqAAAAAK8Y_yrXvBBC7duprvrgWh3jbm9z"></div>
       <MyButton type="submit" text="ENVOYER" />
     </form>
     <div v-if="successMessage" class="success-message">{{ successMessage }}</div>

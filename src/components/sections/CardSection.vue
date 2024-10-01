@@ -6,7 +6,7 @@
     </template>
     <div class="cards-container">
       <DraggableCard v-for="(card, cardIndex) in cards" :key="cardIndex" :title="card.title"
-        :imageSrc="`src/assets/images/${card.imageSrc}`" :zIndex="card.zIndex" :style="card.positions"
+        :imageSrc="card.imageSrc" :zIndex="card.zIndex" :style="card.positions"
         @bring-to-front="bringToFront(cardIndex)" :size-x="card.sizeX" :size-y="card.sizeY" />
     </div>
   </Section>

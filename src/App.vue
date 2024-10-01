@@ -28,12 +28,17 @@ import ShopSection from '@/components/sections/ShopSection.vue';
 import CardSectionResponsive from '@/components/sections/CardSectionResponsive.vue';
 import ContactSection from './components/sections/ContactSection.vue';
 
+//images
+import artOfBrick from '@/assets/images/art-of-brick.png';
+import kitMaienga from '@/assets/images/kit-maienga.png';
+
+
 const isDrawerOpen = ref(false);
 const isFirstSectionVisible = ref(true);
 const sectionNames = ref([]);
 const cardsData = [
-  { title: "BRIQUE D'EXPOSITION ARTOFBRICK 2025", imageSrc: 'art-of-brick.png', sizeX: 400 },
-  { title: 'KIT SUR MESURE - LE 4X4 DES GAZELLES', imageSrc: 'kit-maienga.png', sizeX:450 },
+  { title: "BRIQUE D'EXPOSITION ARTOFBRICK 2025", imageSrc: artOfBrick, sizeX: 400 },
+  { title: 'KIT SUR MESURE - LE 4X4 DES GAZELLES', imageSrc: kitMaienga, sizeX:450 },
   { title: 'Projet 3', imageSrc: 'image3.jpg' },
 ];
 

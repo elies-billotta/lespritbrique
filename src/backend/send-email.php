@@ -34,7 +34,7 @@ if (strlen($data->message) > 500) {
 }
 
 // Vérification reCAPTCHA
-$secretKey = '6Lc-hlQqAAAAACcCO9DhhKe32e1-hPfuDfD0P_dG';
+$secretKey = '6LeLsFQqAAAAALiwrIrYbPBT3P_uI2haZ-yl-jTA';
 $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secretKey}&response={$data->recaptchaToken}");
 $responseKeys = json_decode($response, true);
 
