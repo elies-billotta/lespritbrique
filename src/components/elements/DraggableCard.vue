@@ -1,11 +1,11 @@
 <template>
-  <div class="card" :style="cardStyle" @mousedown="startDrag" @touchstart="startDrag">
+  <div class="card" :style="cardStyle" @mousedown="startDrag" @touchstart="startDrag" ref="cardRef">
     <div class="image-wrapper" :style="wrapperStyle">
-        <div class="card-title">{{ title }}</div>
-        <span class="dot">
-          <i class="fa-solid fa-box fa-2xl"></i>
-        </span>
-        <img :src="imageSrc" alt="Image" class="card-image" />
+      <div class="card-title">{{ title }}</div>
+      <span class="dot">
+        <i class="fa-solid fa-box fa-2xl"></i>
+      </span>
+      <img :src="imageSrc" alt="Image" class="card-image" />
     </div>
   </div>
 </template>
@@ -26,7 +26,10 @@ const emit = defineEmits(['bring-to-front']);
 const isDragging = ref(false);
 const startPosition = ref({ x: 0, y: 0 });
 const currentPosition = ref({ x: 0, y: 0 });
+const cardHeight = ref(0); // Nouvelle référence pour stocker la hauteur
+const cardRef = ref(null); // Référence à l'élément de la carte
 
+// Propriété calculée pour le style de la carte
 const cardStyle = computed(() => {
   return {
     transform: `translate(${currentPosition.value.x}px, ${currentPosition.value.y}px)`,
@@ -36,11 +39,10 @@ const cardStyle = computed(() => {
   };
 });
 
+// Propriété calculée pour le style de l'image wrapper
 const wrapperStyle = computed(() => {
   let width = props.sizeX ? `${props.sizeX}px` : 'auto';
   let height = props.sizeY ? `${props.sizeY}px` : 'auto';
-  if (!props.sizeX) width = 'auto';
-  if (!props.sizeY) height = 'auto';
 
   return {
     width,
@@ -48,6 +50,7 @@ const wrapperStyle = computed(() => {
   };
 });
 
+// Fonction pour démarrer le drag
 const startDrag = (event) => {
   isDragging.value = true;
   emit('bring-to-front');
@@ -58,6 +61,7 @@ const startDrag = (event) => {
   startPosition.value = { x: clientX - currentPosition.value.x, y: clientY - currentPosition.value.y };
 };
 
+// Fonction pour gérer le drag
 const onDrag = (event) => {
   if (!isDragging.value) return;
 
@@ -70,15 +74,23 @@ const onDrag = (event) => {
   };
 };
 
+// Fonction pour terminer le drag
 const endDrag = () => {
   isDragging.value = false;
 };
 
+// Récupérer la hauteur après que le composant a été monté
 onMounted(() => {
   document.addEventListener('mousemove', onDrag);
   document.addEventListener('mouseup', endDrag);
   document.addEventListener('touchmove', onDrag);
   document.addEventListener('touchend', endDrag);
+
+  // Récupérer la hauteur de la carte après le montage
+  if (cardRef.value) {
+    cardHeight.value = cardRef.value.offsetHeight; // stocke la hauteur dans cardHeight
+    console.log('Hauteur de la carte:', cardHeight.value); // Affiche la hauteur dans la console
+  }
 });
 </script>
 
@@ -128,7 +140,7 @@ onMounted(() => {
   width: 80px;
   background-color: var(--white);
   border-radius: 50%;
-  bottom : -55px;
+  bottom: -55px;
   display: inline-block;
 }
 

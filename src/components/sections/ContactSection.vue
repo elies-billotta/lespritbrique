@@ -3,8 +3,12 @@
     <template #description>
       <p>UNE QUESTION ? UNE DEMANDE ? CONTACTEZ-NOUS</p>
     </template>
-    <EmailForm/>
-    <img class="img-column" src="@/assets/images/art-of-brick.png" alt="Contact us" /> 
+    <template #columns>
+      <EmailForm />
+      <div class="img-column">
+        <img src="@/assets/images/art-of-brick.png" alt="Contact us" />
+      </div>
+    </template>
   </Section>
 </template>
 

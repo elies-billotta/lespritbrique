@@ -10,7 +10,10 @@
       <slot class="description" name="description"></slot>
     </div>
     <div class="columns">
-      <slot></slot>
+      <slot name="columns"></slot>
+    </div>
+    <div class="full-section">
+      <slot name="contain"></slot>
     </div>
   </div>
 </template>
@@ -69,6 +72,14 @@ const backgroundStyle = computed(() => ({
   margin-bottom: 5px;
 }
 
+.full-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+} 
+
 .description {
   text-align: center;
 }
@@ -86,6 +97,7 @@ const backgroundStyle = computed(() => ({
 }
 
 .columns {
+  max-width: 1000px;
   display: flex;
   justify-content: center;
   gap : 20px;

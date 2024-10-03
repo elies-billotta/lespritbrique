@@ -4,11 +4,13 @@
       <p>Voici quelques exemples de réalisations de L'Esprit Brique. N'hésitez pas à nous contacter pour toute demande
         spécifique.</p>
     </template>
-    <div class="cards-container">
-      <DraggableCard v-for="(card, cardIndex) in cards" :key="cardIndex" :title="card.title"
-        :imageSrc="card.imageSrc" :zIndex="card.zIndex" :style="card.positions"
-        @bring-to-front="bringToFront(cardIndex)" :size-x="card.sizeX" :size-y="card.sizeY" />
-    </div>
+    <template #contain>
+      <div class="cards-container">
+        <DraggableCard v-for="(card, cardIndex) in cards" :key="cardIndex" :title="card.title" :imageSrc="card.imageSrc"
+          :zIndex="card.zIndex" :style="card.positions" @bring-to-front="bringToFront(cardIndex)" :size-x="card.sizeX"
+          :size-y="card.sizeY" />
+      </div>
+    </template>
   </Section>
 </template>
 
@@ -26,15 +28,18 @@ const props = defineProps({
     type: Array,
   },
 });
+
 const backgroundStyle = computed(() => ({
   backgroundColor: props.backgroundColor,
 }));
 
 const cards = ref([]);
+
 const bringToFront = (cardIndex) => {
   const maxZIndex = Math.max(...cards.value.map(card => card.zIndex));
   cards.value[cardIndex].zIndex = maxZIndex + 1;
   cards.value[cardIndex].positions.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+
   const highestZIndexCard = cards.value.find(card => card.zIndex === maxZIndex);
   if (highestZIndexCard) {
     highestZIndexCard.positions.boxShadow = 'none';
@@ -47,17 +52,21 @@ const generateRandomPositions = () => {
   if (section) {
     const sectionWidth = section.offsetWidth;
     const sectionHeight = section.offsetHeight;
-
-    const cardWidth = 150;
-    const cardHeight = 200;
     const centerX = sectionWidth / 2;
     const centerY = sectionHeight / 2;
-    const maxOffsetX = sectionWidth * 0.05;
-    const maxOffsetY = sectionHeight * 0.05;
+    const maxOffsetX = sectionWidth * 0.4; // Ajuster cette valeur pour le décalage horizontal
+    const maxOffsetY = sectionHeight * 0.4; // Ajuster cette valeur pour le décalage vertical
 
     cards.value = props.cardsData.map((card) => {
-      const randomLeft = centerX - cardWidth / 2 + (Math.random() * maxOffsetX * 2 - maxOffsetX);
-      const randomTop = centerY - cardHeight / 2 + (Math.random() * maxOffsetY * 2 - maxOffsetY);
+      const cardWidth = card.sizeX || 100; // Valeur par défaut si sizeX n'est pas fourni
+      const cardHeight = card.sizeY || 100; // Valeur par défaut si sizeY n'est pas fourni
+
+      // Calcul des offsets aléatoires autour du centre
+      const randomOffsetX = (Math.random() * maxOffsetX * 2) - maxOffsetX; // De -maxOffsetX à +maxOffsetX
+      const randomOffsetY = (Math.random() * maxOffsetY * 2) - maxOffsetY; // De -maxOffsetY à +maxOffsetY
+
+      const randomLeft = centerX + randomOffsetX - (cardWidth / 2); // Centrer la carte horizontalement
+      const randomTop = centerY + randomOffsetY - (cardHeight / 2); // Centrer la carte verticalement
 
       return {
         ...card,
@@ -66,11 +75,13 @@ const generateRandomPositions = () => {
           position: 'absolute',
           left: `${randomLeft}px`,
           top: `${randomTop}px`,
+          boxShadow: 'none', // Enlève la boîte d'ombre initialement
         },
       };
     });
   }
 };
+
 
 onMounted(() => {
   generateRandomPositions();

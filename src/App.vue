@@ -39,7 +39,6 @@ const sectionNames = ref([]);
 const cardsData = [
   { title: "BRIQUE D'EXPOSITION ARTOFBRICK 2025", imageSrc: artOfBrick, sizeX: 400 },
   { title: 'KIT SUR MESURE - LE 4X4 DES GAZELLES', imageSrc: kitMaienga, sizeX:450 },
-  { title: 'Projet 3', imageSrc: 'image3.jpg' },
 ];
 
 const isMobile = ref(false);

@@ -1,8 +1,10 @@
 <template>
     <Section class="no-padding-section" :backgroundColor="'var(--primary-color)'" :columns="1">
-        <div class="main-image-container">
-            <img src="@/assets/images/logo-color.png" alt="Section 1" class="main-image" />
-        </div>
+        <template #contain>
+            <div class="main-image-container">
+                <img src="@/assets/images/logo-color.png" alt="Section 1" class="main-image" />
+            </div>
+        </template>
     </Section>
 </template>
 
@@ -20,16 +22,18 @@ import Section from '@/components/sections/Section.vue';
     justify-content: center;
     align-items: center;
     height: 100%;
+    width: 100%;
 }
 
 .main-image {
-    max-width: 50%;
-    height: auto;
+    max-width: auto;
+    height: 30%;
 }
 
 @media (max-width: 1024px) {
     .main-image {
         max-width: 100%;
+        height: auto;
     }
 }
 </style>
