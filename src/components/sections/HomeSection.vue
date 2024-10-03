@@ -1,8 +1,8 @@
 <template>
     <Section class="no-padding-section" :backgroundColor="'var(--primary-color)'" :columns="1">
         <template #contain>
-            <div class="main-image-container">
-                <img src="@/assets/images/logo-color.png" alt="Section 1" class="main-image" />
+            <div class="buttons">
+                <HomeButtonsContainer :sections="['A PROPOS', 'RÉALISATIONS','BOUTIQUE', 'CONTACT']" />
             </div>
         </template>
     </Section>
@@ -10,30 +10,42 @@
 
 <script setup>
 import Section from '@/components/sections/Section.vue';
+import HomeButtonsContainer from '@/components/elements/HomeButtonsContainer.vue';
+
+
+const props = defineProps({
+    sections: {
+        type: Array,
+        default: null,
+    },
+});
 </script>
 
 <style scoped>
 .no-padding-section {
     padding: 0 !important;
+    position: relative;
+    height: 100vh; /* Pour couvrir toute la hauteur de l'écran */
+    background-image: url('@/assets/images/logo-color.png'); /* Image en arrière-plan */
+    background-size: contain; /* Ajuste la taille de l'image */
+    background-repeat: no-repeat; /* Empêche la répétition de l'image */
+    background-position: center; /* Centre l'image */
 }
 
-.main-image-container {
+.buttons {
+    position: absolute;
+    top: 50%; /* Ajuste selon l'endroit où tu veux placer tes boutons */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrage horizontal et vertical */
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-}
-
-.main-image {
-    max-width: auto;
-    height: 30%;
+    gap: 20px;
+    z-index: 5;
 }
 
 @media (max-width: 1024px) {
-    .main-image {
-        max-width: 100%;
-        height: auto;
+    .no-padding-section {
+        background-size: cover; /* Ajuste l'image pour les écrans plus petits */
     }
 }
 </style>

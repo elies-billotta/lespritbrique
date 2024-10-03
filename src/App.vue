@@ -4,7 +4,7 @@
     <MenuButton :isFirstSectionVisible="isFirstSectionVisible" :toggleDrawer="toggleDrawer" />
     <Drawer :isDrawerOpen="isDrawerOpen" :sections="sectionNames" @close-drawer="toggleDrawer" />
     <div id="sections">
-      <HomeSection id="ACCUEIL" />
+      <HomeSection id="ACCUEIL" :sections="sectionsNames" />
       <AboutSection id="A PROPOS" />
       <CardSection v-if="!isMobile" id="RÉALISATIONS" :cardsData="cardsData" />
       <CardSectionResponsive v-if="isMobile" id="RÉALISATIONS" :cardsData="cardsData" />
