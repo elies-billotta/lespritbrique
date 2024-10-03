@@ -1,6 +1,6 @@
 <template>
-    <div class="buttons-container" v-for="(section, index) in sections" :key="index">
-        <MyButton :text="section" @click="scrollIntoView(index)" />
+    <div class="buttons-container" v-for="(section, index) in buttons" :key="index">
+        <MyButton v-if="index != 0" :text="section" @click="scrollIntoView(index)" />
     </div>
 </template>
 
@@ -9,7 +9,7 @@ import MyButton from '@/components/buttons/MyButton.vue';
 import Bubble from '@/components//buttons/Bubble.vue';
 
 const props = defineProps({
-    sections: Array
+    buttons: Array
 });
 
 const scrollIntoView = (index) => {

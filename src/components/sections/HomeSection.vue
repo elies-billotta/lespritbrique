@@ -2,7 +2,7 @@
     <Section class="no-padding-section" :backgroundColor="'var(--primary-color)'" :columns="1">
         <template #contain>
             <div class="buttons">
-                <HomeButtonsContainer :sections="['A PROPOS', 'RÉALISATIONS','BOUTIQUE', 'CONTACT']" />
+                <HomeButtonsContainer :buttons="sections" />
             </div>
         </template>
     </Section>
@@ -12,11 +12,9 @@
 import Section from '@/components/sections/Section.vue';
 import HomeButtonsContainer from '@/components/elements/HomeButtonsContainer.vue';
 
-
 const props = defineProps({
     sections: {
         type: Array,
-        default: null,
     },
 });
 </script>
