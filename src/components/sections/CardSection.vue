@@ -1,5 +1,5 @@
 <template>
-  <Section :style="backgroundStyle" :columns="0" :title="'RÉALISATIONS'">
+  <Section :style="backgroundStyle" :columns="0" :title="'RÉALISATIONS'" :icon="BrickIcon" >
     <template #description>
       <p>Voici quelques exemples de réalisations de L'Esprit Brique. N'hésitez pas à nous contacter pour toute demande
         spécifique.</p>
@@ -18,6 +18,7 @@
 import { ref, computed, onMounted } from 'vue';
 import DraggableCard from '@/components/elements/DraggableCard.vue';
 import Section from '@/components/sections/Section.vue';
+import BrickIcon from '@/assets/icons/brick.svg';
 
 const props = defineProps({
   backgroundColor: {

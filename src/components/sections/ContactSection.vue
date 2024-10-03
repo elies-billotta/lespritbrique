@@ -1,5 +1,5 @@
 <template>
-  <Section class="text-section" :background-color="'var(--white)'" :columns="2" :title="'CONTACT'">
+  <Section class="text-section" :background-color="'var(--white)'" :columns="2" :title="'CONTACT'" :icon="BrickIcon">
     <template #description>
       <p>UNE QUESTION ? UNE DEMANDE ? CONTACTEZ-NOUS</p>
     </template>
@@ -15,6 +15,7 @@
 <script setup>
 import Section from '@/components/sections/Section.vue';
 import EmailForm from '@/components/elements/EmailForm.vue';
+import BrickIcon from '@/assets/icons/brick.svg';
 </script>
 
 <style scoped>

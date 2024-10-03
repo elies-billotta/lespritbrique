@@ -33,6 +33,6 @@
 
 <script setup>
 import Section from '@/components/sections/Section.vue';
-import TextColumn from '../elements/TextColumn.vue'
+import TextColumn from '@/components/elements/TextColumn.vue'
 import BrickIcon from '@/assets/icons/brick.svg';
 </script>

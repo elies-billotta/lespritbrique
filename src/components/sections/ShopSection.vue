@@ -1,5 +1,5 @@
 <template>
-    <Section class="text-section" :background-color="'var(--white)'" :columns="2" :title="'BOUTIQUE'">
+    <Section class="text-section" :background-color="'var(--white)'" :columns="2" :title="'BOUTIQUE'" :icon="BrickIcon">
         <template #columns>
             <div class="text-column">
                 <p>Auto-entrepreneur spécialisé dans la communication, L'Esprit Brique propose des services sur mesure
@@ -20,6 +20,7 @@
 <script setup>
 import Section from '@/components/sections/Section.vue';
 import MyButton from '@/components/buttons/MyButton.vue';
+import BrickIcon from '@/assets/icons/brick.svg';
 </script>
 <style scoped>
 .text-column h2 {
