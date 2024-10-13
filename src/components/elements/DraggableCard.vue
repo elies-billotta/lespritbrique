@@ -11,44 +11,35 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, nextTick } from 'vue';
 
 const props = defineProps({
   title: String,
   imageSrc: String,
   zIndex: Number,
   sizeX: Number,
-  sizeY: Number,
 });
 
-const emit = defineEmits(['bring-to-front']);
+const emit = defineEmits(['bring-to-front', 'card-size']);
 
 const isDragging = ref(false);
 const startPosition = ref({ x: 0, y: 0 });
 const currentPosition = ref({ x: 0, y: 0 });
-const cardHeight = ref(0); // Nouvelle référence pour stocker la hauteur
-const cardRef = ref(null); // Référence à l'élément de la carte
+const cardRef = ref(null);
 
 // Propriété calculée pour le style de la carte
-const cardStyle = computed(() => {
-  return {
-    transform: `translate(${currentPosition.value.x}px, ${currentPosition.value.y}px)`,
-    zIndex: props.zIndex,
-    boxSizing: 'border-box',
-    position: 'relative',
-  };
-});
+const cardStyle = computed(() => ({
+  transform: `translate(${currentPosition.value.x}px, ${currentPosition.value.y}px)`,
+  zIndex: props.zIndex,
+  boxSizing: 'border-box',
+  position: 'relative',
+}));
 
 // Propriété calculée pour le style de l'image wrapper
-const wrapperStyle = computed(() => {
-  let width = props.sizeX ? `${props.sizeX}px` : 'auto';
-  let height = props.sizeY ? `${props.sizeY}px` : 'auto';
-
-  return {
-    width,
-    height,
-  };
-});
+const wrapperStyle = computed(() => ({
+  width: props.sizeX ? `${props.sizeX}px` : 'auto',
+  height: 'auto', // La hauteur sera calculée plus tard
+}));
 
 // Fonction pour démarrer le drag
 const startDrag = (event) => {
@@ -80,16 +71,18 @@ const endDrag = () => {
 };
 
 // Récupérer la hauteur après que le composant a été monté
-onMounted(() => {
+onMounted(async () => {
   document.addEventListener('mousemove', onDrag);
   document.addEventListener('mouseup', endDrag);
   document.addEventListener('touchmove', onDrag);
   document.addEventListener('touchend', endDrag);
 
-  // Récupérer la hauteur de la carte après le montage
-  if (cardRef.value) {
-    cardHeight.value = cardRef.value.offsetHeight; // stocke la hauteur dans cardHeight
-  }
+  // Utiliser nextTick pour s'assurer que la carte est complètement montée
+  await nextTick();
+  
+  // Émettre la hauteur calculée après le montage
+  const cardHeight = cardRef.value.offsetHeight; // Obtient la hauteur de la carte
+  emit('card-size', { sizeY: cardHeight }); // Émettre la taille
 });
 </script>
 
