@@ -22,16 +22,16 @@
           </div>
         </div>
         <div class="bottom-drawer">
-             <div>
-          <MusicPlayer 
-            :isPlaying="isPlaying" 
-            :volume="volume" 
-            :currentMusic="currentMusic"
-            @toggle-music="$emit('toggle-music')" 
-            @update-volume="$emit('update-volume', $event)"
-          />
-        </div>
-        <p class="drawer-text">Mentions légales</p>
+          <div>
+            <MusicPlayer 
+              :isPlaying="isPlaying" 
+              :volume="volume" 
+              :currentMusic="currentMusic"
+              @toggle-music="$emit('toggle-music')" 
+              @update-volume="$emit('update-volume', $event)"
+            />
+          </div>
+          <p class="drawer-text">Mentions légales</p>
         </div>
       </div>
     </transition>
@@ -194,7 +194,7 @@ const leaveDrawer = (el, done) => {
 }
 
 .menu-button i:hover {
-  cursor : pointer;
+  cursor: pointer;
 }
 
 .menu-button i:focus {
@@ -210,31 +210,29 @@ const leaveDrawer = (el, done) => {
 }
 
 .logo-image {
-  width: 300px; /* Taille par défaut pour desktop */
+  width: 300px;
   height: auto;
   object-fit: contain;
 }
 
-/* Pour ordinateurs portables */
 @media (max-width: 1024px) {
   .logo-image {
-    width: 200px; /* Ajustement pour laptops */
+    width: 200px;
   }
 }
 
-/* Pour appareils mobiles */
 @media (max-width: 768px) {
   .logo-image {
-    width: 150px; /* Encore plus petit pour mobiles */
+    width: 150px;
+  }
+  .drawer {
+    width: 100%;
   }
 }
 
-/* Optionnel : Ajustement pour des écrans plus bas en hauteur */
 @media (max-height: 900px) {
   .logo-image {
-    width: 200px; /* Plus petit si la hauteur est faible */
+    width: 200px;
   }
 }
-
-
 </style>
