@@ -121,7 +121,7 @@ const leaveDrawer = (el, done) => {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 9998;
+  z-index: 9997;
   opacity: 0;
 }
 
@@ -134,7 +134,7 @@ const leaveDrawer = (el, done) => {
   background-color: var(--primary-color);
   box-shadow: -5px 0 5px rgba(0, 0, 0, 0.1);
   transform: translateX(100%);
-  z-index: 9999;
+  z-index: 9998;
   display: flex;
   flex-direction: column;
 }

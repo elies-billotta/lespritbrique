@@ -1,6 +1,7 @@
 <template>
   <Loader />
   <div id="app">
+    <OldTvShader />
     <MenuButton :isFirstSectionVisible="isFirstSectionVisible" :toggleDrawer="toggleDrawer" />
     <Drawer 
       :isDrawerOpen="isDrawerOpen" 
@@ -41,6 +42,7 @@ import ContactSection from '@/components/sections/ContactSection.vue';
 import orderSpecial from '@/assets/images/special-order1.png';
 import StartSound from '@/assets/audio/start.mp3';
 import StopSound from '@/assets/audio/stop.mp3';
+import OldTvShader from '@/components/OldTvShader.vue';
 
 const isPlaying = ref(false);
 const volume = ref(0.2);
