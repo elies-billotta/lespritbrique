@@ -159,7 +159,7 @@ const leaveDrawer = (el, done) => {
 }
 
 .logo-image {
-  width: 20vw;
+  width: 15vw;
   height: auto;
   object-fit: contain;
 }
