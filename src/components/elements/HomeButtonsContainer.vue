@@ -1,34 +1,54 @@
 <template>
     <div class="buttons-wrapper">
-        <!-- Ligne 1 -->
         <div class="buttons-container">
-            <Bubble v-for="(section, index) in firstLineButtons" :key="index" :text="section" :invertWidth="getInvertWidth(index)" :invertHeight="false" @click="scrollIntoView(section)" />
+            <Bubble 
+                v-for="(section, index) in firstLineButtons" 
+                :key="index" 
+                :text="section" 
+                :invertWidth="getInvertWidth(index)" 
+                :invertHeight="false" 
+                @click="scrollIntoView(section)" 
+            />
         </div>
-        <!-- Ligne 2 -->
         <div class="buttons-container">
-            <Bubble v-for="(section, index) in secondLineButtons" :key="index" :text="section" :invertWidth="getInvertWidth(index + firstLineButtons.length)" :invertHeight="true" @click="scrollIntoView(section)" />
+            <Bubble 
+                v-for="(section, index) in secondLineButtons" 
+                :key="index" 
+                :text="section" 
+                :invertWidth="getInvertWidth(index + firstLineButtons.length)" 
+                :invertHeight="true" 
+                @click="scrollIntoView(section)" 
+            />
         </div>
     </div>
 </template>
 
 <script setup>
+import { ref, computed, watch } from 'vue';
 import Bubble from '@/components/buttons/Bubble.vue';
 
 const props = defineProps({
-    buttons: Array
+    buttons: {
+        type: Array,
+        required: true
+    }
 });
 
-// Exclure le premier élément du tableau
-const remainingButtons = props.buttons.slice(1);
+const remainingButtons = ref([]);
 
-// Sépare les boutons restants en deux lignes
-const half = Math.ceil(remainingButtons.length / 2);
-const firstLineButtons = remainingButtons.slice(0, half);
-const secondLineButtons = remainingButtons.slice(half);
+watch(() => props.buttons, (newButtons) => {
+    remainingButtons.value = newButtons.slice(1);
+}, { immediate: true });
+
+const half = computed(() => Math.ceil(remainingButtons.value.length / 2));
+const firstLineButtons = computed(() => remainingButtons.value.slice(0, half.value));
+const secondLineButtons = computed(() => remainingButtons.value.slice(half.value));
 
 const scrollIntoView = (name) => {
     const section = document.getElementById(name);
-    section.scrollIntoView({ behavior: 'smooth' });
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+    }
 };
 
 const getInvertWidth = (index) => {
@@ -47,6 +67,6 @@ const getInvertWidth = (index) => {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 10px; /* Ajoute un espace entre les lignes */
+    margin-bottom: 10px;
 }
 </style>
