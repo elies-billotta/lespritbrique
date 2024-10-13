@@ -1,67 +1,135 @@
 <template>
-  <div v-if="visible" class="svg-bubble-wrapper" :style="{ top: position.top, left: position.left }">
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-100 -100 700 400" class="svg-bubble">
-      <g>
-        <path class="cls-1" d="M2.5,2.5h349.76l.24,69s84,7,126,63c-51-20-125-18-125-18l-.07,78H2.5V2.5Z" />
-      </g>
-      <g>
-        <path class="cls-2"
-          d="M355.93,197H0V0h354.75l.24,69.24c6.17.7,24,3.2,45.55,10.39,24.29,8.1,57.88,23.93,79.96,53.37l5.28,7.04-8.19-3.21c-44.81-17.57-108.44-17.98-121.59-17.86l-.07,78.04ZM5,192h345.93l.07-77.93,2.43-.07c.7-.02,67.2-1.6,117.46,15.1-42.31-48.17-117.81-55.04-118.6-55.11l-2.28-.19-.24-68.8H5v187Z" />
-      </g>
-      <text x="150" y="150" class="bubble-text">{{ message }}</text>
-    </svg>
+  <div ref="wrapper" class="button-wrapper">
+    <button ref="button" class="button" :type="type" @click="onClick">
+      <img :src="img" alt="Bubble" class="bubble-icon" :class="{ 'invert-width': invertWidth, 'invert-height': invertHeight, 'invert-width.invert-height': invertHeight && invertWidth }" />
+      <div class="text-container" ref="textElement">
+        <span class="button-text">{{ text }}</span>
+      </div>
+    </button>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import Bubble from '@/assets/icons/bubble.svg';
 
 const props = defineProps({
-  message: {
-    type: String,
-    required: true
+  onClick: {
+    type: Function,
+    required: false
   },
-  duration: {
-    type: Number,
-    default: 3000
+  img: {
+    type: String,
+    default: Bubble
+  },
+  text: {
+    type: String,
+    default: ''
+  },
+  type: {
+    type: String,
+    default: 'button'
+  },
+  invertWidth: {
+    type: Boolean,
+    default: false
+  },
+  invertHeight: {
+    type: Boolean,
+    default: false
   }
 });
 
-const visible = ref(false);
-const position = ref({ top: '0px', left: '0px' });
-const showBubble = (top, left) => {
-  position.value = { top, left };
-  visible.value = true;
+const button = ref(null);
 
-  setTimeout(() => {
-    visible.value = false;
-  }, props.duration);
-};
+function getRandomDelay() {
+  return Math.random() * 3;
+}
 
-defineExpose({
-  showBubble
+onMounted(() => {
+  const btn = button.value;
+  const randomDelay = getRandomDelay();
+  btn.style.animationDelay = `${randomDelay}s`;
+  btn.classList.add('animate-swing');
 });
 </script>
 
 <style scoped>
-.svg-bubble-wrapper {
+.button-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 300px;
+}
+
+@keyframes swing {
+  0% { transform: rotate(0deg); }
+  33% { transform: rotate(5deg); }
+  66% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-swing {
+  animation: swing 12s ease infinite;
+  animation-timing-function: linear;
+}
+
+.button-wrapper:hover {
+  transform: scale(1.1);
+}
+
+.bubble-icon {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.invert-width {
+  transform: scaleX(-1);
+}
+
+.invert-width.invert-height {
+  transform: scaleX(-1) scaleY(-1);
+}
+
+.invert-height {
+  transform: scaleY(-1);
+}
+
+.button-text {
   position: absolute;
-  z-index: 1000;
+  z-index: 1;
+  text-align: center;
+  font-family: 'Super Carnival', sans-serif;
+  font-size: 1.5rem;
+  color: var(--black);
+  transition: transform 0.3s;
+}
+
+.text-container {
+  width: calc(100% - (300px * 0.27));
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: auto;
 }
 
-.svg-bubble {
-  width: 200px;
-  height: auto;
-}
-
-.bubble-text {
-  font-size: 18px;
-  fill: #000;
-  font-weight: bold;
-  text-anchor: middle;
+.invert-width ~ .text-container {
+  justify-content: center;
+  left: auto;
+  right: 0;
 }
 </style>
