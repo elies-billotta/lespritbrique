@@ -12,7 +12,7 @@
     <div class="columns">
       <slot name="columns"></slot>
     </div>
-    <div class="full-section">
+    <div class="full-section" v-if="$slots.contain">
       <slot name="contain"></slot>
     </div>
   </div>
@@ -54,6 +54,7 @@ const backgroundStyle = computed(() => ({
   display: flex;
   flex-direction: column;
   gap:30px;
+  position: relative;
 }
 
 .title-wrapper {
@@ -77,7 +78,8 @@ const backgroundStyle = computed(() => ({
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: auto;
+  height: 100%;
+  position: absolute;
 } 
 
 .description {
