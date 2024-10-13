@@ -31,14 +31,15 @@ import ContactSection from './components/sections/ContactSection.vue';
 //images
 import artOfBrick from '@/assets/images/art-of-brick.png';
 import kitMaienga from '@/assets/images/kit-maienga.png';
-
+import orderSpecial from '@/assets/images/special-order1.png';
 
 const isDrawerOpen = ref(false);
 const isFirstSectionVisible = ref(true);
 const sectionNames = ref([]);
 const cardsData = [
-  { title: "BRIQUE D'EXPOSITION ARTOFBRICK 2025", imageSrc: artOfBrick, sizeX: 400 },
-  { title: 'KIT SUR MESURE - LE 4X4 DES GAZELLES', imageSrc: kitMaienga, sizeX:450 },
+  // { title: "BRIQUE D'EXPOSITION ARTOFBRICK 2025", imageSrc: artOfBrick, sizeX: 400 },
+  // { title: 'KIT SUR MESURE - LE 4X4 DES GAZELLES', imageSrc: kitMaienga, sizeX:450 },
+  {title: 'BRIQUES GROUPE PALOMBI', imageSrc: orderSpecial, sizeX: 400, routerLink:'/palombi-bricks'},
 ];
 
 const isMobile = ref(false);
