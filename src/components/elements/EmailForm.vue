@@ -1,7 +1,6 @@
 <template>
   <div class="email-form">
     <form @submit.prevent="sendEmail">
-      <!-- Champ Nom -->
       <div class="line1">
         <div>
           <label for="name">Nom<span class="required-asterisk">*</span>:</label>
@@ -12,8 +11,6 @@
           <input type="email" v-model="formData.email" :disabled="formDisabled" id="email" required />
         </div>
       </div>
-
-      <!-- Champ Entité -->
       <div class="line2">
         <div>
           <label for="entity">Je suis<span class="required-asterisk">*</span>:</label>
@@ -31,29 +28,18 @@
           </select>
         </div>
       </div>
-
-      <!-- Champ Message -->
       <div>
         <label for="message">Message<span class="required-asterisk">*</span>:</label>
         <textarea v-model="formData.message" :disabled="formDisabled" id="message" required placeholder="Saisissez un message d'au moins 30 caractères"></textarea>
       </div>
-
-      <!-- Section du reCAPTCHA et Bouton -->
       <div class="inline">
         <div class="g-recaptcha" data-sitekey="6LeLsFQqAAAAAK8Y_yrXvBBC7duprvrgWh3jbm9z"></div>
 
         <div class="submit-section">
-          <!-- Bouton Envoyer -->
           <MyButton v-if="!isSending && !emailSent && !emailError" type="submit" text="ENVOYER LE MESSAGE"
             :disabled="formDisabled" />
-
-          <!-- Loader -->
           <div v-if="isSending" class="loader fade-in"></div>
-
-          <!-- Bouton Envoyé -->
           <MyButton v-if="emailSent && !isSending" :text="'MESSAGE ENVOYÉ'" class="sent fade-in" disabled />
-
-          <!-- Bouton Erreur -->
           <MyButton v-if="emailError && !isSending" :text="'Réessayer'" @click="sendEmail" class="error fade-in" />
         </div>
       </div>
@@ -65,7 +51,6 @@
 import { reactive, ref, watch } from 'vue';
 import MyButton from '@/components/buttons/MyButton.vue';
 
-// Définition des états et données du formulaire
 const formData = reactive({
   name: '',
   email: '',
@@ -79,7 +64,6 @@ const emailSent = ref(false);
 const emailError = ref(false);
 const formDisabled = ref(false);
 
-// Sujets selon l'entité sélectionnée
 const subjects = {
   particulier: [
     "Demande de briques personnalisées sur mesure",
@@ -95,7 +79,6 @@ const subjects = {
 
 const availableSubjects = ref([]);
 
-// Mise à jour des sujets selon l'entité sélectionnée
 watch(selectedEntity, (newEntity) => {
   if (newEntity) {
     availableSubjects.value = subjects[newEntity];
@@ -105,7 +88,6 @@ watch(selectedEntity, (newEntity) => {
   }
 });
 
-// Fonction pour envoyer l'email
 async function sendEmail() {
   const recaptchaToken = grecaptcha.getResponse();
   if (!recaptchaToken) {
@@ -124,7 +106,6 @@ async function sendEmail() {
     return;
   }
 
-  // Désactiver l'envoi et démarrer le loader
   isSending.value = true;
   emailError.value = false;
 
@@ -152,17 +133,16 @@ async function sendEmail() {
   } catch (error) {
     emailError.value = true;
   } finally {
-    isSending.value = false; // Désactiver le loader
+    isSending.value = false;
   }
 }
 
-// Fonction pour réinitialiser le formulaire après 5 minutes
 function startResetTimer() {
   setTimeout(() => {
     emailSent.value = false;
     formDisabled.value = false;
     emailError.value = false;
-  }, 300000); // 5 minutes (300 000 ms)
+  }, 300000);
 }
 </script>
 
@@ -224,7 +204,6 @@ textarea[disabled] {
 .line1>div,
 .line2>div {
   flex: 1;
-  /* Permet à chaque champ de prendre la largeur égale */
 }
 
 .inline>div {
@@ -237,7 +216,6 @@ textarea[disabled] {
   justify-content: flex-end;
 }
 
-/* Animation du loader avec fade-in et fade-out */
 .loader {
   border: 4px solid #f3f3f3;
   border-top: 4px solid #3498db;

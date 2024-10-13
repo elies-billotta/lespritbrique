@@ -34,7 +34,7 @@ const emit = defineEmits(['toggle-music', 'update-volume']);
 const localVolume = ref(props.volume);
 
 watch(() => props.volume, (newVolume) => {
-    localVolume.value = newVolume; // Synchronisez la valeur locale avec la prop volume
+    localVolume.value = newVolume;
 });
 
 const toggleMusic = () => {
@@ -50,8 +50,8 @@ const updateVolume = () => {
 .music {
     display: flex;
     flex-direction: row;
-    justify-content: center; /* Centre horizontalement */
-    align-items: center;    /* Centre verticalement */
+    justify-content: center;
+    align-items: center;
 }
 
 .icon {
@@ -60,7 +60,7 @@ const updateVolume = () => {
     border-radius: 20px;
     border: none;
     background-color: var(--black);
-    display : flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 5px;
@@ -73,86 +73,70 @@ const updateVolume = () => {
 
 .icon:hover {
     cursor: pointer;
-    background-color : var(--black-hover);
+    background-color: var(--black-hover);
 }
 
-.icon i:hover{
-    cursor: pointer; /* Curseur en forme de main */
-    color: var(--secondary-color); /* Couleur de l'icône */
-}
-
-/* Styles pour le contrôle de volume */
 .volume-container {
-    display: flex; /* Utiliser flex pour aligner le contrôle de volume */
-    align-items: center; /* Aligner verticalement l'input */
+    display: flex;
+    align-items: center;
 }
 
 .volume-control {
-    -webkit-appearance: none; /* Supprime le style par défaut sur WebKit (Chrome, Safari) */
-    width: 80px; /* Largeur de l'input */
-    height: 5px; /* Hauteur de la barre */
-    background: var(--black); /* Couleur de la barre arrière */
-    border-radius: 20px; /* Arrondir les bords */
-    outline: none; /* Supprime le contour par défaut */
-    cursor: pointer; /* Curseur en forme de main */
+    -webkit-appearance: none;
+    width: 80px;
+    height: 5px;
+    background: var(--black);
+    border-radius: 20px;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid var(--black);
 }
 
-/* Styles pour la partie remplie (partie à gauche du curseur) */
 .volume-control::-webkit-slider-runnable-track {
-    height: 5px; /* Hauteur de la barre */
-    background: var(--secondary-color); /* Couleur de la partie remplie */
-    border-radius: 20px; /* Arrondir les bords */
+    height: 5px;
+    background: var(--black);
+    border-radius: 20px;
 }
 
-/* Styles pour la partie non remplie (à droite du curseur) */
-.volume-control::-webkit-slider-runnable-track {
-    background: var(--black); /* Couleur de la barre arrière */
-}
-
-/* Styles pour le curseur (pour Chrome, Safari, et Edge) */
 .volume-control::-webkit-slider-thumb {
     -webkit-appearance: none;
-    appearance: none; /* Supprime le style par défaut sur Firefox */
-    width: 16px; /* Largeur du curseur */
-    height: 16px; /* Hauteur du curseur */
-    background: var(--secondary-color); /* Couleur du curseur */
-    border: 2px solid var(--black); /* Bordure noire autour du curseur */
-    border-radius: 100%; /* Arrondir le curseur */
-    cursor: pointer; /* Curseur en forme de main */
-    margin-top: -5px; /* Ajuste la position verticale du curseur pour alignement */
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--secondary-color);
+    border: 2px solid var(--black);
+    border-radius: 100%;
+    cursor: pointer;
+    margin-top: -5px;
 }
 
-/* Styles pour le curseur (pour Firefox) */
 .volume-control::-moz-range-thumb {
-    width: 16px; /* Largeur du curseur */
-    height: 16px; /* Hauteur du curseur */
-    background: var(--secondary-color); /* Couleur du curseur */
-    border: 2px solid var(--black); /* Bordure noire autour du curseur */
-    border-radius: 50%; /* Arrondir le curseur */
+    width: 16px;
+    height: 16px;
+    background: var(--secondary-color);
+    border: 2px solid var(--black);
+    border-radius: 50%;
 }
 
-/* Styles pour la partie de la piste arrière (pour Firefox) */
 .volume-control::-moz-range-track {
-    height: 5px; /* Hauteur de la barre */
-    background: var(--black); /* Couleur de la barre arrière */
-    border-radius: 5px; /* Arrondir les bords */
+    height: 5px;
+    background: var(--black);
+    border-radius: 5px;
 }
 
-/* Styles pour Internet Explorer */
 .volume-control::-ms-thumb {
-    width: 16px; /* Largeur du curseur */
-    height: 16px; /* Hauteur du curseur */
-    background: var(--secondary-color); /* Couleur du curseur */
-    border: 2px solid var(--black); /* Bordure noire autour du curseur */
-    border-radius: 50%; /* Arrondir le curseur */
+    width: 16px;
+    height: 16px;
+    background: var(--secondary-color);
+    border: 2px solid var(--black);
+    border-radius: 50%;
 }
 
-/* Styles pour la piste dans Internet Explorer */
 .volume-control::-ms-track {
-    height: 5px; /* Hauteur de la barre */
-    background: var(--black); /* Couleur de la barre arrière */
-    border-radius: 5px; /* Arrondir les bords */
-    border: none; /* Pas de bordure */
-    color: transparent; /* Couleur transparente pour la piste */
+    height: 5px;
+    background: var(--black);
+    border-radius: 5px;
+    border: none;
+    color: transparent;
 }
 </style>

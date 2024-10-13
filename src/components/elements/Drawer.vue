@@ -114,11 +114,6 @@ const leaveDrawer = (el, done) => {
 </script>
 
 <style scoped>
-/* Styles inchangés */
-</style>
-
-
-<style scoped>
 .overlay {
   position: fixed;
   top: 0;

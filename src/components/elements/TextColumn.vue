@@ -32,7 +32,6 @@ export default {
             default: 'Subtitle here',  
         },
     },
-
     components: {
         Line,
     },
@@ -51,7 +50,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap:0px;
+    gap: 0px;
     margin-bottom: 10px;
 }
 
@@ -64,17 +63,16 @@ export default {
     border-radius: 50%;
     overflow: hidden;
     background-color: var(--primary-color);
-    border-radius: 50%; /* Cercle */
-  position: relative; /* Nécessaire pour utiliser ::before */
+    position: relative;
 }
 
 .icon-container::before {
-  content: '';
-  position: absolute;
-  width: 130px; /* Taille de la bordure blanche interne */
-  height: 130px; /* Taille de la bordure blanche interne */
-  border-radius: 50%; /* Cercle pour la bordure interne */
-  border: 4px solid var(--black); /* Bordure blanche interne */
+    content: '';
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 4px solid var(--black);
 }
 
 .icon {
@@ -88,7 +86,7 @@ export default {
 }
 
 .title {
-    padding-top : 10px;
+    padding-top: 10px;
 }
 
 .text-container {
@@ -99,5 +97,4 @@ export default {
     flex-direction: column;
     align-items: center;
 }
-
 </style>
