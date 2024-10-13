@@ -23,27 +23,29 @@ const props = defineProps({
 .no-padding-section {
     padding: 0 !important;
     position: relative;
-    height: 100vh; /* Pour couvrir toute la hauteur de l'écran */
-    background-image: url('@/assets/images/logo-color.png'); /* Image en arrière-plan */
-    background-size: contain; /* Ajuste la taille de l'image */
-    background-repeat: no-repeat; /* Empêche la répétition de l'image */
-    background-position: center; /* Centre l'image */
+    height: 100vh;
+    background-image: url('@/assets/images/logo-color.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .buttons {
     position: absolute;
-    top: 50%; /* Ajuste selon l'endroit où tu veux placer tes boutons */
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centrage horizontal et vertical */
+    transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
     gap: 20px;
     z-index: 5;
+    width: 50%;
+    height: 75%;
 }
 
 @media (max-width: 1024px) {
     .no-padding-section {
-        background-size: cover; /* Ajuste l'image pour les écrans plus petits */
+        background-size: cover;
     }
 }
 </style>

@@ -61,12 +61,18 @@ const getInvertWidth = (index) => {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1;
+    width: 100%;
+    height: 100%;
 }
 
 .buttons-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    flex:1;
     flex-wrap: wrap;
-    margin-bottom: 10px;
+    height: 100%;
+    width: 100%;
 }
 </style>

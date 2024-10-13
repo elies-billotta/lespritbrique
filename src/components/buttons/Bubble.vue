@@ -69,7 +69,7 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 300px;
+  width: 20vw;
 }
 
 @keyframes swing {
@@ -111,13 +111,13 @@ onMounted(() => {
   z-index: 1;
   text-align: center;
   font-family: 'Super Carnival', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.9vw; /* Ajuste la taille de la police selon la largeur de la fenêtre */
   color: var(--black);
   transition: transform 0.3s;
 }
 
 .text-container {
-  width: calc(100% - (300px * 0.27));
+  width: calc(100% - (20vw * 0.27));
   height: 100%;
   display: flex;
   align-items: center;
