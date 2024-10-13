@@ -106,12 +106,10 @@ onBeforeUnmount(() => {
 
 // Tableau contenant les fichiers audio
 const audioFiles = [
-  new URL('@/assets/audio/Angelo.mp3', import.meta.url).href,
-  new URL('@/assets/audio/Rome.mp3', import.meta.url).href,
-  new URL('@/assets/audio/Sicilia.mp3', import.meta.url).href,
-  new URL('@/assets/audio/BastaCazzate.mp3', import.meta.url).href,
-  new URL('@/assets/audio/DiscoenEgypte.mp3', import.meta.url).href,
-  new URL('@/assets/audio/Valparaiso.mp3', import.meta.url).href,
+  new URL('@/assets/audio/Gentlemen.mp3', import.meta.url).href,
+  new URL('@/assets/audio/SwingTime.mp3', import.meta.url).href,
+  new URL('@/assets/audio/BigBand.mp3', import.meta.url).href,
+  new URL('@/assets/audio/CottonClub.mp3', import.meta.url).href,
 ];
 
 // Fonction pour jouer une musique aléatoire
