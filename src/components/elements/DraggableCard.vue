@@ -37,7 +37,7 @@ const cardStyle = computed(() => ({
 
 // Propriété calculée pour le style de l'image wrapper
 const wrapperStyle = computed(() => ({
-  width: props.sizeX ? `${props.sizeX}px` : 'auto',
+  width: props.sizeX ? `${props.sizeX}vw` : 'auto',
   height: 'auto', // La hauteur sera calculée plus tard
 }));
 
