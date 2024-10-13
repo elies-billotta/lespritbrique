@@ -24,10 +24,9 @@
     <!-- Élément audio pour jouer la musique -->
     <audio ref="audioElement" @ended="handleMusicEnd"></audio>
     <!-- Élément audio pour le son de clic -->
-    <audio  ref="clickSoundElement" :src="StartSound"></audio>
+    <audio ref="clickSoundElement" :src="StartSound"></audio>
   </div>
 </template>
-
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
@@ -52,12 +51,13 @@ const isDrawerOpen = ref(false);
 const isFirstSectionVisible = ref(true);
 const sectionNames = ref([]);
 const cardsData = [
-  {title: 'BRIQUES GROUPE PALOMBI', imageSrc: orderSpecial, sizeX: 400},
+  { title: 'BRIQUES GROUPE PALOMBI', imageSrc: orderSpecial, sizeX: 400 },
 ];
 const isMobile = ref(false);
 const currentMusic = ref('');
 const audioElement = ref(null); // Référence à l'élément audio principal
 const clickSoundElement = ref(null); // Référence à l'élément audio du son de clic
+const isToggling = ref(false); // Indicateur pour empêcher les toggles rapides
 
 const toggleDrawer = () => {
   isDrawerOpen.value = !isDrawerOpen.value;
@@ -83,7 +83,9 @@ const handleResize = () => {
 };
 
 const handleToggleMusic = () => {
-  toggleMusic();
+  if (!isToggling.value) { // Vérifie si un toggle est déjà en cours
+    toggleMusic();
+  }
 };
 
 const handleUpdateVolume = (newVolume) => {
@@ -109,7 +111,6 @@ const audioFiles = [
   new URL('@/assets/audio/Gentlemen.mp3', import.meta.url).href,
   new URL('@/assets/audio/SwingTime.mp3', import.meta.url).href,
   new URL('@/assets/audio/BigBand.mp3', import.meta.url).href,
-  new URL('@/assets/audio/CottonClub.mp3', import.meta.url).href,
 ];
 
 // Fonction pour jouer une musique aléatoire
@@ -125,6 +126,8 @@ const playRandomMusic = () => {
 
 // Fonction pour basculer la musique avec un délai
 const toggleMusic = () => {
+  isToggling.value = true; // Indique qu'un toggle est en cours
+
   if (!isPlaying.value) {
     // Jouer le son de démarrage
     if (clickSoundElement.value) {
@@ -132,9 +135,12 @@ const toggleMusic = () => {
       clickSoundElement.value.play();
     }
 
-    // Délai de 2 secondes avant de jouer la musique
+    isPlaying.value = true; // Met à jour immédiatement l'état de lecture
+
+    // Délai de 2500 ms avant de jouer la musique
     setTimeout(() => {
       playRandomMusic(); // Si aucune musique n'est en cours, on en sélectionne une
+      isToggling.value = false; // Réinitialise l'indicateur de toggle
     }, 2500);
   } else {
     // Jouer le son d'arrêt
@@ -143,8 +149,9 @@ const toggleMusic = () => {
       clickSoundElement.value.play();
     }
     audioElement.value.pause(); // Met la musique en pause
+    isPlaying.value = false; // Met à jour l'état de lecture
+    isToggling.value = false; // Réinitialise l'indicateur de toggle
   }
-  isPlaying.value = !isPlaying.value; // Inverse l'état
 };
 
 // Gérer la fin de la musique
@@ -152,6 +159,3 @@ const handleMusicEnd = () => {
   playRandomMusic(); // Relancer une nouvelle musique quand celle-ci se termine
 };
 </script>
-
-
-

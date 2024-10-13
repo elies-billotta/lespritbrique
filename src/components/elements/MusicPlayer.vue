@@ -1,8 +1,8 @@
 <template>
     <div class="music">
-        <div class="icon">
-            <i v-if="!isPlaying" @click="toggleMusic" class="fa-solid fa-music"></i>
-            <i v-else @click="toggleMusic" class="fa-solid fa-stop"></i>
+        <div class="icon" @click="toggleMusic">
+            <img v-if="!isPlaying" class="iconImg" :src="musicIcon">
+            <img v-else class="iconImg" :src="stopMusicIcon">
         </div>
         <div v-if="isPlaying" class="volume-container">
             <input
@@ -21,6 +21,8 @@
 
 <script setup>
 import { ref, watch } from 'vue';
+import stopMusicIcon from '@/assets/icons/nomusic.png';
+import musicIcon from '@/assets/icons/music.png';
 
 const props = defineProps({
     isPlaying: Boolean,
@@ -53,8 +55,25 @@ const updateVolume = () => {
 }
 
 .icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+    background-color: var(--black);
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.iconImg {
     width: 20px;
     height: 20px;
+}
+
+.icon:hover {
+    cursor: pointer;
+    background-color : var(--black-hover);
 }
 
 .icon i:hover{
@@ -71,18 +90,18 @@ const updateVolume = () => {
 .volume-control {
     -webkit-appearance: none; /* Supprime le style par défaut sur WebKit (Chrome, Safari) */
     width: 80px; /* Largeur de l'input */
-    height: 8px; /* Hauteur de la barre */
+    height: 5px; /* Hauteur de la barre */
     background: var(--black); /* Couleur de la barre arrière */
-    border-radius: 5px; /* Arrondir les bords */
+    border-radius: 20px; /* Arrondir les bords */
     outline: none; /* Supprime le contour par défaut */
     cursor: pointer; /* Curseur en forme de main */
 }
 
 /* Styles pour la partie remplie (partie à gauche du curseur) */
 .volume-control::-webkit-slider-runnable-track {
-    height: 8px; /* Hauteur de la barre */
+    height: 5px; /* Hauteur de la barre */
     background: var(--secondary-color); /* Couleur de la partie remplie */
-    border-radius: 5px; /* Arrondir les bords */
+    border-radius: 20px; /* Arrondir les bords */
 }
 
 /* Styles pour la partie non remplie (à droite du curseur) */
@@ -92,15 +111,15 @@ const updateVolume = () => {
 
 /* Styles pour le curseur (pour Chrome, Safari, et Edge) */
 .volume-control::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Supprime le style par défaut */
+    -webkit-appearance: none;
     appearance: none; /* Supprime le style par défaut sur Firefox */
     width: 16px; /* Largeur du curseur */
     height: 16px; /* Hauteur du curseur */
     background: var(--secondary-color); /* Couleur du curseur */
     border: 2px solid var(--black); /* Bordure noire autour du curseur */
-    border-radius: 50%; /* Arrondir le curseur */
+    border-radius: 100%; /* Arrondir le curseur */
     cursor: pointer; /* Curseur en forme de main */
-    margin-top: -4px; /* Ajuste la position verticale du curseur pour alignement */
+    margin-top: -5px; /* Ajuste la position verticale du curseur pour alignement */
 }
 
 /* Styles pour le curseur (pour Firefox) */
@@ -114,7 +133,7 @@ const updateVolume = () => {
 
 /* Styles pour la partie de la piste arrière (pour Firefox) */
 .volume-control::-moz-range-track {
-    height: 8px; /* Hauteur de la barre */
+    height: 5px; /* Hauteur de la barre */
     background: var(--black); /* Couleur de la barre arrière */
     border-radius: 5px; /* Arrondir les bords */
 }
@@ -130,7 +149,7 @@ const updateVolume = () => {
 
 /* Styles pour la piste dans Internet Explorer */
 .volume-control::-ms-track {
-    height: 8px; /* Hauteur de la barre */
+    height: 5px; /* Hauteur de la barre */
     background: var(--black); /* Couleur de la barre arrière */
     border-radius: 5px; /* Arrondir les bords */
     border: none; /* Pas de bordure */
