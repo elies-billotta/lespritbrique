@@ -42,14 +42,14 @@ const props = defineProps({
 
 const button = ref(null);
 
-function getRandomDelay() {
-  return Math.random() * 3;
+function getRandomDuration() {
+  return Math.random() * (12 - 8) + 8;
 }
 
 onMounted(() => {
   const btn = button.value;
-  const randomDelay = getRandomDelay();
-  btn.style.animationDelay = `${randomDelay}s`;
+  const randomDuration = getRandomDuration();
+  btn.style.animationDuration = `${randomDuration}s`;
   btn.classList.add('animate-swing');
 });
 </script>
@@ -80,7 +80,7 @@ onMounted(() => {
 }
 
 .animate-swing {
-  animation: swing 12s ease infinite;
+  animation: swing infinite;
   animation-timing-function: linear;
 }
 
@@ -111,7 +111,7 @@ onMounted(() => {
   z-index: 1;
   text-align: center;
   font-family: 'Super Carnival', sans-serif;
-  font-size: 1.9vw; /* Ajuste la taille de la police selon la largeur de la fenêtre */
+  font-size: 1.9vw;
   color: var(--black);
   transition: transform 0.3s;
 }
