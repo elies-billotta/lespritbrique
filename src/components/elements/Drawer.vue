@@ -22,8 +22,16 @@
           </div>
         </div>
         <div class="bottom-drawer">
-          <div></div>
-          <p class="drawer-text">Mentions légales</p>
+             <div>
+          <MusicPlayer 
+            :isPlaying="isPlaying" 
+            :volume="volume" 
+            :currentMusic="currentMusic"
+            @toggle-music="$emit('toggle-music')" 
+            @update-volume="$emit('update-volume', $event)"
+          />
+        </div>
+        <p class="drawer-text">Mentions légales</p>
         </div>
       </div>
     </transition>
@@ -32,14 +40,17 @@
 
 <script setup>
 import { ref, watch } from 'vue';
+import MusicPlayer from '@/components/elements/MusicPlayer.vue';
 
 const props = defineProps({
   isDrawerOpen: Boolean,
   sections: Array,
-  imageSrc: String
+  isPlaying: Boolean,
+  volume: Number,
+  currentMusic: String
 });
 
-const emit = defineEmits(['close-drawer']);
+const emit = defineEmits(['close-drawer', 'toggle-music', 'update-volume']);
 
 const showOverlay = ref(false);
 
@@ -103,6 +114,11 @@ const leaveDrawer = (el, done) => {
 </script>
 
 <style scoped>
+/* Styles inchangés */
+</style>
+
+
+<style scoped>
 .overlay {
   position: fixed;
   top: 0;
@@ -143,7 +159,7 @@ const leaveDrawer = (el, done) => {
 }
 
 .logo-image {
-  width: 250px;
+  width: 20vw;
   height: auto;
   object-fit: contain;
 }
@@ -176,7 +192,7 @@ const leaveDrawer = (el, done) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
 }
 
 .drawer-text {
@@ -210,4 +226,5 @@ const leaveDrawer = (el, done) => {
   outline: 2px solid var(--secondary-color);
   outline-offset: 2px;
 }
+
 </style>
