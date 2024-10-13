@@ -89,7 +89,6 @@ onMounted(() => {
   // Récupérer la hauteur de la carte après le montage
   if (cardRef.value) {
     cardHeight.value = cardRef.value.offsetHeight; // stocke la hauteur dans cardHeight
-    console.log('Hauteur de la carte:', cardHeight.value); // Affiche la hauteur dans la console
   }
 });
 </script>
