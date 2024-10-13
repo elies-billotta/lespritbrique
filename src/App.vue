@@ -52,7 +52,7 @@ const isDrawerOpen = ref(false);
 const isFirstSectionVisible = ref(true);
 const sectionNames = ref([]);
 const cardsData = [
-  {title: 'BRIQUES GROUPE PALOMBI', imageSrc: orderSpecial, sizeX: 400},,
+  {title: 'BRIQUES GROUPE PALOMBI', imageSrc: orderSpecial, sizeX: 400},
 ];
 const isMobile = ref(false);
 const currentMusic = ref('');
