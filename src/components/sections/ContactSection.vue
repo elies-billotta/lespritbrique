@@ -6,7 +6,7 @@
     <template #columns>
       <EmailForm />
       <div class="img-column">
-        <img src="@/assets/images/art-of-brick.png" alt="Contact us" />
+        <img class="responsive-image" src="@/assets/images/art-of-brick.png" alt="Contact us" />
       </div>
     </template>
   </Section>
@@ -25,5 +25,16 @@ import BrickIcon from '@/assets/icons/brick.svg';
 
 .text-column p {
   margin-bottom: 20px;
+}
+
+/* Cacher l'image sur les écrans de mobile */
+.responsive-image {
+  display: block; /* Par défaut, afficher l'image */
+}
+
+@media (max-width: 768px) {
+  .responsive-image {
+    display: none; /* Cacher l'image sur mobile */
+  }
 }
 </style>

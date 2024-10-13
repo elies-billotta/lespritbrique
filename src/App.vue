@@ -1,7 +1,6 @@
 <template>
   <Loader />
   <div id="app">
-    <OldTvShader />
     <MenuButton :isFirstSectionVisible="isFirstSectionVisible" :toggleDrawer="toggleDrawer" />
     <Drawer 
       :isDrawerOpen="isDrawerOpen" 

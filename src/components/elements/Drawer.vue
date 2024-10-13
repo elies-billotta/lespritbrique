@@ -139,26 +139,6 @@ const leaveDrawer = (el, done) => {
   flex-direction: column;
 }
 
-@media (max-width: 768px) {
-  .drawer {
-    width: 100%;
-  }
-}
-
-.logo-container {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-  padding-bottom: 0;
-  padding-top: 0;
-}
-
-.logo-image {
-  width: 15vw;
-  height: auto;
-  object-fit: contain;
-}
-
 .button-container {
   display: flex;
   flex-direction: column;
@@ -221,5 +201,40 @@ const leaveDrawer = (el, done) => {
   outline: 2px solid var(--secondary-color);
   outline-offset: 2px;
 }
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.logo-image {
+  width: 300px; /* Taille par défaut pour desktop */
+  height: auto;
+  object-fit: contain;
+}
+
+/* Pour ordinateurs portables */
+@media (max-width: 1024px) {
+  .logo-image {
+    width: 200px; /* Ajustement pour laptops */
+  }
+}
+
+/* Pour appareils mobiles */
+@media (max-width: 768px) {
+  .logo-image {
+    width: 150px; /* Encore plus petit pour mobiles */
+  }
+}
+
+/* Optionnel : Ajustement pour des écrans plus bas en hauteur */
+@media (max-height: 900px) {
+  .logo-image {
+    width: 200px; /* Plus petit si la hauteur est faible */
+  }
+}
+
 
 </style>

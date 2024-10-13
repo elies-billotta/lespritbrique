@@ -40,9 +40,14 @@ const props = defineProps({
     height: 75%;
 }
 
+/* Masquer les boutons sur mobile */
 @media (max-width: 1024px) {
+    .buttons {
+        display: none; /* Cacher le conteneur de boutons */
+    }
+
     .no-padding-section {
-        background-size: cover;
+        background-size: contain;
     }
 }
 </style>
