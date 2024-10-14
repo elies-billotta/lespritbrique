@@ -7,8 +7,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, defineEmits } from 'vue';
 
+// Définir les événements que ce composant peut émettre
+const emit = defineEmits(['documentLoaded']);
 const isLoaded = ref(false);
 
 onMounted(() => {
@@ -16,6 +18,8 @@ onMounted(() => {
     if (document.readyState === 'complete') {
       setTimeout(() => {
         isLoaded.value = true;
+        // Émettre l'événement personnalisé ici
+        emit('documentLoaded');
       }, 1000);
     }
   };
@@ -29,7 +33,7 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 1);
+  background-color: var(--black);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,8 +43,8 @@ onMounted(() => {
 .spinner {
   width: 50px;
   height: 50px;
-  border: 5px solid rgba(0, 0, 0, 0.1);
-  border-top-color: #3498db;
+  border: 5px solid var(--black);
+  border-top-color: var(--secondary-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -51,10 +55,12 @@ onMounted(() => {
   }
 }
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 1s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>

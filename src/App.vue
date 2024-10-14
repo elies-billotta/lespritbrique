@@ -1,7 +1,7 @@
 <template>
-  <OldTvShader/>
-  <Loader />
-  <div id="app">
+  <OldTvShader />
+  <Loader @documentLoaded="handleDocumentLoaded" />
+  <div id="app" :style="{ clipPath: clipPathStyle }" @transitionend="handleTransitionEnd">
     <MenuButton :isFirstSectionVisible="isFirstSectionVisible" :toggleDrawer="toggleDrawer" />
     <Drawer 
       :isDrawerOpen="isDrawerOpen" 
@@ -57,6 +57,8 @@ const currentMusic = ref('');
 const audioElement = ref(null);
 const clickSoundElement = ref(null);
 const isToggling = ref(false);
+const isLoaded = ref(false);  // Pour suivre si le contenu est chargé
+const clipPathStyle = ref('circle(0% at 50% 50%)'); // Clip-path initial pour masquer le contenu
 
 const toggleDrawer = () => {
   isDrawerOpen.value = !isDrawerOpen.value;
@@ -105,6 +107,19 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize);
 });
 
+// Nouvelle fonction pour gérer l'événement de chargement
+const handleDocumentLoaded = () => {
+  isLoaded.value = true; // Changer l'état à chargé
+  clipPathStyle.value = 'circle(100% at 50% 50%)'; // Révéler le contenu
+};
+
+const handleTransitionEnd = () => {
+  setTimeout(() => {
+    if (isLoaded.value)
+    clipPathStyle.value = 'none'; // Supprimer le clip-path
+  }, 2000); // Attendre 3 secondes avant de supprimer le clip-path
+};
+
 const audioFiles = [
   new URL('@/assets/audio/Gentlemen.mp3', import.meta.url).href,
   new URL('@/assets/audio/SwingTime.mp3', import.meta.url).href,
@@ -151,3 +166,19 @@ const handleMusicEnd = () => {
   playRandomMusic();
 };
 </script>
+
+<style scoped>
+#app {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Occupe toute la hauteur de la vue */
+  clip-path: circle(0% at 50% 50%); /* Commence masqué */
+  transition: clip-path 3s ease; /* Animation de clip-path */
+  background-color: black;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
