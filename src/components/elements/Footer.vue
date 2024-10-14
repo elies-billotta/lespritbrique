@@ -1,7 +1,7 @@
 <template>
   <footer>
     <div class="footer-content">
-      <p class="mail" @click="onCopy('contact@lespritbrique.com')">CONTACT@LESPRITBRIQUE.COM</p>
+      <a class="mail" @click="onCopy('contact@lespritbrique.com')">CONTACT@LESPRITBRIQUE.COM</a>
       <div class="social-icons">
         <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
           <i class="fab fa-facebook-f fa-sm"></i>
@@ -48,15 +48,10 @@ const onCopy = (source) => {
 </script>
 
 <style scoped>
-.mail {
+ .mail {
   font-size: 20px;
-  color: var(--black);
-  cursor: pointer;
 }
 
-.mail:hover {
-  color: var(--secondary-color);
-}
 
 footer {
   background-color: var(--primary-color);

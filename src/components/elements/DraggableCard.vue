@@ -1,7 +1,7 @@
 <template>
   <div class="card" :style="cardStyle" @mousedown="startDrag" @touchstart="startDrag" ref="cardRef">
     <div class="image-wrapper" :style="wrapperStyle">
-      <div class="card-title">{{ title }}</div>
+      <div class="card-title"><a>{{ title }}</a></div>
       <span class="dot">
         <i class="fa-solid fa-box fa-2xl"></i>
       </span>
@@ -111,13 +111,16 @@ onMounted(async () => {
   bottom: -40px;
   color: var(--black);
   padding: 0;
-  font-size: 1.2rem;
   text-align: center;
   white-space: nowrap;
   height: 20px;
   line-height: 20px;
-  font-family: 'Bevellier-Regular', sans-serif;
   z-index: 2;
+}
+
+.card-title > a {
+  font-size: 1.2rem;
+  font-family: 'Bevellier-Regular', sans-serif;
 }
 
 .card-image {

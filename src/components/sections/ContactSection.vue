@@ -1,7 +1,7 @@
 <template>
   <Section class="text-section" :background-color="'var(--white)'" :columns="2" :title="'CONTACT'" :icon="BrickIcon">
     <template #description>
-      <p>UNE QUESTION ? UNE DEMANDE ? CONTACTEZ-NOUS</p>
+      <p>UNE DEMANDE SPÉCIFIQUE ? C'EST PAR ICI !</p>
     </template>
     <template #columns>
       <EmailForm />

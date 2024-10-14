@@ -45,8 +45,6 @@ const half = computed(() => Math.ceil(remainingButtons.value.length / 2));
 const firstLineButtons = computed(() => remainingButtons.value.slice(0, half.value));
 const secondLineButtons = computed(() => remainingButtons.value.slice(half.value));
 
-console.log("here");
-
 const scrollIntoView = (name) => {
     const section = document.getElementById(name);
     if (section) {

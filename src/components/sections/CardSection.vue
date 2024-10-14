@@ -30,7 +30,7 @@ import BrickIcon from '@/assets/icons/brick.svg';
 const props = defineProps({
   backgroundColor: {
     type: String,
-    default: '#5B8E7D',
+    default: 'var(--primary-color)',
   },
   cardsData: {
     type: Array,

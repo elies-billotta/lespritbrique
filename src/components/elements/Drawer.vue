@@ -31,7 +31,7 @@
               @update-volume="$emit('update-volume', $event)"
             />
           </div>
-          <p class="drawer-text">Mentions légales</p>
+          <a class="drawer-text">Mentions légales</a>
         </div>
       </div>
     </transition>
@@ -172,7 +172,6 @@ const leaveDrawer = (el, done) => {
 
 .drawer-text {
   font-size: 16px;
-  color: var(--black);
 }
 
 .drawer-text:hover {
