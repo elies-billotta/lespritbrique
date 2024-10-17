@@ -23,7 +23,7 @@
         </div>
         <div class="bottom-drawer">
           <div class="buttons">
-            <IconButton id="activeShader" :icon1="TV" @click="toggleShader"/>
+            <IconButton id="activeShader" :icon2="TVDisabled" :icon1="TV" @click="toggleShader"/>
             <MusicPlayer 
               :isPlaying="isPlaying" 
               :volume="volume" 
@@ -44,6 +44,7 @@ import { ref, watch } from 'vue';
 import MusicPlayer from '@/components/elements/MusicPlayer.vue';
 import IconButton from '@/components/buttons/IconButton.vue';
 import TV from '@/assets/icons/tv.png'
+import TVDisabled from '@/assets/icons/tv-disabled.png'
 
 const props = defineProps({
   isDrawerOpen: Boolean,
