@@ -37,8 +37,6 @@ const handleClick = () => {
     if (props.onClick) {
         props.onClick();
     }
-
-    // Active le cooldown
     isCooldown.value = true;
     setTimeout(() => {
         isCooldown.value = false;
@@ -46,7 +44,7 @@ const handleClick = () => {
 };
 </script>
 
-<style setup>
+<style scoped>
 .button {
     width: 30px;
     height: 30px;
