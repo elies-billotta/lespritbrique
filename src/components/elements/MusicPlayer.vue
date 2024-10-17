@@ -1,28 +1,18 @@
 <template>
     <div class="music">
-        <div class="icon" @click="toggleMusic">
-            <img v-if="!isPlaying" class="iconImg" :src="musicIcon">
-            <img v-else class="iconImg" :src="stopMusicIcon">
-        </div>
+        <IconButton id="music" :cooldownDuration="2500" :icon1="musicIcon" :icon2="stopMusicIcon" :onClick="toggleMusic" />
         <div v-if="isPlaying" class="volume-container">
-            <input
-                id="volume-control"
-                class="volume-control"
-                type="range"
-                min="0"
-                max="0.25"
-                step="0.01"
-                v-model="localVolume"
-                @input="updateVolume"
-            />
+            <input id="volume-control" class="volume-control" type="range" min="0" max="0.25" step="0.01"
+                v-model="localVolume" @input="updateVolume" />
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import stopMusicIcon from '@/assets/icons/nomusic.png';
 import musicIcon from '@/assets/icons/music.png';
+import IconButton from '@/components/buttons/IconButton.vue';
 
 const props = defineProps({
     isPlaying: Boolean,
@@ -31,11 +21,13 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['toggle-music', 'update-volume']);
-const localVolume = ref(props.volume);
+const localVolume = ref(null);
 
 watch(() => props.volume, (newVolume) => {
     localVolume.value = newVolume;
+    localStorage.setItem('volume', newVolume);
 });
+
 
 const toggleMusic = () => {
     emit('toggle-music');
@@ -44,6 +36,14 @@ const toggleMusic = () => {
 const updateVolume = () => {
     emit('update-volume', localVolume.value);
 };
+
+onMounted(() => {
+    const storedVolume = localStorage.getItem('volume');
+    if (storedVolume) {
+        localVolume.value = parseFloat(storedVolume);
+    }
+    else localVolume.value = props.volume;
+});
 </script>
 
 <style scoped>

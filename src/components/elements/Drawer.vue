@@ -22,7 +22,8 @@
           </div>
         </div>
         <div class="bottom-drawer">
-          <div>
+          <div class="buttons">
+            <IconButton id="activeShader" :icon1="TV" @click="toggleShader"/>
             <MusicPlayer 
               :isPlaying="isPlaying" 
               :volume="volume" 
@@ -41,16 +42,18 @@
 <script setup>
 import { ref, watch } from 'vue';
 import MusicPlayer from '@/components/elements/MusicPlayer.vue';
+import IconButton from '@/components/buttons/IconButton.vue';
+import TV from '@/assets/icons/tv.png'
 
 const props = defineProps({
   isDrawerOpen: Boolean,
   sections: Array,
   isPlaying: Boolean,
   volume: Number,
-  currentMusic: String
+  currentMusic: String,
 });
 
-const emit = defineEmits(['close-drawer', 'toggle-music', 'update-volume']);
+const emit = defineEmits(['close-drawer', 'toggle-music', 'update-volume', 'toggle-shader']);
 
 const showOverlay = ref(false);
 
@@ -111,6 +114,10 @@ const leaveDrawer = (el, done) => {
   el.style.transform = 'translateX(100%)';
   el.addEventListener('transitionend', done, { once: true });
 };
+
+const toggleShader = () => {
+  emit('toggle-shader');
+};
 </script>
 
 <style scoped>
@@ -165,6 +172,7 @@ const leaveDrawer = (el, done) => {
 
 .bottom-drawer {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
@@ -212,6 +220,12 @@ const leaveDrawer = (el, done) => {
   width: 300px;
   height: auto;
   object-fit: contain;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 @media (max-width: 1024px) {

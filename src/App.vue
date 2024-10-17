@@ -1,5 +1,5 @@
 <template>
-  <OldTvShader />
+  <OldTvShader v-if="isShaderActive" /> <!-- Le shader ne sera affiché que si isShaderActive est vrai -->
   <Loader @documentLoaded="handleDocumentLoaded" />
   <div id="app" :style="{ clipPath: clipPathStyle }" @transitionend="handleTransitionEnd">
     <MenuButton :isFirstSectionVisible="isFirstSectionVisible" :toggleDrawer="toggleDrawer" />
@@ -12,6 +12,7 @@
       @update-volume="handleUpdateVolume"
       @close-drawer="toggleDrawer" 
       :currentMusic="currentMusic.value"
+      @toggleShader="toggleShader"
     />
     <div id="sections">
       <HomeSection id="ACCUEIL" :sections="sectionNames" />
@@ -26,6 +27,7 @@
     <audio ref="clickSoundElement" :src="StartSound"></audio>
   </div>
 </template>
+
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
@@ -57,8 +59,9 @@ const currentMusic = ref('');
 const audioElement = ref(null);
 const clickSoundElement = ref(null);
 const isToggling = ref(false);
-const isLoaded = ref(false);  // Pour suivre si le contenu est chargé
-const clipPathStyle = ref('circle(0% at 50% 50%)'); // Clip-path initial pour masquer le contenu
+const isLoaded = ref(false);  
+const clipPathStyle = ref('circle(0% at 50% 50%)'); 
+const isShaderActive = ref(true);
 
 const toggleDrawer = () => {
   isDrawerOpen.value = !isDrawerOpen.value;
@@ -101,23 +104,29 @@ onMounted(() => {
   sectionNames.value = Array.from(document.getElementById('sections').children).map((section) => section.id);
   handleResize();
   window.addEventListener('resize', handleResize);
+  if (localStorage.getItem('activeShader') == 'false') {
+    toggleShader();
+  }
+  if (localStorage.getItem('volume')) {
+    volume.value = parseFloat(localStorage.getItem('volume'));
+  }
+  if(localStorage.getItem('music') == 'true'){
+    localStorage.setItem('music', 'false');
+  } 
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize);
 });
 
-// Nouvelle fonction pour gérer l'événement de chargement
 const handleDocumentLoaded = () => {
-  isLoaded.value = true; // Changer l'état à chargé
-  clipPathStyle.value = 'circle(100% at 50% 50%)'; // Révéler le contenu
+  isLoaded.value = true; 
+  clipPathStyle.value = 'circle(150% at 50% 50%)'; 
 };
 
 const handleTransitionEnd = () => {
-  setTimeout(() => {
     if (isLoaded.value)
-    clipPathStyle.value = 'none'; // Supprimer le clip-path
-  }, 2000); // Attendre 3 secondes avant de supprimer le clip-path
+    clipPathStyle.value = 'none'; 
 };
 
 const audioFiles = [
@@ -132,6 +141,7 @@ const playRandomMusic = () => {
   if (audioElement.value) {
     audioElement.value.src = currentMusic.value;
     audioElement.value.volume = volume.value;
+    localStorage.setItem('volume', audioElement.value.volume);
     audioElement.value.play();
   }
 };
@@ -165,15 +175,20 @@ const toggleMusic = () => {
 const handleMusicEnd = () => {
   playRandomMusic();
 };
+
+const toggleShader = () => {
+  isShaderActive.value = !isShaderActive.value;
+};
 </script>
+
 
 <style scoped>
 #app {
   position: relative;
   width: 100%;
-  height: 100vh; /* Occupe toute la hauteur de la vue */
-  clip-path: circle(0% at 50% 50%); /* Commence masqué */
-  transition: clip-path 3s ease; /* Animation de clip-path */
+  height: 100vh;
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 3s ease;
   background-color: black;
 }
 
