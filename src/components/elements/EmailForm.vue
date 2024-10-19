@@ -50,6 +50,7 @@
 <script setup>
 import { reactive, ref, watch } from 'vue';
 import MyButton from '@/components/buttons/MyButton.vue';
+import axios from 'axios';
 
 const formData = reactive({
   name: '',
@@ -115,34 +116,35 @@ async function sendEmail() {
   };
 
   try {
-    const response = await fetch("https://lespritbrique.com/beta/send-email.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (response.ok) {
+    const response = await axios.post("https://lespritbrique.com/beta/send-email.php", payload);
+    if (response.status === 200) {
       emailSent.value = true;
       formDisabled.value = true;
       grecaptcha.reset();
+      startResetTimer();
     } else {
-      throw new Error("Erreur lors de l'envoi de l'e-mail.");
+      throw new Error('Échec lors de l\'envoi de l\'email.');
     }
   } catch (error) {
+    console.error("Erreur lors de l'envoi : ", error.response?.data || error.message);
     emailError.value = true;
+    emailSent.value = false;
   } finally {
     isSending.value = false;
   }
 }
+
 
 function startResetTimer() {
   setTimeout(() => {
     emailSent.value = false;
     formDisabled.value = false;
     emailError.value = false;
-  }, 300000);
+    formData.name = '';
+    formData.email = '';
+    formData.subject = '';
+    formData.message = '';
+  }, 300000); // Réinitialiser après 5 minutes
 }
 </script>
 

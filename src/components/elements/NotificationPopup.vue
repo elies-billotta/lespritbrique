@@ -8,6 +8,7 @@
 
 <script setup>
 import { ref, watch } from 'vue';
+import Bubble from '@/components/buttons/Bubble.vue';
 
 const props = defineProps({
   message: {
@@ -53,7 +54,7 @@ watch(() => props.message, () => {
   align-items: center;
   animation: slide-in 0.3s ease-out;
   z-index: 1000;
-  gap:10px;
+  gap: 10px;
 }
 
 .notification.success {
@@ -81,10 +82,10 @@ watch(() => props.message, () => {
     opacity: 0;
     transform: translateX(100%);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
   }
 }
 </style>
-  

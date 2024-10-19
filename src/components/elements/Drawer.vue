@@ -23,14 +23,9 @@
         </div>
         <div class="bottom-drawer">
           <div class="buttons">
-            <IconButton id="activeShader" :icon2="TVDisabled" :icon1="TV" @click="toggleShader"/>
-            <MusicPlayer 
-              :isPlaying="isPlaying" 
-              :volume="volume" 
-              :currentMusic="currentMusic"
-              @toggle-music="$emit('toggle-music')" 
-              @update-volume="$emit('update-volume', $event)"
-            />
+            <IconButton id="activeShader" :icon2="TVDisabled" :icon1="TV" @click="toggleShader" />
+            <MusicPlayer v-if="!isMobile" :isPlaying="isPlaying" :volume="volume" :currentMusic="currentMusic"
+              @toggle-music="$emit('toggle-music')" @update-volume="$emit('update-volume', $event)" />
           </div>
           <a class="drawer-text">Mentions légales</a>
         </div>
@@ -40,11 +35,11 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted, onBeforeUnmount, nextTick } from 'vue';
 import MusicPlayer from '@/components/elements/MusicPlayer.vue';
 import IconButton from '@/components/buttons/IconButton.vue';
-import TV from '@/assets/icons/tv.png'
-import TVDisabled from '@/assets/icons/tv-disabled.png'
+import TV from '@/assets/icons/tv.png';
+import TVDisabled from '@/assets/icons/tv-disabled.png';
 
 const props = defineProps({
   isDrawerOpen: Boolean,
@@ -55,16 +50,68 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['close-drawer', 'toggle-music', 'update-volume', 'toggle-shader']);
-
 const showOverlay = ref(false);
+const startX = ref(0);
+const isDragging = ref(false);
+const isMobile = ref(false);
 
-watch(() => props.isDrawerOpen, (newVal) => {
+const handleTouchStart = (event) => {
+  startX.value = event.touches ? event.touches[0].clientX : event.clientX;
+  isDragging.value = true;
+};
+
+const handleTouchMove = (event) => {
+  if (!isDragging.value) return;
+
+  const currentX = event.touches ? event.touches[0].clientX : event.clientX;
+  const deltaX = currentX - startX.value;
+
+  if (deltaX > 200 && props.isDrawerOpen) {
+    closeDrawer();
+    isDragging.value = false;
+  }
+};
+
+const handleTouchEnd = () => {
+  isDragging.value = false;
+};
+
+const addTouchAndMouseEvents = () => {
+  const drawer = document.querySelector('.drawer');
+
+  if (drawer) {
+    drawer.addEventListener('touchstart', handleTouchStart);
+    drawer.addEventListener('touchmove', handleTouchMove);
+    drawer.addEventListener('touchend', handleTouchEnd);
+    drawer.addEventListener('mousedown', handleTouchStart);
+    drawer.addEventListener('mousemove', handleTouchMove);
+    drawer.addEventListener('mouseup', handleTouchEnd);
+  }
+};
+
+const removeTouchAndMouseEvents = () => {
+  const drawer = document.querySelector('.drawer');
+
+  if (drawer) {
+    drawer.removeEventListener('touchstart', handleTouchStart);
+    drawer.removeEventListener('touchmove', handleTouchMove);
+    drawer.removeEventListener('touchend', handleTouchEnd);
+    drawer.removeEventListener('mousedown', handleTouchStart);
+    drawer.removeEventListener('mousemove', handleTouchMove);
+    drawer.removeEventListener('mouseup', handleTouchEnd);
+  }
+};
+
+watch(() => props.isDrawerOpen, async (newVal) => {
   if (newVal) {
     showOverlay.value = true;
+    await nextTick();
+    addTouchAndMouseEvents();
   } else {
     setTimeout(() => {
       showOverlay.value = false;
     }, 0);
+    removeTouchAndMouseEvents();
   }
 }, { immediate: true });
 
@@ -119,6 +166,28 @@ const leaveDrawer = (el, done) => {
 const toggleShader = () => {
   emit('toggle-shader');
 };
+
+const handleKeyDown = (event) => {
+  if (event.key === 'Escape' && props.isDrawerOpen) {
+    closeDrawer();
+  }
+};
+
+const checkMobile = () => {
+  isMobile.value = window.innerWidth < 768;
+};
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeyDown);
+  window.addEventListener('resize', checkMobile);
+  checkMobile();
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', handleKeyDown);
+  window.removeEventListener('resize', checkMobile);
+  removeTouchAndMouseEvents();
+});
 </script>
 
 <style scoped>
@@ -223,7 +292,7 @@ const toggleShader = () => {
   object-fit: contain;
 }
 
-.buttons{
+.buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -239,8 +308,13 @@ const toggleShader = () => {
   .logo-image {
     width: 150px;
   }
+
   .drawer {
     width: 100%;
+  }
+
+  .buttons .MusicPlayer {
+    display: none;
   }
 }
 
