@@ -4,14 +4,14 @@
       <p>AUTO-ENTREPRENEUR BASÉ À NÎMES</p>
     </template>
     <template #columns>
-      <TextColumn :icon="BrickIcon" :title="'IMPRESSION UV'" :subtitle="'Briques Personnalisées'">
+      <TextColumn :icon="BrickIcon" :title="'IMPRESSION UV'" :subtitle="'Des briques inédites'">
         <p>
           Chez L'Esprit Brique, tous nos designs sont réalisés à la main avec soin et passion. Par respect pour l'art et
           l'authenticité, nous banissons l'utilisation d'intelligence artificielle dans le processus de création. Chaque
           design est unique et personnel, garantissant des briques personnalisées qui reflètent votre vision.
         </p>
       </TextColumn>
-      <TextColumn :icon="BrickIcon" :title="'DESIGN'" :subtitle="'Un travail artisanal'">
+      <TextColumn :icon="BrickIcon" :title="'CUSTOMISATION'" :subtitle="'Personnalisez vos briques'">
         <p>
           Chez L'Esprit Brique, tous nos designs sont réalisés à la main avec soin et passion. Par respect pour l'art et
           l'authenticité, nous banissons l'utilisation d'intelligence artificielle dans le processus de création. Chaque

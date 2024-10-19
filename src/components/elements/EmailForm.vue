@@ -220,7 +220,7 @@ textarea[disabled] {
 
 .loader {
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
+  border-top: 4px solid var(--secondary-color);
   border-radius: 50%;
   width: 25px;
   height: 25px;

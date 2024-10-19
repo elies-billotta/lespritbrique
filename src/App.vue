@@ -42,6 +42,7 @@ import ShopSection from '@/components/sections/ShopSection.vue';
 import CardSectionResponsive from '@/components/sections/CardSectionResponsive.vue';
 import ContactSection from '@/components/sections/ContactSection.vue';
 import orderSpecial from '@/assets/images/special-order1.png';
+import artofbrick from '@/assets/images/art-of-brick.png';
 import StartSound from '@/assets/audio/start.mp3';
 import StopSound from '@/assets/audio/stop.mp3';
 import OldTvShader from '@/components/OldTvShader.vue';
@@ -52,7 +53,8 @@ const isDrawerOpen = ref(false);
 const isFirstSectionVisible = ref(true);
 const sectionNames = ref([]);
 const cardsData = [
-  { title: 'BRIQUES GROUPE PALOMBI', imageSrc: orderSpecial, sizeX: 20 },
+  { title: 'GROUPE PALOMBI', imageSrc: orderSpecial, sizeX: 20 },
+  { title: 'ARTOFBRICK 2025', imageSrc: artofbrick, sizeX: 20 },
 ];
 const isMobile = ref(false);
 const currentMusic = ref('');

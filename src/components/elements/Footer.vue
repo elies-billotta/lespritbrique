@@ -50,11 +50,16 @@ const onCopy = (source) => {
 <style scoped>
  .mail {
   font-size: 20px;
+  color: var(--white);
+}
+
+.mail:hover {
+  color: var(--secondary-color);
 }
 
 
 footer {
-  background-color: var(--primary-color);
+  background-color: var(--black);
   padding: 2rem 0;
   display: flex;
   justify-content: center;
@@ -75,7 +80,7 @@ footer {
 
 .social-icons a,
 .social-icons div {
-  color: var(--black);
+  color: var(--white);
   margin-right: 10px;
   font-size: 1.2rem;
   transition: color 0.3s ease;

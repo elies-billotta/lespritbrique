@@ -1,5 +1,5 @@
 <template>
-  <Section class="text-section" :background-color="'var(--white)'" :columns="2" :title="'CONTACT'" :icon="BrickIcon">
+  <Section class="text-section" :background-color="'var(--primary-color)'" :columns="2" :title="'CONTACT'" :icon="BrickIcon">
     <template #description>
       <p>UNE DEMANDE SPÉCIFIQUE ? C'EST PAR ICI !</p>
     </template>
