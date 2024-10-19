@@ -26,12 +26,9 @@ import BrickIcon from '@/assets/icons/brick.svg';
 
 <style scoped>
 
-.text-column h2 {
-    margin-bottom: 20px;
+.text-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
-
-.text-column p {
-    margin-bottom: 20px;
-}
-
 </style>

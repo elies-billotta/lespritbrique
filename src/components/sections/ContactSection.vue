@@ -6,7 +6,7 @@
     <template #columns>
       <EmailForm />
       <div class="img-column">
-        <img class="responsive-image" src="@/assets/images/art-of-brick.png" alt="Contact us" />
+        <img class="responsive-image" src="@/assets/images/logo_temporaire.png" alt="Contact us" />
       </div>
     </template>
   </Section>

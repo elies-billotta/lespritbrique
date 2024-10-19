@@ -102,7 +102,15 @@ const backgroundStyle = computed(() => ({
   max-width: 1000px;
   display: flex;
   justify-content: center;
-  gap : 20px;
+  gap: 20px;
+  align-items: stretch; /* Assure que les colonnes ont la même hauteur */
+}
+
+.columns > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribue le contenu avec le bouton en bas */
+  flex-grow: 1;
 }
 
 .two-columns .columns {

@@ -6,16 +6,18 @@
             </div>
             <h3 class="title">{{ this.title }}</h3>
             <p class="subtitle">{{ this.subtitle }}</p>
-            <Line class="line"/>
+            <Line class="line" />
         </div>
         <div class="text-container">
             <slot></slot>
+            <MyButton :text="textButton" @click="scrollToSection(name)" />
         </div>
     </div>
 </template>
 
 <script>
 import Line from '@/components/elements/Line.vue';
+import MyButton from '@/components/buttons/MyButton.vue';
 export default {
     name: 'TextColumn',
     props: {
@@ -29,11 +31,28 @@ export default {
         },
         subtitle: {
             type: String,
-            default: 'Subtitle here',  
+            default: 'Subtitle here',
+        },
+        textButton: {
+            type: String,
+            default: 'Button text here',
+        },
+        name: {
+            type: String,
+            default: 'section',
         },
     },
     components: {
         Line,
+        MyButton,
+    },
+    methods: {
+        scrollToSection(name) {
+            const section = document.getElementById(name);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        },
     },
 };
 </script>
@@ -96,5 +115,8 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    gap: 20px;
 }
 </style>
