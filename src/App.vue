@@ -53,8 +53,8 @@ const isDrawerOpen = ref(false);
 const isFirstSectionVisible = ref(true);
 const sectionNames = ref([]);
 const cardsData = [
-  { title: 'GROUPE PALOMBI', imageSrc: orderSpecial, sizeX: 20, link: 'https://www.groupe-palombi.com/' },
-  { title: 'ARTOFBRICK 2025', imageSrc: artofbrick, sizeX: 20, link: 'https://www.artofbrick2025.com/' },
+  { title: 'GROUPE PALOMBI', imageSrc: orderSpecial, sizeX: 20, link: 'https://www.instagram.com/lesprit.brique/' },
+  { title: 'ARTOFBRICK 2025', imageSrc: artofbrick, sizeX: 20, link: 'https://www.instagram.com/lesprit.brique/' },
 ];
 const isMobile = ref(false);
 const currentMusic = ref('');
