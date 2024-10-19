@@ -1,5 +1,5 @@
 <template>
-  <OldTvShader v-if="isShaderActive" /> <!-- Le shader ne sera affiché que si isShaderActive est vrai -->
+  <OldTvShader v-if="isShaderActive" />
   <Loader @documentLoaded="handleDocumentLoaded" />
   <div id="app" :style="{ clipPath: clipPathStyle }" @transitionend="handleTransitionEnd">
     <MenuButton :isFirstSectionVisible="isFirstSectionVisible" :toggleDrawer="toggleDrawer" />
@@ -53,8 +53,8 @@ const isDrawerOpen = ref(false);
 const isFirstSectionVisible = ref(true);
 const sectionNames = ref([]);
 const cardsData = [
-  { title: 'GROUPE PALOMBI', imageSrc: orderSpecial, sizeX: 20 },
-  { title: 'ARTOFBRICK 2025', imageSrc: artofbrick, sizeX: 20 },
+  { title: 'GROUPE PALOMBI', imageSrc: orderSpecial, sizeX: 20, link: 'https://www.groupe-palombi.com/' },
+  { title: 'ARTOFBRICK 2025', imageSrc: artofbrick, sizeX: 20, link: 'https://www.artofbrick2025.com/' },
 ];
 const isMobile = ref(false);
 const currentMusic = ref('');

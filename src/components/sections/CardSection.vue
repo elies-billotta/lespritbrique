@@ -15,6 +15,7 @@
           @bring-to-front="bringToFront(cardIndex)"
           :size-x="card.sizeX"
           @card-size="handleCardSize(cardIndex)"
+          :link="card.link"
         />
       </div>
     </template>
