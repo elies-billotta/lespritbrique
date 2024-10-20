@@ -1,34 +1,37 @@
 <template>
     <div v-if="isVisible" class="modal-overlay" @click="closeModal">
-        <div class="modal-content" @click.stop>
-            <button class="close-button" @click="closeModal">&times;</button>
+      <div class="modal-content" @click.stop>
+        <button class="close-button" @click="closeModal">&times;</button>
+        <div class="modal-body">
+          <ImageGallery :images="images" />
+          <div class="text-container">
             <h2>{{ title }}</h2>
-            <img v-for="img in images"
-                :src="img"
-            >
-            <p> {{ props.text }}</p>
-            <!-- Add more details as needed -->
+            <p>{{ text }}</p>
+          </div>
         </div>
+      </div>
     </div>
-</template>
-
-<script setup>
-const props = defineProps({
+  </template>
+  
+  <script setup>
+  import ImageGallery from './ImageGallery.vue';
+  
+  const props = defineProps({
     title: String,
     isVisible: Boolean,
     text: String,
-    images:Array,
-});
-
-const emit = defineEmits(['close']);
-
-const closeModal = () => {
+    images: Array,
+  });
+  
+  const emit = defineEmits(['close']);
+  
+  const closeModal = () => {
     emit('close');
-};
-</script>
-
-<style scoped>
-.modal-overlay {
+  };
+  </script>
+  
+  <style scoped>
+  .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -39,19 +42,20 @@ const closeModal = () => {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-}
-
-.modal-content {
+  }
+  
+  .modal-content {
+    display: flex;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    max-width: 600px;
+    max-width: 800px; /* Largeur maximale de la modale */
     width: 90%;
-    text-align: center;
-    position: relative;
-}
-
-.close-button {
+    max-height: 80vh; /* Hauteur maximale pour éviter de trop étirer la modale */
+    overflow: hidden; /* Empêcher tout débordement */
+  }
+  
+  .close-button {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -59,11 +63,38 @@ const closeModal = () => {
     background: none;
     border: none;
     cursor: pointer;
-}
-
-.modal-image {
-    width: 100%;
-    height: auto;
-    margin-top: 20px;
-}
-</style>
+  }
+  
+  .modal-body {
+    display: flex;
+    justify-content: space-between; /* Espacement entre les colonnes */
+    height: 100%; /* Hauteur totale */
+    overflow: hidden; /* Empêcher le débordement dans la modale */
+  }
+  
+  .text-container {
+    flex: 1; /* Prendre l'espace disponible */
+    padding-left: 20px; /* Espacement à gauche */
+    overflow-y: auto; /* Activer le défilement si le contenu dépasse */
+  }
+  
+  .image-gallery {
+    max-height: 300px; /* Hauteur maximale pour la galerie d'images */
+    flex: 1; /* Prendre l'espace disponible */
+    display: flex; /* Affichage en colonne pour les images */
+    flex-direction: column; /* Colonne pour les images */
+  }
+  
+  .image-gallery .main-image-container {
+    max-height: 300px; /* Hauteur maximale pour l'image principale */
+    overflow: hidden; /* Masquer le débordement */
+    width: 100%; /* Occuper toute la largeur */
+  }
+  
+  .image-gallery .main-image {
+    width: auto; /* Garder le ratio d'aspect */
+    max-width: 100%; /* Ne pas dépasser la largeur du conteneur */
+    max-height: 100%; /* Ne pas dépasser la hauteur du conteneur */
+  }
+  </style>
+  
