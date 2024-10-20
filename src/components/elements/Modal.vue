@@ -1,25 +1,27 @@
 <template>
-    <div v-if="isVisible" class="modal-overlay" @click="closeModal">
-        <div class="modal-content" @click.stop>
-            <div class="modal-body">
-                <div class="content">
-                    <div class="images-column">
-                        <ImageGallery :images="images" />
+    <Transition name="fade-overlay">
+        <div v-show="isVisible || isClosing" class="modal-overlay" @click="closeModal">
+            <div :class="['modal-content', isClosing ? 'fade-out' : 'fade-in']" @click.stop>
+                <div class="modal-body">
+                    <div class="content">
+                        <div class="images-column">
+                            <ImageGallery :images="images" />
+                        </div>
+                        <div class="text-column">
+                            <h2>{{ title }}</h2>
+                            <p>{{ text }}</p>
+                            <MyButton class="btn" @click="closeModal" text="FERMER" />
+                        </div>
                     </div>
-                    <div class="text-column">
-                        <h2>{{ title }}</h2>
-                        <p>{{ text }}</p>
-                        <MyButton class="btn" @click="closeModal" text="FERMER" />
+                    <div class="row">
+                        <p>© 1930</p>
+                        <p>L'ESPRIT BRIQUE</p>
+                        <p>{{title}}</p>
                     </div>
-                </div>
-                <div class="row">
-                    <p>© 1930</p>
-                    <p>L'ESPRIT BRIQUE</p>
-                    <p> {{title}}</p>
                 </div>
             </div>
         </div>
-    </div>
+    </Transition>
 </template>
 
 
@@ -27,6 +29,8 @@
 <script setup>
 import ImageGallery from '@/components/elements/ImageGallery.vue';
 import MyButton from '@/components/buttons/MyButton.vue';
+
+import { ref } from 'vue';
 
 const props = defineProps({
     title: String,
@@ -37,8 +41,14 @@ const props = defineProps({
 
 const emit = defineEmits(['close']);
 
+const isClosing = ref(false);
+
 const closeModal = () => {
-    emit('close');
+    isClosing.value = true;
+    setTimeout(() => {
+        emit('close'); 
+        isClosing.value = false;
+    }, 1000); 
 };
 </script>
 
@@ -54,17 +64,18 @@ const closeModal = () => {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.5s ease;
 }
 
-.modal-content::before {
-    content: '';
-    position: absolute;
-    background-color: rgba(199, 192, 184, 0.406);
-    z-index: -1; 
+.fade-overlay-enter-active, 
+.fade-overlay-leave-active {
+    transition: opacity 0.5s ease; /* Durée de transition */
 }
 
-.btn {
-    margin-bottom: 8px;
+.fade-overlay-enter-from, 
+.fade-overlay-leave-to {
+    opacity: 0;
 }
 
 .modal-content {
@@ -75,10 +86,45 @@ const closeModal = () => {
     height: 70vh;
     overflow: hidden;
     border-radius: 2px;
-    transform: rotate(-2deg);
     background-image: url('@/assets/images/paperboard-yellow-texture.jpg');
     background-size: cover;
     opacity: 1;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    transform: rotate(0deg);
+}
+
+.fade-in {
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0; 
+        transform: rotate(-40deg); 
+    }
+    to {
+        opacity: 1; 
+        transform: rotate(-3deg); 
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1; 
+        transform: rotate(-3deg); 
+    }
+    to {
+        opacity: 0; 
+        transform: rotate(-3deg); 
+    }
+}
+
+.btn {
+    margin-bottom: 8px;
 }
 
 .modal-body {
@@ -90,31 +136,30 @@ const closeModal = () => {
 }
 
 .content {
-    flex: 1; /* Prendre tout l'espace disponible sauf pour la row */
+    flex: 1;
     display: flex;
     flex-direction: row;
 }
 
 .images-column,
 .text-column {
-    flex: 1; /* Chaque colonne prendra une part égale de l'espace disponible */
+    flex: 1;
     display: flex;
     flex-direction: column;
-    padding:5px;
+    padding: 5px;
 }
 
 .images-column {
-    justify-content: center; /* Centrer verticalement le contenu */
-    align-items: center; /* Centrer horizontalement le contenu */
+    justify-content: center; 
+    align-items: center; 
 }
 
 .text-column {
     display: flex;
-    flex-direction: column; /* Disposer les éléments en colonne */
-    justify-content: space-between; /* Pousse le bouton vers le bas */
-    flex: 1; /* Permet à la colonne de prendre tout l'espace disponible */
+    flex-direction: column; 
+    justify-content: space-between; 
+    flex: 1; 
 }
-
 
 .text-column h2 {
     width: 100%;
@@ -124,13 +169,13 @@ const closeModal = () => {
 .row {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Alignement vertical centré */
-    margin-top: auto; /* Pousse la row vers le bas */
-    padding : 5px;
-
+    align-items: center; 
+    margin-top: auto; 
+    padding: 5px;
 }
 
 .row p {
-    color : var(--black-hover);
+    color: var(--black-hover);
 }
+
 </style>
