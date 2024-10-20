@@ -1,6 +1,6 @@
 <template>
   <OldTvShader v-if="isShaderActive" />
-  <Loader @documentLoaded="handleDocumentLoaded" />
+  <Loader />
   <div id="app" :style="{ clipPath: clipPathStyle }" @transitionend="handleTransitionEnd">
     <MenuButton :isFirstSectionVisible="isFirstSectionVisible" :toggleDrawer="toggleDrawer" />
     <Drawer 
@@ -17,8 +17,7 @@
     <div id="sections">
       <HomeSection id="ACCUEIL" :sections="sectionNames" />
       <AboutSection id="A PROPOS" />
-      <CardSection v-if="!isMobile" id="RÉALISATIONS" :cardsData="cardsData" />
-      <CardSectionResponsive v-if="isMobile" id="RÉALISATIONS" :cardsData="cardsData" />
+      <CardSection v-if="!isMobile" id="RÉALISATIONS" @documentLoaded="handleDocumentLoaded"/>
       <ShopSection id="BOUTIQUE" />  
       <ContactSection id="CONTACT"/>
     </div>
@@ -39,10 +38,7 @@ import HomeSection from '@/components/sections/HomeSection.vue';
 import AboutSection from '@/components/sections/AboutSection.vue';
 import FooterSection from '@/components/elements/Footer.vue';
 import ShopSection from '@/components/sections/ShopSection.vue';
-import CardSectionResponsive from '@/components/sections/CardSectionResponsive.vue';
 import ContactSection from '@/components/sections/ContactSection.vue';
-import orderSpecial from '@/assets/images/special-order1.png';
-import artofbrick from '@/assets/images/art-of-brick.png';
 import StartSound from '@/assets/audio/start.mp3';
 import StopSound from '@/assets/audio/stop.mp3';
 import OldTvShader from '@/components/OldTvShader.vue';
@@ -52,10 +48,6 @@ const volume = ref(0.2);
 const isDrawerOpen = ref(false);
 const isFirstSectionVisible = ref(true);
 const sectionNames = ref([]);
-const cardsData = [
-  { title: 'GROUPE PALOMBI', imageSrc: orderSpecial, sizeX: 20, link: 'https://www.instagram.com/lesprit.brique/' },
-  { title: 'ARTOFBRICK 2025', imageSrc: artofbrick, sizeX: 20, link: 'https://www.instagram.com/lesprit.brique/' },
-];
 const isMobile = ref(false);
 const currentMusic = ref('');
 const audioElement = ref(null);

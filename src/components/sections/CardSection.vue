@@ -6,16 +6,15 @@
     <template #contain>
       <div class="cards-container">
         <DraggableCard
-          v-for="(card, cardIndex) in cards"
-          :key="cardIndex"
+          v-for="(card, index) in cards"
+          :key="card.card_id"
           :title="card.title"
           :imageSrc="card.imageSrc"
           :zIndex="card.zIndex"
           :style="card.positions"
-          @bring-to-front="bringToFront(cardIndex)"
+          @bring-to-front="bringToFront(index)"
           :size-x="card.sizeX"
-          @card-size="handleCardSize(cardIndex)"
-          :link="card.link"
+          @card-size="handleCardSize(index)"
         />
       </div>
     </template>
@@ -27,6 +26,10 @@ import { ref, computed, onMounted } from 'vue';
 import DraggableCard from '@/components/elements/DraggableCard.vue';
 import Section from '@/components/sections/Section.vue';
 import BrickIcon from '@/assets/icons/brick.svg';
+import { fetchCardsData } from '@/services/fetchCardsData.js';
+import { defineEmits } from 'vue';
+
+const emit = defineEmits(['documentLoaded']);
 
 const props = defineProps({
   backgroundColor: {
@@ -35,6 +38,7 @@ const props = defineProps({
   },
   cardsData: {
     type: Array,
+    default: () => [],
   },
 });
 
@@ -46,20 +50,27 @@ const cards = ref([]);
 
 // Fonction pour gérer la taille de la carte
 const handleCardSize = (cardIndex) => (size) => {
-  console.log(`Taille de la carte ${cardIndex}:`, size); // Traite la taille de la carte ici
-  // Mettre à jour la taille de la carte dans cards si nécessaire
-  cards.value[cardIndex].sizeY = size.sizeY; // Met à jour sizeY dans la carte
+  console.log(`Taille de la carte ${cardIndex}:`, size);
+  if (cards.value[cardIndex]) {
+    cards.value[cardIndex].sizeY = size.sizeY;
+  }
 };
 
 // Fonction pour amener une carte au premier plan
 const bringToFront = (cardIndex) => {
-  const maxZIndex = Math.max(...cards.value.map(card => card.zIndex));
-  cards.value[cardIndex].zIndex = maxZIndex + 1;
-  cards.value[cardIndex].positions.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+  if (cards.value[cardIndex]) {
+    const maxZIndex = Math.max(...cards.value.map(card => card.zIndex));
 
-  const highestZIndexCard = cards.value.find(card => card.zIndex === maxZIndex);
-  if (highestZIndexCard) {
-    highestZIndexCard.positions.boxShadow = 'none';
+    // Réinitialiser l'ombre pour toutes les cartes
+    cards.value.forEach(card => {
+      card.positions.boxShadow = 'none';
+      card.zIndex = 1; // Réinitialiser le zIndex si besoin
+    });
+
+    // Mettre à jour l'index Z et l'ombre de la carte cliquée
+    cards.value[cardIndex].zIndex = maxZIndex + 1;
+    cards.value[cardIndex].positions.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+    console.log(cards.value[cardIndex].title);
   }
 };
 
@@ -67,32 +78,39 @@ const bringToFront = (cardIndex) => {
 const generateRandomPositions = () => {
   const section = document.querySelector('.cards-container');
 
-  if (section) {
+  if (section && cards.value.length) {
     const sectionWidth = section.offsetWidth;
     const sectionHeight = section.offsetHeight;
     const centerX = sectionWidth / 2;
     const centerY = sectionHeight / 2;
-    const maxOffsetX = sectionWidth * 0.4; // Ajuster cette valeur pour le décalage horizontal
-    const maxOffsetY = sectionHeight * 0.4; // Ajuster cette valeur pour le décalage vertical
 
-    cards.value = props.cardsData.map((card, index) => {
+    cards.value = cards.value.map((card) => {
       return {
         ...card,
         zIndex: 1,
         positions: {
           position: 'absolute',
-          left: `${Math.random() * (centerX - 100)}px`, // Positionnement aléatoire
+          left: `${Math.random() * (centerX - 100)}px`,
           top: `${Math.random() * (centerY - 100)}px`,
-          boxShadow: 'none', // Enlève la boîte d'ombre initialement
+          boxShadow: 'none',
         },
-        sizeY: 100, // Valeur par défaut si sizeY n'est pas fourni, met à jour après
+        sizeY: 100,
       };
     });
   }
 };
 
-onMounted(() => {
-  generateRandomPositions();
+onMounted(async () => {
+  try {
+    const data = await fetchCardsData();
+    console.log('Fetched cards data:', data);
+    cards.value = data;
+  } catch (error) {
+    console.error('Error during onMounted:', error);
+  } finally {
+    generateRandomPositions();
+    emit('documentLoaded');
+  }
 });
 </script>
 
