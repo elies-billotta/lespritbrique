@@ -1,7 +1,7 @@
 <template>
   <Section :style="backgroundStyle" :columns="0" :title="'RÉALISATIONS'" :icon="BrickIcon">
     <template #description>
-      <p>Voici quelques exemples de réalisations de L'Esprit Brique. N'hésitez pas à nous contacter pour toute demande spécifique.</p>
+      <p>DESIGN SUR MESURE</p>
     </template>
     <template #contain>
       <div class="cards-container">

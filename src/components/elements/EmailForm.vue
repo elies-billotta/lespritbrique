@@ -36,7 +36,7 @@
         <div class="g-recaptcha" data-sitekey="6LeLsFQqAAAAAK8Y_yrXvBBC7duprvrgWh3jbm9z"></div>
 
         <div class="submit-section">
-          <MyButton v-if="!isSending && !emailSent && !emailError" type="submit" text="ENVOYER LE MESSAGE"
+          <MyButton v-if="!isSending && !emailSent && !emailError" type="submit" text="ENVOYER"
             :disabled="formDisabled" />
           <div v-if="isSending" class="loader fade-in"></div>
           <MyButton v-if="emailSent && !isSending" :text="'MESSAGE ENVOYÉ'" class="sent fade-in" disabled />
