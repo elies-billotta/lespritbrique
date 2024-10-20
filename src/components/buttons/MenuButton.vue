@@ -52,7 +52,7 @@ const leave = (el, done) => {
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 9997;
+  z-index: 100;
 }
 
 .menu-button:hover {

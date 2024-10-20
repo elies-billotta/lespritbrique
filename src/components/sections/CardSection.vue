@@ -16,8 +16,16 @@
           :size-x="card.sizeX"
           @card-size="handleCardSize(index)"
           :modal_id="card.modal_id"
+          @open-modal="handleOpenModal"
         />
       </div>
+      <Modal
+      v-if="isModalVisible"
+      :title="modalData.modal_title"
+      :text = "modalData.modal_description"
+      :isVisible="isModalVisible"
+      @close="handleCloseModal"
+    />
     </template>
   </Section>
 </template>
@@ -28,6 +36,8 @@ import DraggableCard from '@/components/elements/DraggableCard.vue';
 import Section from '@/components/sections/Section.vue';
 import BrickIcon from '@/assets/icons/brick.svg';
 import { fetchCardsData } from '@/services/fetchCardsData.js';
+import { fetchModalData } from '@/services/fetchModalData.js';
+import Modal from '@/components/elements/Modal.vue';
 import { defineEmits } from 'vue';
 
 const emit = defineEmits(['documentLoaded']);
@@ -48,6 +58,8 @@ const backgroundStyle = computed(() => ({
 }));
 
 const cards = ref([]);
+const modalsData = ref([]);
+const modalData = ref({ modal_id: '', modal_title: '', modal_description: '', id_gallery: '' });
 
 // Fonction pour gérer la taille de la carte
 const handleCardSize = (cardIndex) => (size) => {
@@ -99,10 +111,30 @@ const generateRandomPositions = () => {
   }
 };
 
+// Gérer l'état de la modale
+const isModalVisible = ref(false);
+
+// Fonction pour ouvrir la modale avec les données de la carte
+const handleOpenModal = (data) => {
+  for (const item of modalsData.value) {
+    if (item.modal_id == data.id) {
+      modalData.value = item;
+      isModalVisible.value = true;
+    }
+  }
+};
+
+// Fonction pour fermer la modale
+const handleCloseModal = () => {
+  isModalVisible.value = false;
+};
+
 onMounted(async () => {
   try {
     const data = await fetchCardsData();
     cards.value = data;
+    const modalData = await fetchModalData();
+    modalsData.value = modalData;
   } catch (error) {
     console.error('Error during onMounted:', error);
   } finally {

@@ -1,7 +1,9 @@
 <template>
   <div class="card" :style="cardStyle" @mousedown="startDrag" @touchstart="startDrag" ref="cardRef">
     <div class="image-wrapper" :style="wrapperStyle">
-      <div class="card-title"><a href="#" v-external-link @mousedown.stop>{{ title }}</a></div>
+      <div class="card-title">
+        <a href="#" @click.prevent="openModal" @mousedown.stop>{{ title }}</a>
+      </div>
       <span class="dot">
         <i class="fa-solid fa-box fa-2xl"></i>
       </span>
@@ -11,6 +13,7 @@
 </template>
 
 <script setup>
+import router from '@/router';
 import { ref, computed, onMounted, nextTick } from 'vue';
 
 const props = defineProps({
@@ -21,7 +24,7 @@ const props = defineProps({
   modal_id : Number,
 });
 
-const emit = defineEmits(['bring-to-front', 'card-size']);
+const emit = defineEmits(['bring-to-front', 'card-size', 'open-modal']);
 
 const isDragging = ref(false);
 const startPosition = ref({ x: 0, y: 0 });
@@ -85,6 +88,11 @@ onMounted(async () => {
   const cardHeight = cardRef.value.offsetHeight; // Obtient la hauteur de la carte
   emit('card-size', { sizeY: cardHeight }); // Émettre la taille
 });
+
+const openModal = () => {
+  emit('open-modal', { id: props.modal_id });
+};
+
 </script>
 
 <style scoped>
