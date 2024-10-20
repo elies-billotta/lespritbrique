@@ -24,6 +24,7 @@
       :title="modalData.modal_title"
       :text = "modalData.modal_description"
       :isVisible="isModalVisible"
+      :images="modalData.images"
       @close="handleCloseModal"
     />
     </template>
@@ -59,7 +60,8 @@ const backgroundStyle = computed(() => ({
 
 const cards = ref([]);
 const modalsData = ref([]);
-const modalData = ref({ modal_id: '', modal_title: '', modal_description: '', id_gallery: '' });
+const modalData = ref({ modal_id: '', modal_title: '', modal_description: '', images: [] });
+
 
 // Fonction pour gérer la taille de la carte
 const handleCardSize = (cardIndex) => (size) => {

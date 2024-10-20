@@ -3,7 +3,9 @@
         <div class="modal-content" @click.stop>
             <button class="close-button" @click="closeModal">&times;</button>
             <h2>{{ title }}</h2>
-            <!-- <img :src="imageSrc" alt="Card image" class="modal-image" /> -->
+            <img v-for="img in images"
+                :src="img"
+            >
             <p> {{ props.text }}</p>
             <!-- Add more details as needed -->
         </div>
@@ -15,6 +17,7 @@ const props = defineProps({
     title: String,
     isVisible: Boolean,
     text: String,
+    images:Array,
 });
 
 const emit = defineEmits(['close']);

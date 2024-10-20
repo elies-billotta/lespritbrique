@@ -13,7 +13,6 @@
 </template>
 
 <script setup>
-import router from '@/router';
 import { ref, computed, onMounted, nextTick } from 'vue';
 
 const props = defineProps({
