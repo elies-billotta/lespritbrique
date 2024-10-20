@@ -12,7 +12,7 @@
                     <MyButton text="VISITER LA BOUTIQUE" />
                 </div>
                 <div class="img-column">
-                    <img src="@/assets/images/art-of-brick.png" alt="Description of image" />
+                    <img src="@/assets/images/logo_temporaire.png" alt="Description of image" />
                 </div>
         </template>
     </Section>
