@@ -1,7 +1,7 @@
 <template>
   <div class="card" :style="cardStyle" @mousedown="startDrag" @touchstart="startDrag" ref="cardRef">
     <div class="image-wrapper" :style="wrapperStyle">
-      <div class="card-title"><a :href="link" v-external-link @mousedown.stop>{{ title }}</a></div>
+      <div class="card-title"><a href="#" v-external-link @mousedown.stop>{{ title }}</a></div>
       <span class="dot">
         <i class="fa-solid fa-box fa-2xl"></i>
       </span>
@@ -18,7 +18,7 @@ const props = defineProps({
   imageSrc: String,
   zIndex: Number,
   sizeX: Number,
-  link : String,
+  modal_id : Number,
 });
 
 const emit = defineEmits(['bring-to-front', 'card-size']);

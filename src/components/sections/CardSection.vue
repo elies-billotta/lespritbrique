@@ -15,6 +15,7 @@
           @bring-to-front="bringToFront(index)"
           :size-x="card.sizeX"
           @card-size="handleCardSize(index)"
+          :modal_id="card.modal_id"
         />
       </div>
     </template>
@@ -50,7 +51,6 @@ const cards = ref([]);
 
 // Fonction pour gérer la taille de la carte
 const handleCardSize = (cardIndex) => (size) => {
-  console.log(`Taille de la carte ${cardIndex}:`, size);
   if (cards.value[cardIndex]) {
     cards.value[cardIndex].sizeY = size.sizeY;
   }
@@ -70,7 +70,6 @@ const bringToFront = (cardIndex) => {
     // Mettre à jour l'index Z et l'ombre de la carte cliquée
     cards.value[cardIndex].zIndex = maxZIndex + 1;
     cards.value[cardIndex].positions.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-    console.log(cards.value[cardIndex].title);
   }
 };
 
@@ -103,7 +102,6 @@ const generateRandomPositions = () => {
 onMounted(async () => {
   try {
     const data = await fetchCardsData();
-    console.log('Fetched cards data:', data);
     cards.value = data;
   } catch (error) {
     console.error('Error during onMounted:', error);

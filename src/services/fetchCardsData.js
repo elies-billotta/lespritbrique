@@ -8,8 +8,10 @@ export const fetchCardsData = async () => {
     const cardsData = response.data.map(card => {
       return {
         ...card,
+        card_id: parseInt(card.card_id, 10),
         sizeX: parseInt(card.sizeX, 10),
         title: card.title.toUpperCase(),
+        modal_id: parseInt(card.modal_id, 10),
       };
     });
     return cardsData;
