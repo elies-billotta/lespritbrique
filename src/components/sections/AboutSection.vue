@@ -1,8 +1,5 @@
 <template>
-  <Section class="text-section" :background-color="'var(--white)'" :columns="3" :title="'A PROPOS'" :icon="BrickIcon">
-    <template #description>
-      <p>AUTO-ENTREPRISE BASÉE À NÎMES</p>
-    </template>
+  <Section class="text-section" :background-color="'var(--white)'" :columns="3" :title="'A PROPOS'" :icon="BrickIcon" :description="'AUTO-ENTREPRISE BASÉE À NÎMES'">
     <template #columns>
       <TextColumn :icon="BrickIcon" :title="'IMPRESSION UV'" :subtitle="'Des briques inédites'" :text-button="'VOIR LES RÉALISATIONS'" :name="'RÉALISATIONS'">
         <p>

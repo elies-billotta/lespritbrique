@@ -1,55 +1,61 @@
 <template>
   <div class="email-form">
-    <form @submit.prevent="sendEmail">
-      <div class="line1">
-        <div>
-          <label for="name">Nom<span class="required-asterisk">*</span>:</label>
-          <input type="text" v-model="formData.name" :disabled="formDisabled" id="name" required />
+    <div class="form-content">
+      <Title class="title-form" :title="'CONTACT'" :description="'UNE DEMANDE ? CONTACTEZ NOUS !'" :icon="Brick"/>
+      <form @submit.prevent="sendEmail">
+        <div class="line1">
+          <div>
+            <label for="name">Nom<span class="required-asterisk">*</span>:</label>
+            <input type="text" v-model="formData.name" :disabled="formDisabled" id="name" required />
+          </div>
+          <div>
+            <label for="email">Email<span class="required-asterisk">*</span>:</label>
+            <input type="email" v-model="formData.email" :disabled="formDisabled" id="email" required />
+          </div>
+        </div>
+        <div class="line2">
+          <div>
+            <label for="entity">Je suis<span class="required-asterisk">*</span>:</label>
+            <select v-model="selectedEntity" :disabled="formDisabled" id="entity" required>
+              <option value="" disabled>Sélectionnez une entité</option>
+              <option value="particulier">Un.e particulier·ère</option>
+              <option value="entreprise">Une Entreprise</option>
+            </select>
+          </div>
+          <div>
+            <label for="subject">Sujet<span class="required-asterisk">*</span>:</label>
+            <select v-model="formData.subject" :disabled="formDisabled" id="subject" required>
+              <option value="" disabled>Sélectionnez un sujet</option>
+              <option v-for="subject in availableSubjects" :key="subject" :value="subject">{{ subject }}</option>
+            </select>
+          </div>
         </div>
         <div>
-          <label for="email">Email<span class="required-asterisk">*</span>:</label>
-          <input type="email" v-model="formData.email" :disabled="formDisabled" id="email" required />
+          <label for="message">Message<span class="required-asterisk">*</span>:</label>
+          <textarea v-model="formData.message" :disabled="formDisabled" id="message" required
+            placeholder="Saisissez un message d'au moins 30 caractères"></textarea>
         </div>
-      </div>
-      <div class="line2">
-        <div>
-          <label for="entity">Je suis<span class="required-asterisk">*</span>:</label>
-          <select v-model="selectedEntity" :disabled="formDisabled" id="entity" required>
-            <option value="" disabled>Sélectionnez une entité</option>
-            <option value="particulier">Un.e particulier·ère</option>
-            <option value="entreprise">Une Entreprise</option>
-          </select>
-        </div>
-        <div>
-          <label for="subject">Sujet<span class="required-asterisk">*</span>:</label>
-          <select v-model="formData.subject" :disabled="formDisabled" id="subject" required>
-            <option value="" disabled>Sélectionnez un sujet</option>
-            <option v-for="subject in availableSubjects" :key="subject" :value="subject">{{ subject }}</option>
-          </select>
-        </div>
-      </div>
-      <div>
-        <label for="message">Message<span class="required-asterisk">*</span>:</label>
-        <textarea v-model="formData.message" :disabled="formDisabled" id="message" required placeholder="Saisissez un message d'au moins 30 caractères"></textarea>
-      </div>
-      <div class="inline">
-        <div class="g-recaptcha" data-sitekey="6LeLsFQqAAAAAK8Y_yrXvBBC7duprvrgWh3jbm9z"></div>
+        <div class="inline">
+          <div class="g-recaptcha" data-sitekey="6LeLsFQqAAAAAK8Y_yrXvBBC7duprvrgWh3jbm9z"></div>
 
-        <div class="submit-section">
-          <MyButton v-if="!isSending && !emailSent && !emailError" type="submit" text="ENVOYER"
-            :disabled="formDisabled" />
-          <div v-if="isSending" class="loader fade-in"></div>
-          <MyButton v-if="emailSent && !isSending" :text="'MESSAGE ENVOYÉ'" class="sent fade-in" disabled />
-          <MyButton v-if="emailError && !isSending" :text="'Réessayer'" @click="sendEmail" class="error fade-in" />
+          <div class="submit-section">
+            <MyButton v-if="!isSending && !emailSent && !emailError" type="submit" text="ENVOYER"
+              :disabled="formDisabled" />
+            <div v-if="isSending" class="loader fade-in"></div>
+            <MyButton v-if="emailSent && !isSending" :text="'MESSAGE ENVOYÉ'" class="sent fade-in" disabled />
+            <MyButton v-if="emailError && !isSending" :text="'Réessayer'" @click="sendEmail" class="error fade-in" />
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { reactive, ref, watch } from 'vue';
 import MyButton from '@/components/buttons/MyButton.vue';
+import Title from '@/components/elements/Title.vue';
+import Brick from '@/assets/icons/brick.svg';
 import axios from 'axios';
 
 const formData = reactive({
@@ -155,6 +161,23 @@ function startResetTimer() {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-image: url('@/assets/images/paperboard-yellow-texture.jpg');
+  background-size: cover;
+  padding: 10px;
+  border-radius: 3px;
+  transform: rotate(-2deg);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-content {
+  padding: 10px;
+  border: 3px solid var(--black);
+  border-radius: 3px;
+  
+}
+
+.title-form {
+  margin-bottom: 10px;
 }
 
 label {

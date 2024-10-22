@@ -1,8 +1,5 @@
 <template>
-  <Section :style="backgroundStyle" :columns="0" :title="'RÉALISATIONS'" :icon="BrickIcon">
-    <template #description>
-      <p>DESIGN SUR MESURE</p>
-    </template>
+  <Section :style="backgroundStyle" :columns="0" :title="'RÉALISATIONS'" :icon="BrickIcon" :description="'DESIGN SUR MESURE'">
     <template #contain>
       <div class="cards-container">
         <DraggableCard

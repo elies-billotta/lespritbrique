@@ -1,14 +1,6 @@
 <template>
   <div :class="['section', { 'two-columns': columns === 2 }]" :style="backgroundStyle">
-    <div class="title-wrapper" v-if="title">
-      <h1>{{ title }}</h1>
-      <div class="bandeau">
-        <Line/>
-        <img class="small-icon" :src="icon" alt="brick icon" />
-        <Line/>
-      </div>
-      <slot class="description" name="description"></slot>
-    </div>
+    <Title :title="title" :icon="icon" :description="description" />
     <div class="columns">
       <slot name="columns"></slot>
     </div>
@@ -19,7 +11,7 @@
 </template>
 <script setup>
 import { computed } from 'vue';
-import Line from '@/components/elements/Line.vue';
+import Title from '@/components/elements/Title.vue'
 
 const props = defineProps({
   title: {
@@ -37,7 +29,11 @@ const props = defineProps({
   icon: {
     type: String,
     default: null,
-  }
+  }, 
+  description: {
+    type: String,
+    default: null,
+  },
 });
 
 const backgroundStyle = computed(() => ({
@@ -53,24 +49,8 @@ const backgroundStyle = computed(() => ({
   padding: 10vh 10vw;
   display: flex;
   flex-direction: column;
-  gap:30px;
+  gap: 30px;
   position: relative;
-}
-
-.title-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.bandeau {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 5px;
 }
 
 .full-section {
@@ -80,17 +60,6 @@ const backgroundStyle = computed(() => ({
   width: 100%;
   height: 100%;
   position: absolute;
-} 
-
-.description {
-  text-align: center;
-}
-
-.small-icon {
-  width: 20px;
-  height: auto;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 .icon-container {
@@ -103,13 +72,15 @@ const backgroundStyle = computed(() => ({
   display: flex;
   justify-content: center;
   gap: 20px;
-  align-items: stretch; /* Assure que les colonnes ont la même hauteur */
+  align-items: stretch;
+  /* Assure que les colonnes ont la même hauteur */
 }
 
-.columns > * {
+.columns>* {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Distribue le contenu avec le bouton en bas */
+  justify-content: space-between;
+  /* Distribue le contenu avec le bouton en bas */
   flex-grow: 1;
 }
 

@@ -12,23 +12,17 @@
                         <MyButton class="btn" @click="closeModal" text="FERMER" />
                     </div>
                 </div>
-                <div class="row">
-                    <p>© 2024</p>
-                    <p>L'ESPRIT BRIQUE</p>
-                    <p>{{ title }}</p>
-                </div>
+                <CardRow :title="title" />
             </div>
         </div>
     </div>
 </template>
 
-
-
 <script setup>
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
 import ImageGallery from '@/components/elements/ImageGallery.vue';
 import MyButton from '@/components/buttons/MyButton.vue';
-
-import { ref } from 'vue';
+import CardRow from './CardRow.vue'
 
 const props = defineProps({
     title: String,
@@ -38,7 +32,6 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['close']);
-
 const isClosing = ref(false);
 
 const closeModal = () => {
@@ -46,6 +39,26 @@ const closeModal = () => {
     emit('close');
     isClosing.value = false;
 };
+
+const handleKeyDown = (event) => {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+};
+
+onMounted(() => {
+    document.addEventListener('keydown', handleKeyDown);
+});
+
+onBeforeUnmount(() => {
+    document.removeEventListener('keydown', handleKeyDown);
+});
+
+watch(() => props.isVisible, (newValue) => {
+    if (!newValue) {
+        document.removeEventListener('keydown', handleKeyDown);
+    }
+});
 </script>
 
 <style scoped>
@@ -148,17 +161,5 @@ const closeModal = () => {
 .text-column h2 {
     width: 100%;
     text-align: center;
-}
-
-.row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-    padding: 5px;
-}
-
-.row p {
-    color: var(--black-hover);
 }
 </style>

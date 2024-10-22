@@ -1,13 +1,12 @@
 <template>
   <div class="card" :style="cardStyle" @mousedown="startDrag" @touchstart="startDrag" ref="cardRef">
-    <div class="image-wrapper" :style="wrapperStyle">
-      <div class="card-title">
-        <a href="#" @click.prevent="openModal">{{ title }}</a>
+    <div class="card-container">
+      <div class="image-wrapper" :style="wrapperStyle">
+        <img :src="imageSrc" alt="Image" class="card-image" />
       </div>
-      <span class="dot">
-        <i class="fa-solid fa-box fa-2xl"></i>
-      </span>
-      <img :src="imageSrc" alt="Image" class="card-image" />
+      <div class="card-title">
+          <a href="#" @click.prevent="openModal" @mousedown.stop>{{ title }}</a>
+        </div>
     </div>
   </div>
 </template>
@@ -20,7 +19,7 @@ const props = defineProps({
   imageSrc: String,
   zIndex: Number,
   sizeX: Number,
-  modal_id : Number,
+  modal_id: Number,
 });
 
 const emit = defineEmits(['bring-to-front', 'card-size', 'open-modal']);
@@ -82,7 +81,7 @@ onMounted(async () => {
 
   // Utiliser nextTick pour s'assurer que la carte est complètement montée
   await nextTick();
-  
+
   // Émettre la hauteur calculée après le montage
   const cardHeight = cardRef.value.offsetHeight; // Obtient la hauteur de la carte
   emit('card-size', { sizeY: cardHeight }); // Émettre la taille
@@ -96,36 +95,52 @@ const openModal = () => {
 
 <style scoped>
 .card {
-  position: absolute;
+  /* position: absolute; */
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url('@/assets/images/paperboard-yellow-texture.jpg');
+  background-size: cover;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  border: 3px solid var(--black);
+  padding: 5px;
 }
 
 .image-wrapper {
-  position: relative;
-  border: 10px solid var(--white);
+  /* position: relative; */
+  /* border: 10px solid;
+  /* Bordure de base 
   border-bottom-width: 60px;
-  box-sizing: border-box;
+  box-sizing: border-box; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 .card-title {
-  position: absolute;
-  bottom: -40px;
+  /* position: absolute; */
+  
   color: var(--black);
   padding: 0;
   text-align: center;
-  white-space: nowrap;
   height: 20px;
   line-height: 20px;
   z-index: 2;
 }
 
-.card-title > a {
+.card-title>a {
   font-size: 1.2rem;
   font-family: 'Bevellier-Regular', sans-serif;
 }
@@ -137,10 +152,10 @@ const openModal = () => {
 }
 
 .dot {
-  position: absolute;
+  /* position: absolute; */
   height: 80px;
   width: 80px;
-  background-color: var(--white);
+  background-image: url('@/assets/images/paperboard-yellow-texture.jpg');
   border-radius: 50%;
   bottom: -55px;
   display: inline-block;

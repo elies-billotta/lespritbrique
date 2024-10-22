@@ -1,8 +1,5 @@
 <template>
-    <Section class="text-section" :background-color="'var(--white)'" :columns="2" :title="'BOUTIQUE'" :icon="BrickIcon">
-        <template #description>
-            <p>TROUVEZ LA BRIQUE QU'IL VOUS FAUT</p>
-        </template>
+    <Section class="text-section" :background-color="'var(--white)'" :columns="2" :title="'BOUTIQUE'" :icon="BrickIcon" :description="'TROUVEZ LA BRIQUE'">
         <template #columns>
                 <div class="text-column">
                     <p>Auto-entrepreneur spécialisé dans la communication, L'Esprit Brique propose des services sur mesure

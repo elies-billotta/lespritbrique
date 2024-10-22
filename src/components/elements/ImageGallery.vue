@@ -58,40 +58,40 @@
   <style scoped>
 .image-gallery {
   display: flex;
-  flex-direction: column; /* Afficher les images en colonne */
-  align-items: center; /* Centrer les éléments */
-  width: 100%; /* Utiliser toute la largeur */
-  height: 100%; /* S'assurer que ça prend toute la hauteur */
-  justify-content: space-between; /* Pousser le contenu vers le bas */
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
 }
 
 .main-image-container {
-  height: 100%; /* Hauteur maximale pour l'image principale */
-  overflow: hidden; /* Masquer le débordement */
-  width: 100%; /* S'assurer que ça prend toute la largeur */
+  height: 100%;
+  overflow: hidden;
+  width: 100%; 
   display: flex;
   justify-content: center;
   
 }
 
 .main-image {
-  width: auto; /* Garder le ratio d'aspect */
-  max-width: 100%; /* Ne pas dépasser la largeur du conteneur */
-  max-height: 100%; /* Ne pas dépasser la hauteur du conteneur */
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 
 .thumbnail-container {
   display: flex;
   align-items: center;
-  justify-content: center; /* Centrer horizontalement les miniatures */
+  justify-content: center;
   margin-top: 10px;
 }
 
 .thumbnail {
   width: 60px;
   height: 60px;
-  object-fit: cover; /* Assurer que les images se recadrent bien */
+  object-fit: cover;
   margin: 0 5px;
   cursor: pointer;
   opacity: 0.6;
@@ -100,7 +100,7 @@
 
 .thumbnail.active {
   opacity: 1;
-  border: 2px solid blue; /* Surligner la miniature active */
+  border: 2px solid blue;
 }
 
 .nav-button {
