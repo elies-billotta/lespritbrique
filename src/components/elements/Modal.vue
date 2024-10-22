@@ -1,27 +1,25 @@
 <template>
-    <Transition name="fade-overlay">
-        <div v-show="isVisible || isClosing" class="modal-overlay" @click="closeModal">
-            <div :class="['modal-content', isClosing ? 'fade-out' : 'fade-in']" @click.stop>
-                <div class="modal-body">
-                    <div class="content">
-                        <div class="images-column">
-                            <ImageGallery :images="images" />
-                        </div>
-                        <div class="text-column">
-                            <h2>{{ title }}</h2>
-                            <p>{{ text }}</p>
-                            <MyButton class="btn" @click="closeModal" text="FERMER" />
-                        </div>
+    <div v-show="isVisible || isClosing" class="modal-overlay" @click="closeModal">
+        <div :class="['modal-content', isClosing ? 'fade-out' : 'fade-in']" @click.stop>
+            <div class="modal-body">
+                <div class="content">
+                    <div class="images-column">
+                        <ImageGallery :images="images" />
                     </div>
-                    <div class="row">
-                        <p>© 1930</p>
-                        <p>L'ESPRIT BRIQUE</p>
-                        <p>{{title}}</p>
+                    <div class="text-column">
+                        <h2>{{ title }}</h2>
+                        <p>{{ text }}</p>
+                        <MyButton class="btn" @click="closeModal" text="FERMER" />
                     </div>
+                </div>
+                <div class="row">
+                    <p>© 1930</p>
+                    <p>L'ESPRIT BRIQUE</p>
+                    <p>{{ title }}</p>
                 </div>
             </div>
         </div>
-    </Transition>
+    </div>
 </template>
 
 
@@ -45,10 +43,8 @@ const isClosing = ref(false);
 
 const closeModal = () => {
     isClosing.value = true;
-    setTimeout(() => {
-        emit('close'); 
-        isClosing.value = false;
-    }, 1000); 
+    emit('close');
+    isClosing.value = false;
 };
 </script>
 
@@ -66,16 +62,6 @@ const closeModal = () => {
     z-index: 1000;
     opacity: 1;
     transition: opacity 0.5s ease;
-}
-
-.fade-overlay-enter-active, 
-.fade-overlay-leave-active {
-    transition: opacity 0.5s ease; /* Durée de transition */
-}
-
-.fade-overlay-enter-from, 
-.fade-overlay-leave-to {
-    opacity: 0;
 }
 
 .modal-content {
@@ -99,12 +85,11 @@ const closeModal = () => {
 
 @keyframes fadeIn {
     from {
-        opacity: 0; 
-        transform: rotate(-40deg); 
+        transform: rotate(-40deg);
     }
+
     to {
-        opacity: 1; 
-        transform: rotate(-3deg); 
+        transform: rotate(-3deg);
     }
 }
 
@@ -114,12 +99,11 @@ const closeModal = () => {
 
 @keyframes fadeOut {
     from {
-        opacity: 1; 
-        transform: rotate(-3deg); 
+        transform: rotate(-3deg);
     }
+
     to {
-        opacity: 0; 
-        transform: rotate(-3deg); 
+        transform: rotate(-3deg);
     }
 }
 
@@ -150,15 +134,15 @@ const closeModal = () => {
 }
 
 .images-column {
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
 }
 
 .text-column {
     display: flex;
-    flex-direction: column; 
-    justify-content: space-between; 
-    flex: 1; 
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
 }
 
 .text-column h2 {
@@ -169,13 +153,12 @@ const closeModal = () => {
 .row {
     display: flex;
     justify-content: space-between;
-    align-items: center; 
-    margin-top: auto; 
+    align-items: center;
+    margin-top: auto;
     padding: 5px;
 }
 
 .row p {
     color: var(--black-hover);
 }
-
 </style>
