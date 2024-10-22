@@ -19,17 +19,22 @@
           @open-modal="handleOpenModal"
         />
       </div>
-      <Modal
-      v-if="isModalVisible"
-      :title="modalData.modal_title"
-      :text = "modalData.modal_description"
-      :isVisible="isModalVisible"
-      :images="modalData.images"
-      @close="handleCloseModal"
-    />
+
+      <!-- Transition ajoutée ici -->
+      <transition name="fade">
+        <Modal
+          v-if="isModalVisible"
+          :title="modalData.modal_title"
+          :text="modalData.modal_description"
+          :isVisible="isModalVisible"
+          :images="modalData.images"
+          @close="handleCloseModal"
+        />
+      </transition>
     </template>
   </Section>
 </template>
+
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
@@ -157,5 +162,17 @@ onMounted(async () => {
 
 .card {
   pointer-events: auto;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
 }
 </style>
