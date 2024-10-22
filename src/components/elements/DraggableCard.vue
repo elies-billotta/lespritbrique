@@ -2,7 +2,7 @@
   <div class="card" :style="cardStyle" @mousedown="startDrag" @touchstart="startDrag" ref="cardRef">
     <div class="image-wrapper" :style="wrapperStyle">
       <div class="card-title">
-        <a href="#" @click.prevent="openModal" @mousedown.stop>{{ title }}</a>
+        <a href="#" @click.prevent="openModal">{{ title }}</a>
       </div>
       <span class="dot">
         <i class="fa-solid fa-box fa-2xl"></i>

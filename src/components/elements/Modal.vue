@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <p>© 1930</p>
+                    <p>© 2024</p>
                     <p>L'ESPRIT BRIQUE</p>
                     <p>{{ title }}</p>
                 </div>
@@ -85,7 +85,7 @@ const closeModal = () => {
 
 @keyframes fadeIn {
     from {
-        transform: rotate(-40deg);
+        transform: rotate(-50deg);
     }
 
     to {
