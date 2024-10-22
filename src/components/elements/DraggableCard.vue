@@ -6,13 +6,15 @@
       </div>
       <div class="card-title">
           <a href="#" @click.prevent="openModal" @mousedown.stop>{{ title }}</a>
-        </div>
+      </div>
+      <CardRow class='row' :title="title" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, nextTick } from 'vue';
+import CardRow from '@/components/elements/CardRow.vue';
 
 const props = defineProps({
   title: String,
@@ -167,4 +169,9 @@ i {
   align-items: center;
   margin-top: 23px;
 }
+
+.row > *{
+  font-size: 0.5rem;
+}
+
 </style>

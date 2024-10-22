@@ -47,6 +47,7 @@
           </div>
         </div>
       </form>
+      <CardRow :title="'CONTACT'" />
     </div>
   </div>
 </template>
@@ -57,6 +58,7 @@ import MyButton from '@/components/buttons/MyButton.vue';
 import Title from '@/components/elements/Title.vue';
 import Brick from '@/assets/icons/brick.svg';
 import axios from 'axios';
+import CardRow from './CardRow.vue';
 
 const formData = reactive({
   name: '',
