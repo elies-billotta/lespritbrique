@@ -186,7 +186,7 @@
   select:focus
  {
     outline: none; /* Supprime la bordure bleue par défaut sur focus */
-    border-bottom: 2px solid var(--secondary-color); /* Change la couleur de la bordure au focus */
+    border-color: var(--secondary-color); /* Change la couleur de la bordure au focus */
     background-color: none;
   }
   
