@@ -138,6 +138,17 @@ watch(() => props.isVisible, (newValue) => {
     flex-direction: row;
 }
 
+.text-column h2 {
+    width: 100%; /* Prend toute la largeur disponible */
+    text-align: center; /* Centre le texte */
+    white-space: nowrap; /* Empêche le texte de se diviser sur plusieurs lignes */
+    overflow: hidden; /* Cache le texte qui déborde */
+    text-overflow: ellipsis; /* Affiche des points de suspension pour le texte qui déborde */
+    max-width: 100%; /* S'assure que le titre ne dépasse pas le conteneur */
+    font-size: calc(1.5rem + 1vw); /* Ajuste la taille de la police dynamiquement */
+}
+
+
 .images-column,
 .text-column {
     flex: 1;
