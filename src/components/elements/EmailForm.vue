@@ -264,7 +264,7 @@ textarea {
 }
 
 .sent {
-  color: var(--black);
+  color: var(--white);
   cursor: not-allowed;
 }
 
