@@ -1,35 +1,43 @@
 <template>
   <OldTvShader v-if="isShaderActive" />
-  <Loader />
-  <div id="app" :style="{ clipPath: clipPathStyle }" @transitionend="handleTransitionEnd">
+  <Loader 
+    @cardsLoaded="handleCardsLoaded" 
+    @modalLoaded="handleModalLoaded" 
+    @documentLoaded="handleDocumentLoaded" 
+    @loadingComplete="handleLoadingComplete" 
+  />
+  
+  <!-- App content only renders after loading is complete -->
+  <div v-if="isLoadingComplete" id="app" :style="{ clipPath: clipPathStyle }" @transitionend="handleTransitionEnd">
     <MenuButton :isFirstSectionVisible="isFirstSectionVisible" :toggleDrawer="toggleDrawer" />
     <Drawer 
       :isDrawerOpen="isDrawerOpen" 
-      :sections="sectionNames"
+      :sections="sectionNames" 
       :isPlaying="isPlaying" 
-      :volume="volume" 
+      :volume="volume"
       @toggle-music="handleToggleMusic" 
-      @update-volume="handleUpdateVolume"
-      @close-drawer="toggleDrawer" 
-      :currentMusic="currentMusic.value"
-      @toggleShader="toggleShader"
+      @update-volume="handleUpdateVolume" 
+      @close-drawer="toggleDrawer"
+      :currentMusic="currentMusic.value" 
+      @toggleShader="toggleShader" 
     />
+    
     <div id="sections">
       <HomeSection id="ACCUEIL" :sections="sectionNames" />
       <AboutSection id="A PROPOS" />
-      <CardSection v-if="!isMobile" id="RÉALISATIONS" @documentLoaded="handleDocumentLoaded"/>
-      <ShopSection id="BOUTIQUE" />  
-      <ContactSection id="CONTACT"/>
+      <CardSection v-if="!isLoading" id="RÉALISATIONS" :cardsData="cardsData" :modalsData="modalsData" />
+      <ShopSection id="BOUTIQUE" />
+      <ContactSection id="CONTACT" />
     </div>
+    
     <FooterSection />
     <audio ref="audioElement" @ended="handleMusicEnd"></audio>
     <audio ref="clickSoundElement" :src="StartSound"></audio>
   </div>
 </template>
 
-
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue';
 import MenuButton from '@/components/buttons/MenuButton.vue';
 import Drawer from '@/components/elements/Drawer.vue';
 import CardSection from '@/components/sections/CardSection.vue';
@@ -53,9 +61,13 @@ const currentMusic = ref('');
 const audioElement = ref(null);
 const clickSoundElement = ref(null);
 const isToggling = ref(false);
-const isLoaded = ref(false);  
-const clipPathStyle = ref('circle(0% at 50% 50%)'); 
+const isLoaded = ref(false);
+const clipPathStyle = ref('circle(0% at 50% 50%)');
 const isShaderActive = ref(true);
+const cardsData = ref([]);
+const modalsData = ref([]);
+const isLoading = ref(true);
+const isLoadingComplete = ref(false);
 
 const toggleDrawer = () => {
   isDrawerOpen.value = !isDrawerOpen.value;
@@ -93,9 +105,43 @@ const handleUpdateVolume = (newVolume) => {
   }
 };
 
+const handleCardsLoaded = (data) => {
+  cardsData.value = data; 
+  checkLoadingState(); 
+};
+
+const handleModalLoaded = (data) => {
+  modalsData.value = data; 
+  console.log("dans mon app j'ai ça : ",data);
+  console.log("dans mon app je met ça là : ",modalsData.value);
+  checkLoadingState();
+};
+
+const updateSectionNames = () => {
+  const sectionsElement = document.getElementById('sections');
+  if (sectionsElement) {  // Vérification que l'élément existe
+    sectionNames.value = Array.from(sectionsElement.children).map((section) => section.id);
+  } else {
+    console.error("Element with ID 'sections' not found.");
+  }
+};
+// When both cards and modals are loaded, loading is considered complete
+const checkLoadingState = () => {
+  if (cardsData.value.length > 0 && modalsData.value.length > 0) {
+    isLoading.value = false;
+    handleLoadingComplete();
+  }
+};
+
+const handleLoadingComplete = () => {
+  isLoadingComplete.value = true;
+  nextTick(() => {
+    updateSectionNames();  // Appel après la mise à jour du DOM
+  });
+};
+
 onMounted(() => {
   observeFirstSection();
-  sectionNames.value = Array.from(document.getElementById('sections').children).map((section) => section.id);
   handleResize();
   window.addEventListener('resize', handleResize);
   if (localStorage.getItem('activeShader') == 'false') {
@@ -104,9 +150,9 @@ onMounted(() => {
   if (localStorage.getItem('volume')) {
     volume.value = parseFloat(localStorage.getItem('volume'));
   }
-  if(localStorage.getItem('music') == 'true'){
+  if (localStorage.getItem('music') == 'true') {
     localStorage.setItem('music', 'false');
-  } 
+  }
 });
 
 onBeforeUnmount(() => {
@@ -114,13 +160,13 @@ onBeforeUnmount(() => {
 });
 
 const handleDocumentLoaded = () => {
-  isLoaded.value = true; 
-  clipPathStyle.value = 'circle(150% at 50% 50%)'; 
+  isLoaded.value = true;
+  clipPathStyle.value = 'circle(150% at 50% 50%)';
 };
 
 const handleTransitionEnd = () => {
-    if (isLoaded.value)
-    clipPathStyle.value = 'none'; 
+  if (isLoaded.value)
+    clipPathStyle.value = 'none';
 };
 
 const audioFiles = [
@@ -174,7 +220,6 @@ const toggleShader = () => {
   isShaderActive.value = !isShaderActive.value;
 };
 </script>
-
 
 <style scoped>
 #app {

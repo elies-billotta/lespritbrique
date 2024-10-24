@@ -8,21 +8,35 @@
 
 <script setup>
 import { ref, onMounted, defineEmits } from 'vue';
+import { fetchCardsData } from '@/services/fetchCardsData.js';
+import { fetchModalData } from '@/services/fetchModalData.js';
 
 // Définir les événements que ce composant peut émettre
-const emit = defineEmits(['documentLoaded']);
+const emit = defineEmits(['documentLoaded', 'cardsLoaded', 'modalLoaded']);
 const isLoaded = ref(false);
 
-onMounted(() => {
-  document.onreadystatechange = () => {
+onMounted(async () => {
+  try {
+    const data = await fetchCardsData(); // Récupérer les données des cartes
+    const modalData = await fetchModalData(); // Récupérer les données des modales
+    console.log(modalData);
+    // Vérifiez l'état du document après les fetchs
     if (document.readyState === 'complete') {
-      setTimeout(() => {
-        isLoaded.value = true;
-        // Émettre l'événement personnalisé ici
+      emit('cardsLoaded', data); // Émet les données des cartes
+      emit('modalLoaded', modalData); // Émet les données des modales
+      emit('documentLoaded'); // Émet l'événement de chargement complet
+      isLoaded.value = true; // Marque le loader comme chargé
+    } else {
+      // Si le document n'est pas encore prêt, on peut écouter l'événement "load"
+      window.addEventListener('load', () => {
+        emit('cardsLoaded', data);
+        emit('modalLoaded', modalData);
         emit('documentLoaded');
-      }, 1000);
+      });
     }
-  };
+  } catch (error) {
+    console.log('Error fetching data', error);
+  }
 });
 </script>
 
@@ -59,6 +73,7 @@ onMounted(() => {
 .fade-leave-active {
   transition: opacity 1s;
 }
+
 .fade-enter,
 .fade-leave-to {
   opacity: 0;

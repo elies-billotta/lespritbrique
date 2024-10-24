@@ -38,8 +38,6 @@ import { ref, computed, onMounted } from 'vue';
 import DraggableCard from '@/components/elements/DraggableCard.vue';
 import Section from '@/components/sections/Section.vue';
 import BrickIcon from '@/assets/icons/brick.svg';
-import { fetchCardsData } from '@/services/fetchCardsData.js';
-import { fetchModalData } from '@/services/fetchModalData.js';
 import Modal from '@/components/elements/Modal.vue';
 import { defineEmits } from 'vue';
 
@@ -51,6 +49,10 @@ const props = defineProps({
     default: 'var(--primary-color)',
   },
   cardsData: {
+    type: Array,
+    default: () => [],
+  },
+  modalsData: {
     type: Array,
     default: () => [],
   },
@@ -133,12 +135,12 @@ const handleCloseModal = () => {
   isModalVisible.value = false;
 };
 
-onMounted(async () => {
+onMounted(() => {
   try {
-    const data = await fetchCardsData();
-    cards.value = data;
-    const modalData = await fetchModalData();
-    modalsData.value = modalData;
+    console.log('Cards data:', props.cardsData);
+    console.log('Modals data:', props.modalsData);
+    cards.value = props.cardsData;
+    modalsData.value = props.modalsData;
   } catch (error) {
     console.error('Error during onMounted:', error);
   } finally {
