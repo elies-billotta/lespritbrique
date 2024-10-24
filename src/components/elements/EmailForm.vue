@@ -37,15 +37,15 @@
         </div>
         <div class="inline">
           <div class="submit-section">
-            <MyButton v-if="!isSending && !emailSent && !emailError" type="submit" text="ENVOYER"
+            <MyButton class="button" v-if="!isSending && !emailSent && !emailError" type="submit" text="ENVOYER"
               :disabled="formDisabled" />
             <div v-if="isSending" class="loader fade-in"></div>
-            <MyButton v-if="emailSent && !isSending" :text="'MESSAGE ENVOYÉ'" class="sent fade-in" disabled />
-            <MyButton v-if="emailError && !isSending" :text="'Réessayer'" @click="sendEmail" class="error fade-in" />
+            <MyButton v-if="emailSent && !isSending" :text="'MESSAGE ENVOYÉ'" class="sent fade-in button" disabled />
+            <MyButton v-if="emailError && !isSending" :text="'RÉESSAYER'" @click="sendEmail" class="error fade-in button" />
           </div>
         </div>
       </form>
-      <CardRow :title="'CONTACT'" />
+      <CardRow class="row" :title="'CONTACT'" />
     </div>
   </div>
 </template>
@@ -96,13 +96,6 @@ watch(selectedEntity, (newEntity) => {
 });
 
 async function sendEmail() {
-  // Retirer la validation du reCAPTCHA
-  // const recaptchaToken = grecaptcha.getResponse();
-  // if (!recaptchaToken) {
-  //   emailError.value = true;
-  //   return;
-  // }
-
   const form = document.querySelector('form');
   if (!form.checkValidity()) {
     form.reportValidity();
@@ -190,6 +183,10 @@ label {
   margin-right: 5px;
 }
 
+.row {
+  margin-top: 10px;
+}
+
 textarea {
   resize: none;
   height: 150px;
@@ -222,8 +219,12 @@ textarea {
 
 .submit-section {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  flex-direction: row;
+  justify-content: center; 
+}
+
+.button{
+  width: 100%;
 }
 
 .loader {
@@ -268,7 +269,14 @@ textarea {
 }
 
 .error {
+  background-color: red;
+  color: var(--white);
+  border-color: red;
+}
+
+.error:hover {
   background-color: transparent;
-  color: var(--black);
+  color: red;
+  border-color: red;
 }
 </style>
