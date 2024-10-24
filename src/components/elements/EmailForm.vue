@@ -36,7 +36,6 @@
             placeholder="Saisissez un message d'au moins 30 caractères"></textarea>
         </div>
         <div class="inline">
-          <div class="g-recaptcha" data-sitekey="6LeLsFQqAAAAAK8Y_yrXvBBC7duprvrgWh3jbm9z"></div>
           <div class="submit-section">
             <MyButton v-if="!isSending && !emailSent && !emailError" type="submit" text="ENVOYER"
               :disabled="formDisabled" />
@@ -97,11 +96,12 @@ watch(selectedEntity, (newEntity) => {
 });
 
 async function sendEmail() {
-  const recaptchaToken = grecaptcha.getResponse();
-  if (!recaptchaToken) {
-    emailError.value = true;
-    return;
-  }
+  // Retirer la validation du reCAPTCHA
+  // const recaptchaToken = grecaptcha.getResponse();
+  // if (!recaptchaToken) {
+  //   emailError.value = true;
+  //   return;
+  // }
 
   const form = document.querySelector('form');
   if (!form.checkValidity()) {
@@ -119,7 +119,7 @@ async function sendEmail() {
 
   const payload = {
     ...formData,
-    recaptchaToken
+    // recaptchaToken // Retirer le token du payload
   };
 
   try {
@@ -127,7 +127,7 @@ async function sendEmail() {
     if (response.status === 200) {
       emailSent.value = true;
       formDisabled.value = true;
-      grecaptcha.reset();
+      // grecaptcha.reset(); // Retirer la réinitialisation du reCAPTCHA
       startResetTimer();
     } else {
       throw new Error('Échec lors de l\'envoi de l\'email.');
@@ -140,7 +140,6 @@ async function sendEmail() {
     isSending.value = false;
   }
 }
-
 
 function startResetTimer() {
   setTimeout(() => {
@@ -191,27 +190,9 @@ label {
   margin-right: 5px;
 }
 
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  transition: opacity 0.5s ease;
-}
-
 textarea {
   resize: none;
   height: 150px;
-}
-
-input[disabled],
-select[disabled],
-textarea[disabled] {
-  background-color: #f9f9f9;
-  cursor: not-allowed;
 }
 
 .inline {
@@ -282,18 +263,12 @@ textarea[disabled] {
 }
 
 .sent {
-  background-color: green;
-  color: white;
+  color: var(--black);
   cursor: not-allowed;
 }
 
-.sent:hover {
-  background-color: green;
-}
-
-
 .error {
-  background-color: red;
-  color: white;
+  background-color: transparent;
+  color: var(--black);
 }
 </style>

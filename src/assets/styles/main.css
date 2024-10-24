@@ -154,11 +154,49 @@
     cursor: pointer;
   }
 
-  input{
-    border: none;
-    outline: none;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 10px 0;
+  input,
+  select,
+  textarea {
     width: 100%;
+    margin-bottom: 10px;
   }
+
+  input, select {
+    border: none; /* Supprime toutes les bordures */
+    border-bottom: 1px solid var(--black); /* Ajoute une bordure en bas */
+    background: none; /* Supprime la couleur de fond */
+    box-shadow: none; /* Supprime l'ombre si elle existe */
+    transition: border-color 0.3s ease;
+    background-color: none;
+  }
+
+  textarea{
+    background-color: transparent;
+    border-color: var(--black);
+    padding: 5px 5px;
+  }
+  
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none; /* Supprime la bordure bleue par défaut sur focus */
+    border-bottom: 2px solid var(--secondary-color); /* Change la couleur de la bordure au focus */
+    background-color: none;
+  }
+  
+  /* Facultatif: Pour modifier la couleur en cas d'erreur
+  input:invalid,
+  select:invalid,
+  textarea:invalid {
+    border-bottom: 2px solid red;
+  } */
+  
+  /* Pour les éléments désactivés */
+  input[disabled],
+  select[disabled],
+  textarea[disabled] {
+    background-color: transparent;
+    cursor: not-allowed;
+    opacity: 0.5; /* Rendre les éléments désactivés plus pâles */
+  }
+  

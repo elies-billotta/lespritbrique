@@ -9,7 +9,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
 require 'vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -18,13 +17,13 @@ use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
-$secretKey = $_ENV['RECAPTCHA_SECRET'];
 $smtpUsername = $_ENV['SMTP_USERNAME'];
 $smtpPassword = $_ENV['SMTP_PASSWORD'];
 
 $data = json_decode(file_get_contents("php://input"));
 
-if (empty($data->name) || empty($data->email) || empty($data->subject) || empty($data->message) || empty($data->recaptchaToken)) {
+// Vérification des champs obligatoires
+if (empty($data->name) || empty($data->email) || empty($data->subject) || empty($data->message)) {
     http_response_code(400);
     echo json_encode(["message" => "Tous les champs sont obligatoires."]);
     exit;
@@ -43,16 +42,7 @@ if (strlen($data->message) > 500) {
     exit;
 }
 
-$response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secretKey}&response={$data->recaptchaToken}");
-$responseKeys = json_decode($response, true);
-
-if (!$responseKeys["success"]) {
-    http_response_code(400);
-    echo json_encode(["message" => "Échec de la vérification du reCAPTCHA."]);
-    exit;
-}
-
-
+// Configuration de PHPMailer
 $mail = new PHPMailer(true);
 
 try {
