@@ -90,6 +90,7 @@ onMounted(() => {
     outline: none;
     cursor: pointer;
     border: 2px solid var(--black);
+    margin-bottom: 0px;
 }
 
 .volume-control::-webkit-slider-runnable-track {

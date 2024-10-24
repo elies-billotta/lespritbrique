@@ -72,6 +72,7 @@ watch(() => props.images, () => {
   justify-content: center;
   align-items: center; 
   border: 2px solid var(--black-hover);
+  border-radius: 2px;
 }
 
 .main-image {
@@ -96,11 +97,14 @@ watch(() => props.images, () => {
   cursor: pointer;
   opacity: 0.6;
   transition: opacity 0.3s;
+  border: none;
+  border-radius: 2px;
 }
 
 .thumbnail.active {
   opacity: 1;
-  border: 2px solid blue;
+  border: 2px solid var(--secondary-color);
+  border-radius: 2px;
 }
 
 .nav-button {
