@@ -163,7 +163,7 @@ function startResetTimer() {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-image: url('@/assets/images/paperboard-yellow-texture.jpg');
+  background-image: url('@/assets/images/paperboard-yellow-texture.png');
   background-size: cover;
   padding: 10px;
   border-radius: 3px;

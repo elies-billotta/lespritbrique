@@ -92,7 +92,6 @@ const bringToFront = (cardIndex) => {
 // Génération des positions aléatoires
 const generateRandomPositions = () => {
   const section = document.querySelector('.cards-container');
-
   if (section && cards.value.length) {
     const sectionWidth = section.offsetWidth;
     const sectionHeight = section.offsetHeight;
@@ -113,6 +112,7 @@ const generateRandomPositions = () => {
       };
     });
   }
+  emit('documentLoaded');
 };
 
 // Gérer l'état de la modale
@@ -143,7 +143,6 @@ onMounted(async () => {
     console.error('Error during onMounted:', error);
   } finally {
     generateRandomPositions();
-    emit('documentLoaded');
   }
 });
 </script>

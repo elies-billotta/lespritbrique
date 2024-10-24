@@ -101,7 +101,7 @@ const openModal = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('@/assets/images/paperboard-yellow-texture.jpg');
+  background-image: url('@/assets/images/paperboard-yellow-texture.png');
   background-size: cover;
   padding: 5px;
   border-radius: 3px;
@@ -120,20 +120,12 @@ const openModal = () => {
 }
 
 .image-wrapper {
-  /* position: relative; */
-  /* border: 10px solid;
-  /* Bordure de base 
-  border-bottom-width: 60px;
-  box-sizing: border-box; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border-radius: 5px; */
 }
 
 .card-title {
-  /* position: absolute; */
-  
   color: var(--black);
   padding: 0;
   text-align: center;
@@ -151,23 +143,6 @@ const openModal = () => {
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-.dot {
-  /* position: absolute; */
-  height: 80px;
-  width: 80px;
-  background-image: url('@/assets/images/paperboard-yellow-texture.jpg');
-  border-radius: 50%;
-  bottom: -55px;
-  display: inline-block;
-}
-
-i {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 23px;
 }
 
 .row > *{

@@ -85,7 +85,7 @@ watch(() => props.isVisible, (newValue) => {
     height: 70vh;
     overflow: hidden;
     border-radius: 2px;
-    background-image: url('@/assets/images/paperboard-yellow-texture.jpg');
+    background-image: url('@/assets/images/paperboard-yellow-texture.png');
     background-size: cover;
     opacity: 1;
     transition: transform 0.5s ease, opacity 0.5s ease;
