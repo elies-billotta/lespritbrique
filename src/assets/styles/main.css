@@ -174,11 +174,17 @@
     background-color: transparent;
     border-color: var(--black);
     padding: 5px 5px;
+    border-radius: 3px;
+  }
+
+  textarea:focus{
+    outline: none;
+    border-color: var(--secondary-color);
   }
   
   input:focus,
-  select:focus,
-  textarea:focus {
+  select:focus
+ {
     outline: none; /* Supprime la bordure bleue par défaut sur focus */
     border-bottom: 2px solid var(--secondary-color); /* Change la couleur de la bordure au focus */
     background-color: none;
