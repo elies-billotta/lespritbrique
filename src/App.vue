@@ -8,7 +8,7 @@
   />
   
   <!-- App content only renders after loading is complete -->
-  <div v-if="isLoadingComplete" id="app" :style="{ clipPath: clipPathStyle }" @transitionend="handleTransitionEnd">
+  <div v-if="isLoadingComplete" id="app">
     <MenuButton :isFirstSectionVisible="isFirstSectionVisible" :toggleDrawer="toggleDrawer" />
     <Drawer 
       :isDrawerOpen="isDrawerOpen" 
@@ -62,7 +62,6 @@ const audioElement = ref(null);
 const clickSoundElement = ref(null);
 const isToggling = ref(false);
 const isLoaded = ref(false);
-const clipPathStyle = ref('circle(0% at 50% 50%)');
 const isShaderActive = ref(true);
 const cardsData = ref([]);
 const modalsData = ref([]);
@@ -112,8 +111,6 @@ const handleCardsLoaded = (data) => {
 
 const handleModalLoaded = (data) => {
   modalsData.value = data; 
-  console.log("dans mon app j'ai ça : ",data);
-  console.log("dans mon app je met ça là : ",modalsData.value);
   checkLoadingState();
 };
 
@@ -125,7 +122,7 @@ const updateSectionNames = () => {
     console.error("Element with ID 'sections' not found.");
   }
 };
-// When both cards and modals are loaded, loading is considered complete
+
 const checkLoadingState = () => {
   if (cardsData.value.length > 0 && modalsData.value.length > 0) {
     isLoading.value = false;
@@ -158,16 +155,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize);
 });
-
-const handleDocumentLoaded = () => {
-  isLoaded.value = true;
-  clipPathStyle.value = 'circle(150% at 50% 50%)';
-};
-
-const handleTransitionEnd = () => {
-  if (isLoaded.value)
-    clipPathStyle.value = 'none';
-};
 
 const audioFiles = [
   new URL('@/assets/audio/Gentlemen.mp3', import.meta.url).href,
@@ -226,8 +213,6 @@ const toggleShader = () => {
   position: relative;
   width: 100%;
   height: 100vh;
-  clip-path: circle(0% at 50% 50%);
-  transition: clip-path 3s ease;
   background-color: black;
 }
 
