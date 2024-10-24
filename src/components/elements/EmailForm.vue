@@ -37,7 +37,6 @@
         </div>
         <div class="inline">
           <div class="g-recaptcha" data-sitekey="6LeLsFQqAAAAAK8Y_yrXvBBC7duprvrgWh3jbm9z"></div>
-
           <div class="submit-section">
             <MyButton v-if="!isSending && !emailSent && !emailError" type="submit" text="ENVOYER"
               :disabled="formDisabled" />

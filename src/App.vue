@@ -3,7 +3,6 @@
   <Loader 
     @cardsLoaded="handleCardsLoaded" 
     @modalLoaded="handleModalLoaded" 
-    @documentLoaded="handleDocumentLoaded" 
     @loadingComplete="handleLoadingComplete" 
   />
   
@@ -134,11 +133,11 @@ const handleLoadingComplete = () => {
   isLoadingComplete.value = true;
   nextTick(() => {
     updateSectionNames();  // Appel après la mise à jour du DOM
+    observeFirstSection();
   });
 };
 
 onMounted(() => {
-  observeFirstSection();
   handleResize();
   window.addEventListener('resize', handleResize);
   if (localStorage.getItem('activeShader') == 'false') {

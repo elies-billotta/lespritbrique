@@ -153,3 +153,12 @@
     color: var(--secondary-color); /* Change la couleur du texte au survol */
     cursor: pointer;
   }
+
+  input{
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 100%;
+  }

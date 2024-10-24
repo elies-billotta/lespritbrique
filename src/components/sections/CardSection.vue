@@ -137,8 +137,6 @@ const handleCloseModal = () => {
 
 onMounted(() => {
   try {
-    console.log('Cards data:', props.cardsData);
-    console.log('Modals data:', props.modalsData);
     cards.value = props.cardsData;
     modalsData.value = props.modalsData;
   } catch (error) {
