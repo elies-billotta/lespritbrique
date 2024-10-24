@@ -1,61 +1,60 @@
 <template>
-    <div class="image-gallery">
-      <div class="main-image-container">
-        <img :src="currentImage" class="main-image" alt="Current" />
-      </div>
-      <div class="thumbnail-container">
-        <button @click="prevImage" class="nav-button">&#10094;</button>
-        <div class="thumbnails">
-          <img
-            v-for="(img, index) in images"
-            :key="index"
-            :src="img"
-            class="thumbnail"
-            :class="{ active: currentIndex === index }"
-            @click="setCurrentImage(index)"
-          />
-        </div>
-        <button @click="nextImage" class="nav-button">&#10095;</button>
-      </div>
+  <div class="image-gallery">
+    <div class="main-image-container">
+      <img :src="currentImage" class="main-image" alt="Current" />
     </div>
-  </template>
-  
-  
-  <script setup>
-  import { ref, watch } from 'vue';
-  
-  const props = defineProps({
-    images: {
-      type: Array,
-      required: true,
-    },
-  });
-  
-  const currentIndex = ref(0);
-  const currentImage = ref(props.images[currentIndex.value]);
-  
-  const setCurrentImage = (index) => {
-    currentIndex.value = index;
-    currentImage.value = props.images[currentIndex.value];
-  };
-  
-  const nextImage = () => {
-    currentIndex.value = (currentIndex.value + 1) % props.images.length;
-    currentImage.value = props.images[currentIndex.value];
-  };
-  
-  const prevImage = () => {
-    currentIndex.value = (currentIndex.value - 1 + props.images.length) % props.images.length;
-    currentImage.value = props.images[currentIndex.value];
-  };
-  
-  watch(() => props.images, () => {
-    currentIndex.value = 0;
-    currentImage.value = props.images[0];
-  });
-  </script>
-  
-  <style scoped>
+    <div class="thumbnail-container">
+      <button @click="prevImage" class="nav-button">&#10094;</button>
+      <div class="thumbnails">
+        <img
+          v-for="(img, index) in images"
+          :key="index"
+          :src="img"
+          class="thumbnail"
+          :class="{ active: currentIndex === index }"
+          @click="setCurrentImage(index)"
+        />
+      </div>
+      <button @click="nextImage" class="nav-button">&#10095;</button>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, watch } from 'vue';
+
+const props = defineProps({
+  images: {
+    type: Array,
+    required: true,
+  },
+});
+
+const currentIndex = ref(0);
+const currentImage = ref(props.images[currentIndex.value]);
+
+const setCurrentImage = (index) => {
+  currentIndex.value = index;
+  currentImage.value = props.images[currentIndex.value];
+};
+
+const nextImage = () => {
+  currentIndex.value = (currentIndex.value + 1) % props.images.length;
+  currentImage.value = props.images[currentIndex.value];
+};
+
+const prevImage = () => {
+  currentIndex.value = (currentIndex.value - 1 + props.images.length) % props.images.length;
+  currentImage.value = props.images[currentIndex.value];
+};
+
+watch(() => props.images, () => {
+  currentIndex.value = 0;
+  currentImage.value = props.images[0];
+});
+</script>
+
+<style scoped>
 .image-gallery {
   display: flex;
   flex-direction: column;
@@ -66,19 +65,20 @@
 }
 
 .main-image-container {
-  height: 100%;
+  width: 100%;
+  height: 250px;
   overflow: hidden;
-  width: 100%; 
   display: flex;
   justify-content: center;
-  
+  align-items: center; 
+  border: 2px solid var(--black-hover);
 }
 
 .main-image {
-  width: auto;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  width: 100%; 
+  height: auto; 
+  object-fit: cover;
+
 }
 
 .thumbnail-container {
