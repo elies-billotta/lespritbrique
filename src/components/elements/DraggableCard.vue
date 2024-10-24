@@ -117,12 +117,14 @@ const openModal = () => {
   border-radius: 3px;
   border: 3px solid var(--black);
   padding: 5px;
+  gap:5px;
 }
 
 .image-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 3px;
 }
 
 .card-title {
