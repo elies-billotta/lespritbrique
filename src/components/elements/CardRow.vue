@@ -13,7 +13,7 @@ defineProps<{
 </script>
 <style scoped>
 .row {
-    position: relative; /* Position relative pour contenir les éléments absolus */
+    position: relative; 
     display: flex;
     align-items: center;
     width: 100%;
@@ -21,13 +21,13 @@ defineProps<{
 
 .first {
     flex: 0 0 auto;
-    margin-right: auto; /* Aligné à gauche */
+    margin-right: auto;
 }
 
 .middle {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%); /* Centrage parfait, peu importe la largeur */
+    transform: translateX(-50%);
 }
 
 .end {

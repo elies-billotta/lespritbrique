@@ -4,8 +4,18 @@
       <div class="image-wrapper" :style="wrapperStyle">
         <img :src="imageSrc" alt="Image" class="card-image" />
       </div>
-      <div class="card-title">
-          <a href="#" @click.prevent="openModal" @mousedown.stop>{{ title }}</a>
+      <div class="card-row">
+        <span class="icon-container">
+          <img :src="BrickIcon" class="icon icon1">
+        </span>
+        <div class="card-title-container">
+          <div class="card-title">
+            <a href="#" @click.prevent="openModal" @mousedown.stop>{{ title }}</a>
+          </div>
+        </div>
+        <span class="icon-container">
+          <img :src="BrickIcon" class="icon icon2">
+        </span>
       </div>
       <CardRow class='row' :title="title" />
     </div>
@@ -15,6 +25,8 @@
 <script setup>
 import { ref, computed, onMounted, nextTick } from 'vue';
 import CardRow from '@/components/elements/CardRow.vue';
+import Line from '@/components/elements/Line.vue';
+import BrickIcon from '@/assets/icons/brick.svg';
 
 const props = defineProps({
   title: String,
@@ -117,7 +129,14 @@ const openModal = () => {
   border-radius: 3px;
   border: 3px solid var(--black);
   padding: 5px;
-  gap:5px;
+  gap: 5px;
+}
+
+.icon1,
+.icon2 {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
 }
 
 .image-wrapper {
@@ -127,28 +146,46 @@ const openModal = () => {
   border-radius: 3px;
 }
 
+.card-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.card-title-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  flex: 1;
+  flex-shrink: 0; 
+}
+
+.icon-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
 .card-title {
-  color: var(--black);
-  padding: 0;
   text-align: center;
-  height: 20px;
-  line-height: 20px;
-  z-index: 2;
+  position: relative;
 }
 
 .card-title>a {
   font-size: 1.2rem;
   font-family: 'Bevellier-Regular', sans-serif;
+  white-space: nowrap;
 }
 
 .card-image {
   width: 100%;
   height: auto;
   object-fit: cover;
+  border-radius: 3px;
 }
 
-.row > *{
+.row>* {
   font-size: 0.5rem;
 }
-
 </style>
