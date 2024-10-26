@@ -65,7 +65,7 @@ watch(() => props.images, () => {
 }
 
 .main-image-container {
-  width: 100%;
+  min-width: 100%;
   height: 250px;
   overflow: hidden;
   display: flex;
@@ -87,6 +87,12 @@ watch(() => props.images, () => {
   align-items: center;
   justify-content: center;
   margin-top: 10px;
+  overflow-x: auto; /* Permettre le défilement horizontal si nécessaire */
+  white-space: nowrap; /* Empêche le passage à la ligne */
+}
+
+.thumbnails {
+  display: flex; /* Assure que les miniatures sont en ligne */
 }
 
 .thumbnail {
@@ -113,4 +119,5 @@ watch(() => props.images, () => {
   font-size: 2rem;
   cursor: pointer;
 }
+
 </style>
