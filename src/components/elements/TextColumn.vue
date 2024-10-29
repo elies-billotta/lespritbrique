@@ -95,7 +95,7 @@ export default {
 }
 
 .icon {
-    width: 50%;
+    width: 80%;
     height: auto;
     object-fit: cover;
 }

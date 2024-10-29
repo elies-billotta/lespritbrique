@@ -19,9 +19,12 @@ onMounted(async () => {
     const [data, modalData] = await Promise.all([fetchCardsData(), fetchModalData()]);
       emit('cardsLoaded', data);
       emit('modalLoaded', modalData);
-      isLoaded.value = true;
   } catch (error) {
     console.log('Error fetching data', error);
+  } finally {
+    if (document.readyState === 'complete') {
+        isLoaded.value = true;
+      }
   }
 });
 </script>
