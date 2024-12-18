@@ -13,6 +13,8 @@
           <i class="fa-solid fa-globe"></i>
         </div>
       </div>
+      <p>L'ESPRIT BRIQUE® est une marque déposée.</p>
+      <p> Personnages réalisés par <a href="https://www.instagram.com/meli_melodraw/" target="_blank">@meli_melodraw</a>. Tous droits réservés. Ne pas reproduire.</p>
     </div>
     <NotificationPopup v-if="showNotification" :message="notificationMessage" :type="notificationType" />
   </footer>
@@ -50,7 +52,7 @@ const onCopy = (source) => {
 <style scoped>
  .mail {
   font-size: 20px;
-  color: var(--black);
+  color: var(--white);
 }
 
 .mail:hover {
@@ -59,7 +61,7 @@ const onCopy = (source) => {
 
 
 footer {
-  background-color: var(--primary-color);
+  background-color: var(--black);
   padding: 2rem 0;
   display: flex;
   justify-content: center;
@@ -70,17 +72,17 @@ footer {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap : 10px;
 }
 
 .social-icons {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
 }
 
 .social-icons a,
 .social-icons div {
-  color: var(--black);
+  color: var(--white);
   margin-right: 10px;
   font-size: 1.2rem;
   transition: color 0.3s ease;
@@ -88,12 +90,16 @@ footer {
 }
 
 .social-icons a:hover,
-.social-icons div:hover {
+.social-icons div:hover, p > a:hover {
   color: var(--secondary-color);
 }
 
 .social-icons div[role="button"]:focus {
   outline: 2px solid var(--secondary-color);
   outline-offset: 2px;
+}
+
+p, p > a {
+  color : var(--white);
 }
 </style>

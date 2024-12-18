@@ -1,7 +1,7 @@
 <template>
   <div class="email-form">
     <div class="form-content">
-      <Title class="title-form" :title="'CONTACT'" :description="'UNE DEMANDE ? CONTACTEZ NOUS !'" :icon="Brick"/>
+      <Title class="title-form" :title="'CONTACT'" :description="'UNE DEMANDE PERSONNALISÉE ? CONTACTEZ NOUS !'" :icon="Brick"/>
       <form @submit.prevent="sendEmail">
         <div class="line1">
           <div>
@@ -74,11 +74,13 @@ const formDisabled = ref(false);
 const subjects = {
   particulier: [
     "Demande de briques personnalisées sur mesure",
+    "Kit personnalisé sur mesure",
     "Autre"
   ],
   entreprise: [
     "Demande de devis",
-    "Kit en brique personnalisé sur mesure",
+    "Kit personnalisé sur mesure",
+    "Maquette personnalisée",
     "Goodies personnalisés",
     "Autre"
   ]

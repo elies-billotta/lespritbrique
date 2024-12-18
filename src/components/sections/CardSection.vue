@@ -16,8 +16,6 @@
           @open-modal="handleOpenModal"
         />
       </div>
-
-      <!-- Transition ajoutée ici -->
       <transition name="fade">
         <Modal
           v-if="isModalVisible"
@@ -66,32 +64,23 @@ const cards = ref([]);
 const modalsData = ref([]);
 const modalData = ref({ modal_id: '', modal_title: '', modal_description: '', images: [] });
 
-
-// Fonction pour gérer la taille de la carte
 const handleCardSize = (cardIndex) => (size) => {
   if (cards.value[cardIndex]) {
     cards.value[cardIndex].sizeY = size.sizeY;
   }
 };
 
-// Fonction pour amener une carte au premier plan
 const bringToFront = (cardIndex) => {
   if (cards.value[cardIndex]) {
     const maxZIndex = Math.max(...cards.value.map(card => card.zIndex));
-
-    // Réinitialiser l'ombre pour toutes les cartes
     cards.value.forEach(card => {
       card.positions.boxShadow = 'none';
-      card.zIndex = 1; // Réinitialiser le zIndex si besoin
     });
-
-    // Mettre à jour l'index Z et l'ombre de la carte cliquée
     cards.value[cardIndex].zIndex = maxZIndex + 1;
     cards.value[cardIndex].positions.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
   }
 };
 
-// Génération des positions aléatoires
 const generateRandomPositions = () => {
   const section = document.querySelector('.cards-container');
   if (section && cards.value.length) {
@@ -117,10 +106,8 @@ const generateRandomPositions = () => {
   emit('documentLoaded');
 };
 
-// Gérer l'état de la modale
 const isModalVisible = ref(false);
 
-// Fonction pour ouvrir la modale avec les données de la carte
 const handleOpenModal = (data) => {
   for (const item of modalsData.value) {
     if (item.modal_id == data.id) {
@@ -130,7 +117,6 @@ const handleOpenModal = (data) => {
   }
 };
 
-// Fonction pour fermer la modale
 const handleCloseModal = () => {
   isModalVisible.value = false;
 };

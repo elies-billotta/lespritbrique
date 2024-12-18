@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <p class="first">© 2024</p>
-        <p class="middle">L'ESPRIT BRIQUE</p>
+        <p class="middle">L'ESPRIT BRIQUE®</p>
         <p class="end">{{ title }}</p>
     </div>
 </template>

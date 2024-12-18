@@ -2,6 +2,7 @@
     <div class="text-column">
         <div class="title-container">
             <div class="icon-container">
+                <div v-if="robot" class="rectangle"></div>
                 <img :src="icon" alt="Icon" class="icon" />
             </div>
             <h3 class="title">{{ this.title }}</h3>
@@ -40,6 +41,10 @@ export default {
         name: {
             type: String,
             default: 'section',
+        },
+        robot: {
+            type: Boolean,
+            default: false,
         },
     },
     components: {
@@ -85,6 +90,15 @@ export default {
     position: relative;
 }
 
+.rectangle{
+    width : 90%;
+    height: 12px;
+    z-index: 1;
+    position: absolute;
+    background-color: var(--black);
+    transform: rotate(-45deg);
+}
+
 .icon-container::before {
     content: '';
     position: absolute;
@@ -98,6 +112,7 @@ export default {
     width: 80%;
     height: auto;
     object-fit: cover;
+    z-index: 2;
 }
 
 .line {

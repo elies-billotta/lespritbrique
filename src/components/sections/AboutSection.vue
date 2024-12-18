@@ -50,7 +50,7 @@
           concevoir des designs conformes à votre vision.
         </p>
       </TextColumn>
-      <TextColumn :icon="Robot" :title="'AUTHENTICITÉ'" :subtitle="'Un travail artisanal'" :text-button="'VISITER LA BOUTIQUE'" :name="'BOUTIQUE'">
+      <TextColumn :robot="true" :icon="Robot" :title="'AUTHENTICITÉ'" :subtitle="'Un travail artisanal'" :text-button="'VISITER LA BOUTIQUE'" :name="'BOUTIQUE'">
         <p>
           En choisissant L'Esprit Brique, vous optez pour un service qui respecte <strong>l’art et la créativité</strong>.
           Par gage de qualité et par respect pour les artistes, <strong>nous banissons l'utilisation de l'intelligence
