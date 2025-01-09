@@ -101,5 +101,6 @@ footer {
 
 p, p > a {
   color : var(--white);
+  text-align: center;
 }
 </style>

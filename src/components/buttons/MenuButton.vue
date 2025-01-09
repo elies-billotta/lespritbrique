@@ -1,40 +1,20 @@
 <template>
-  <transition name="fade" @before-enter="beforeEnter" @enter="enter" @leave="leave">
-    <button v-if="!isFirstSectionVisible" class="menu-button" @click="toggleDrawer">
-        <div class="i-container">
-          <i class="fa-solid fa-bars fa-2xl icon"></i>
-        </div>
-        <span class="menu-text">MENU</span>
-
+    <button class="menu-button" @click="toggleDrawer">
+      <div class="i-container">
+        <i class="fa-solid fa-bars fa-2xl icon"></i>
+      </div>
+      <span class="menu-text">MENU</span>
     </button>
-  </transition>
 </template>
 
 <script setup>
 const props = defineProps({
-  isFirstSectionVisible: Boolean,
   toggleDrawer: Function
 });
-
-const beforeEnter = (el) => {
-  el.style.opacity = 0;
-};
-
-const enter = (el, done) => {
-  el.offsetHeight;
-  el.style.transition = 'opacity 0.3s ease';
-  el.style.opacity = 1;
-  done();
-};
-
-const leave = (el, done) => {
-  el.style.transition = 'opacity 0.3s ease';
-  el.style.opacity = 0;
-  el.addEventListener('transitionend', done, { once: true });
-};
 </script>
 
 <style scoped>
+/* Transition de l'élément menu-button */
 .menu-button {
   position: fixed;
   bottom: 20px;
@@ -52,7 +32,7 @@ const leave = (el, done) => {
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 100;
+  z-index: 1;
 }
 
 .menu-button:hover {

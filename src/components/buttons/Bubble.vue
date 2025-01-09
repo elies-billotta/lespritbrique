@@ -1,12 +1,12 @@
 <template>
-  <div ref="wrapper" class="button-wrapper">
-    <button ref="button" class="button" :type="type" @click="onClick">
+  <RouterLink :to="url" ref="wrapper" class="button-wrapper">
+    <button ref="button" class="button" :type="type">
       <img :src="img" alt="Bubble" class="bubble-icon" :class="{ 'invert-width': invertWidth, 'invert-height': invertHeight, 'invert-width.invert-height': invertHeight && invertWidth }" />
       <div class="text-container" ref="textElement">
         <span class="button-text">{{ text }}</span>
       </div>
     </button>
-  </div>
+  </RouterLink>
 </template>
 
 <script setup>
@@ -14,10 +14,6 @@ import { ref, onMounted } from 'vue';
 import Bubble from '@/assets/icons/bubble.svg';
 
 const props = defineProps({
-  onClick: {
-    type: Function,
-    required: false
-  },
   img: {
     type: String,
     default: Bubble
@@ -25,6 +21,10 @@ const props = defineProps({
   text: {
     type: String,
     default: ''
+  },
+  url: {
+    type: String,
+    default : ''
   },
   type: {
     type: String,
@@ -55,6 +55,10 @@ onMounted(() => {
 </script>
 
 <style scoped>
+a, a:hover, a::after {
+    all : unset;
+}
+
 .button-wrapper {
   display: inline-block;
   position: relative;
@@ -86,6 +90,7 @@ onMounted(() => {
 
 .button-wrapper:hover {
   transform: scale(1.1);
+
 }
 
 .bubble-icon {

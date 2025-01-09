@@ -44,7 +44,7 @@ const emit = defineEmits(['documentLoaded']);
 const props = defineProps({
   backgroundColor: {
     type: String,
-    default: 'var(--primary-color)',
+    default: 'var(--green)',
   },
   cardsData: {
     type: Array,

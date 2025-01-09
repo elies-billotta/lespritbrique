@@ -12,13 +12,12 @@
         </div>
         <div class="drawer-content">
           <div class="logo-container">
-            <img src="@/assets/images/logo-color.png" alt="Image" class="logo-image" />
-          </div>
-          <div class="button-container">
-            <button v-for="(section, index) in sections" :key="index" class="drawer-button"
-              @click="handleSectionClick(index)">
+            <RouterLink to="/"  @click="closeDrawer"><img src="@/assets/images/logo-color.png" alt="Image" class="logo-image"></RouterLink>
+          </div> 
+          <div class="button-container" @click="closeDrawer">
+            <RouterLink v-for="(section, index) in sections" :to="getUrl(section)" :key="index" class="drawer-button">
               {{ section }}
-            </button>
+            </RouterLink>
           </div>
         </div>
         <div class="bottom-drawer">
@@ -40,6 +39,7 @@ import MusicPlayer from '@/components/elements/MusicPlayer.vue';
 import IconButton from '@/components/buttons/IconButton.vue';
 import TV from '@/assets/icons/tv.png';
 import TVDisabled from '@/assets/icons/tv-disabled.png';
+import {RouterLink } from 'vue-router';
 
 const props = defineProps({
   isDrawerOpen: Boolean,
@@ -119,16 +119,6 @@ const closeDrawer = () => {
   emit('close-drawer');
 };
 
-const handleSectionClick = (index) => {
-  scrollToSection(index);
-  closeDrawer();
-};
-
-const scrollToSection = (index) => {
-  const section = document.getElementById(props.sections[index]);
-  section.scrollIntoView({ behavior: 'smooth' });
-};
-
 const beforeEnterOverlay = (el) => {
   el.style.opacity = 0;
 };
@@ -188,9 +178,28 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', checkMobile);
   removeTouchAndMouseEvents();
 });
+
+function getUrl(section) {
+    const urlMap = {
+        'A PROPOS': '/about',
+        'BOUTIQUE': '/shop',
+        'CONTACT': '/contact',
+        'RÉALISATIONS': '/realisations',
+    };
+
+    return urlMap[section] || '#';
+  }
 </script>
 
 <style scoped>
+a, a::after {
+    all : unset;
+}
+
+img:hover {
+    cursor: pointer;  
+}
+
 .overlay {
   position: fixed;
   top: 0;

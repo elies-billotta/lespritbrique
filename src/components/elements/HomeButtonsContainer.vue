@@ -5,9 +5,9 @@
                 v-for="(section, index) in firstLineButtons" 
                 :key="index" 
                 :text="section" 
+                :url="getUrl(section)"
                 :invertWidth="getInvertWidth(index)" 
-                :invertHeight="false" 
-                @click="scrollIntoView(section)" 
+                :invertHeight="false"
                 :class="{'fade-in': true, [`fade-in-delay-${index}`]: true}"
             />
         </div>
@@ -16,45 +16,43 @@
                 v-for="(section, index) in secondLineButtons" 
                 :key="index" 
                 :text="section" 
+                :url="getUrl(section)"
                 :invertWidth="getInvertWidth(index + firstLineButtons.length)" 
                 :invertHeight="true" 
-                @click="scrollIntoView(section)" 
                 :class="{'fade-in': true, [`fade-in-delay-${index + firstLineButtons.length}`]: true}"/>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { computed } from 'vue';
 import Bubble from '@/components/buttons/Bubble.vue';
 
 const props = defineProps({
     buttons: {
         type: Array,
-        required: true
-    }
+        required: true,
+    },
 });
 
-const remainingButtons = ref([]);
+const half = computed(() => Math.ceil(props.buttons.length / 2));
+const firstLineButtons = computed(() => props.buttons.slice(0, half.value));
+const secondLineButtons = computed(() => props.buttons.slice(half.value));
 
-watch(() => props.buttons, (newButtons) => {
-    remainingButtons.value = newButtons.slice(1);
-}, { immediate: true });
+function getInvertWidth(index) {
+    return index % 2 !== 0;
+}
 
-const half = computed(() => Math.ceil(remainingButtons.value.length / 2));
-const firstLineButtons = computed(() => remainingButtons.value.slice(0, half.value));
-const secondLineButtons = computed(() => remainingButtons.value.slice(half.value));
+function getUrl(section) {
+    const urlMap = {
+        'A PROPOS': '/about',
+        'BOUTIQUE': '/shop',
+        'CONTACT': '/contact',
+        'RÉALISATIONS': '/realisations',
+    };
 
-const scrollIntoView = (name) => {
-    const section = document.getElementById(name);
-    if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-    }
-};
-
-const getInvertWidth = (index) => {
-    return index == 1 || index == 3;
-};
+    return urlMap[section] || '#';
+}
 </script>
 
 <style>
