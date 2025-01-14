@@ -6,22 +6,12 @@
     --green: #77966D;
     --black-hover :#333333;
     --swiper-pagination-color: #FF9229;
+    --red : #cf4b2b;
+    --red-clear : #db5837;
   }
-
-  @font-face {
-    font-family: 'Super Carnival';
-    src: url('@/assets/fonts/Super Carnival.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    user-select: none;
-  }
-
   
   @font-face {
-    font-family: 'Bevellier-Regular';
-    src: url('../fonts/Bevellier-Regular.woff2') format('woff2'),
-        url('../fonts/Bevellier-Regular.woff') format('woff'),
-        url('../fonts/Bevellier-Regular.ttf') format('truetype');
+    font-family: 'Helvetica';
     font-weight: 400;
     font-display: swap;
     font-style: normal;
@@ -35,8 +25,9 @@
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Standard */
-    font-family: 'Bevellier-Regular', sans-serif;
+    font-family: 'Helvetica', sans-serif;
     font-size: 1rem;
+    
   }
 
   html, body {
@@ -45,7 +36,7 @@
     width: 100%;
     height: 100%;
     overflow-x: hidden;
-    background-color: var(--black);
+    background-color: var(--primary-color);
   }
 
   .section {
@@ -61,20 +52,25 @@
   .section-content {
     text-align: center;
   }
-  
-  .section h2 {
-    font-family: 'Super Carnival', sans-serif;
-    font-size: 3rem;
+
+  a {
+    text-decoration:underline;
+    font-weight: bold;
     color: var(--black);
   }
 
-  .section h1 {
-    font-family: 'Super Carnival', sans-serif;
+  h1 {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 8rem;
+    color: var(--black);
+  }
+
+  h2 {
+    font-family: 'Helvetica', sans-serif;
     font-size: 4rem;
     color: var(--black);
-    margin-bottom: -10px;
   }
-  
+
   .content {
     font-size: 1.2rem;
     max-width: 800px;
@@ -124,37 +120,10 @@
   }
 
   h3 {
-    font-family: 'Super Carnival', sans-serif;
+    font-family: 'Helvetica', sans-serif;
     font-size: 2rem;
     color: var(--black);
   } 
-
-  a {
-    text-decoration: none;
-    color: var(--black);
-    position: relative;
-  }
-  
-  a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px; /* Hauteur de la ligne */
-    background-color: var(--secondary-color); /* Couleur de la ligne */
-    bottom: -3px; /* Position sous le texte */
-    left: 50%;
-    transition: width 0.4s ease, left 0.4s ease;
-  }
-  
-  a:hover::after {
-    width: 100%; /* La ligne prend toute la largeur du texte */
-    left: 0; /* La ligne commence à l'extrémité gauche du texte */
-  }
-  
-  a:hover {
-    color: var(--secondary-color); /* Change la couleur du texte au survol */
-    cursor: pointer;
-  }
 
   input,
   select,

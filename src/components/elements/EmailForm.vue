@@ -118,7 +118,7 @@ async function sendEmail() {
   };
 
   try {
-    const response = await axios.post("https://lespritbrique.com/beta/send-email.php", payload);
+    const response = await axios.post("https://lespritbrique.com/send-email.php", payload);
     if (response.status === 200) {
       emailSent.value = true;
       formDisabled.value = true;

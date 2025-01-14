@@ -36,10 +36,6 @@ import HomeButtonsContainer from '@/components/elements/HomeButtonsContainer.vue
 
 /* Masquer les boutons sur mobile */
 @media (max-width: 1024px) {
-    .buttons {
-        display: none; /* Cacher le conteneur de boutons */
-    }
-
     .no-padding-section {
         background-size: contain;
     }

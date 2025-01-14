@@ -46,7 +46,7 @@ function getInvertWidth(index) {
 function getUrl(section) {
     const urlMap = {
         'A PROPOS': '/about',
-        'BOUTIQUE': '/shop',
+        'BOUTIQUE': 'https://shop.lespritbrique.com',
         'CONTACT': '/contact',
         'RÉALISATIONS': '/realisations',
     };
@@ -58,7 +58,7 @@ function getUrl(section) {
 <style>
 .buttons-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Par défaut, sur mobile, les boutons seront en colonne */
     align-items: center;
     flex: 1;
     width: 100%;
@@ -67,7 +67,7 @@ function getUrl(section) {
 
 .buttons-container {
     display: flex;
-    justify-content: space-between; /* Correction de "space-bet" à "space-between" */
+    justify-content: space-between;
     align-items: center;
     flex: 1;
     flex-wrap: wrap;
@@ -92,4 +92,20 @@ function getUrl(section) {
 .fade-in-delay-2 { animation-delay: 3.4s; }
 .fade-in-delay-3 { animation-delay: 3.9s; }
 .fade-in-delay-4 { animation-delay: 4.4s; }
+
+
+/* Pour mobile (écrans de moins de 768px), les boutons doivent être empilés dans une seule colonne */
+@media (max-width: 768px) {
+    .buttons-wrapper {
+        flex-direction: column; /* Empiler tous les boutons verticalement sur mobile */
+    }
+
+    .buttons-container {
+        flex-direction: column; /* Chaque conteneur de boutons devient une colonne sur mobile */
+        width: 100%; /* S'assurer que les boutons prennent toute la largeur disponible */
+        align-items: center; /* Centrer les boutons horizontalement */
+        flex: 0;
+    }
+}
+
 </style>

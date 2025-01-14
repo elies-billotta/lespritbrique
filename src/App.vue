@@ -3,9 +3,6 @@
       <Loader @cardsLoaded="handleCardsLoaded" @modalLoaded="handleModalLoaded" @loadingComplete="handleLoadingComplete" />
 
       <div v-if="isLoadingComplete" id="app">
-        <Transition name="fade" mode="out-in">
-          <MenuButton v-show="showMenuButton" :toggleDrawer="toggleDrawer" />
-        </Transition>
         <Drawer :isDrawerOpen="isDrawerOpen" :sections="['A PROPOS', 'RÉALISATIONS', 'BOUTIQUE', 'CONTACT']"
           :isPlaying="isPlaying" :volume="volume" @toggle-music="handleToggleMusic" @update-volume="handleUpdateVolume"
           @close-drawer="toggleDrawer" :currentMusic="currentMusic.value" @toggleShader="toggleShader" />

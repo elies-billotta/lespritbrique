@@ -14,7 +14,6 @@ const props = defineProps({
 </script>
 
 <style scoped>
-/* Transition de l'élément menu-button */
 .menu-button {
   position: fixed;
   bottom: 20px;
@@ -32,7 +31,7 @@ const props = defineProps({
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 1;
+  z-index: 100;
 }
 
 .menu-button:hover {

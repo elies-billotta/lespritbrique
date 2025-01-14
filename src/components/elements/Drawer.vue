@@ -12,12 +12,13 @@
         </div>
         <div class="drawer-content">
           <div class="logo-container">
-            <RouterLink to="/"  @click="closeDrawer"><img src="@/assets/images/logo-color.png" alt="Image" class="logo-image"></RouterLink>
-          </div> 
+            <MyLink href="/" @click="closeDrawer"><img src="@/assets/images/logo-color.png" alt="Image"
+                class="logo-image"></MyLink>
+          </div>
           <div class="button-container" @click="closeDrawer">
-            <RouterLink v-for="(section, index) in sections" :to="getUrl(section)" :key="index" class="drawer-button">
+            <MyLink v-for="(section, index) in sections" :href="getUrl(section)" :key="index" class="drawer-button">
               {{ section }}
-            </RouterLink>
+            </MyLink>
           </div>
         </div>
         <div class="bottom-drawer">
@@ -39,7 +40,7 @@ import MusicPlayer from '@/components/elements/MusicPlayer.vue';
 import IconButton from '@/components/buttons/IconButton.vue';
 import TV from '@/assets/icons/tv.png';
 import TVDisabled from '@/assets/icons/tv-disabled.png';
-import {RouterLink } from 'vue-router';
+import MyLink from './MyLink.vue';
 
 const props = defineProps({
   isDrawerOpen: Boolean,
@@ -180,24 +181,25 @@ onBeforeUnmount(() => {
 });
 
 function getUrl(section) {
-    const urlMap = {
-        'A PROPOS': '/about',
-        'BOUTIQUE': '/shop',
-        'CONTACT': '/contact',
-        'RÉALISATIONS': '/realisations',
-    };
+  const urlMap = {
+    'A PROPOS': '/about',
+    'BOUTIQUE': 'https://shop.lespritbrique.com',
+    'CONTACT': '/contact',
+    'RÉALISATIONS': '/realisations',
+  };
 
-    return urlMap[section] || '#';
-  }
+  return urlMap[section] || '#';
+}
 </script>
 
 <style scoped>
-a, a::after {
-    all : unset;
+a,
+a::after {
+  all: unset;
 }
 
 img:hover {
-    cursor: pointer;  
+  cursor: pointer;
 }
 
 .overlay {

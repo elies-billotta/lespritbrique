@@ -32,7 +32,6 @@ const props = defineProps({
   border-radius: 2px;
   border: 2px solid var(--black);
   transition: background-color 0.3s;
-  font-family: "Super Carnival", sans-serif;
 }
 
 .button:hover {

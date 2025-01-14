@@ -27,6 +27,10 @@ const router = createRouter({
       name: 'Réalisations',
       component: RealisationView,
     },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: { name: 'home' },
+    }
   ],
 })
 

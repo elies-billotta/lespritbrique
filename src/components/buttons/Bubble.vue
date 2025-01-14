@@ -1,17 +1,19 @@
 <template>
-  <RouterLink :to="url" ref="wrapper" class="button-wrapper">
+  <MyLink :href="url" ref="wrapper" class="button-wrapper">
     <button ref="button" class="button" :type="type">
-      <img :src="img" alt="Bubble" class="bubble-icon" :class="{ 'invert-width': invertWidth, 'invert-height': invertHeight, 'invert-width.invert-height': invertHeight && invertWidth }" />
+      <img :src="img" alt="Bubble" class="bubble-icon"
+        :class="{ 'invert-width': invertWidth, 'invert-height': invertHeight, 'invert-width.invert-height': invertHeight && invertWidth }" />
       <div class="text-container" ref="textElement">
         <span class="button-text">{{ text }}</span>
       </div>
     </button>
-  </RouterLink>
+  </myLink>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 import Bubble from '@/assets/icons/bubble.svg';
+import MyLink from '../elements/MyLink.vue';
 
 const props = defineProps({
   img: {
@@ -24,7 +26,7 @@ const props = defineProps({
   },
   url: {
     type: String,
-    default : ''
+    default: ''
   },
   type: {
     type: String,
@@ -55,8 +57,10 @@ onMounted(() => {
 </script>
 
 <style scoped>
-a, a:hover, a::after {
-    all : unset;
+a,
+a:hover,
+a::after {
+  all: unset;
 }
 
 .button-wrapper {
@@ -77,10 +81,21 @@ a, a:hover, a::after {
 }
 
 @keyframes swing {
-  0% { transform: rotate(0deg); }
-  33% { transform: rotate(5deg); }
-  66% { transform: rotate(-5deg); }
-  100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  33% {
+    transform: rotate(5deg);
+  }
+
+  66% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 .animate-swing {
@@ -132,7 +147,7 @@ a, a:hover, a::after {
   right: auto;
 }
 
-.invert-width ~ .text-container {
+.invert-width~.text-container {
   justify-content: center;
   left: auto;
   right: 0;
