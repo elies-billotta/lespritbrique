@@ -5,15 +5,15 @@
                 <MyLink :href="'https://shop.lespritbrique.com'">BOUTIQUE</MyLink>
             </li>
             <li>
-                <MyLink :href="'/about'">A PROPOS</MyLink>
+                <MyLink :href="'#realisations'">REALISATIONS</MyLink>
             </li>
             <li>
-                <MyLink :href="'/realisations'">REALISATIONS</MyLink>
+                <MyLink :href="'#infos'">INFOS</MyLink>      
             </li>
             <li>
                 <MyLink :href="'/contact'">CONTACT</MyLink>
             </li>
-        </ul>
+        </ul>  
     </nav>
 </template>
 <script setup>

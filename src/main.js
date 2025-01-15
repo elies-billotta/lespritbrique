@@ -7,10 +7,9 @@ import externalLink from '@/directives/external-link.js';
 import router from './router'
 import myLink from './components/elements/MyLink.vue';
 
-
 const app = createApp(App)
 
-    .component('my-link', myLink);
+app.component('my-link', myLink);
 
 app.use(router);
 
