@@ -2,7 +2,7 @@
     --primary-color: #ffd167;
     --secondary-color: #FF9229;
     --black: #1c1713;
-    --white: rgb(226, 219, 210);
+    --white: #fffaf0;
     --green: #77966D;
     --black-hover :#333333;
     --swiper-pagination-color: #FF9229;
@@ -27,7 +27,7 @@
     user-select: none; /* Standard */
     font-family: 'Helvetica', sans-serif;
     font-size: 1rem;
-    
+    box-sizing: border-box;
   }
 
   html, body {
@@ -37,6 +37,11 @@
     height: 100%;
     overflow-x: hidden;
     background-color: var(--primary-color);
+  }
+
+  body {
+    overflow-x: visible;
+    overflow-y: visible;
   }
 
   .section {
@@ -57,6 +62,10 @@
     text-decoration:underline;
     font-weight: bold;
     color: var(--black);
+  }
+
+  a, .router-link {
+    pointer-events: auto; /* Assurez que l'élément peut recevoir les événements */
   }
 
   h1 {

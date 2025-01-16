@@ -6,6 +6,6 @@ import MyMenuBanner from '@/components/elements/MyMenuBanner.vue'
 <template>
   <main>
     <MyMenuBanner />
-    <AboutSection />
+    <AboutSection/>
   </main>
 </template>

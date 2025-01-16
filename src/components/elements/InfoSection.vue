@@ -20,10 +20,10 @@
             </AccordionPanel>
             <AccordionPanel value="1">
                 <AccordionHeader class="button">
-                    <h2>STAND EN EXPO</h2>
+                    <h2>STAND BOUTIQUE</h2>
                 </AccordionHeader>
                 <AccordionContent>
-                    <div class="accordion-content no-border">
+                    <div class="accordion-content">
                         <p class="m-0">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -32,6 +32,20 @@
                             fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
                             officia
                             deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                </AccordionContent>
+            </AccordionPanel>
+            <AccordionPanel value="2">
+                <AccordionHeader class="button">
+                    <h2>CUSTOMISATION</h2>
+                </AccordionHeader>
+                <AccordionContent>
+                    <div class="accordion-content">
+                        <p class="m-0">
+                            L'Esprit Brique vous offre la possibilité de <strong>personnaliser vos briques et figurines</strong> selon vos envies.
+              Que vous souhaitiez ajouter un texte ou une image, nous sommes là pour vous
+              concevoir des designs conformes à votre vision.
                         </p>
                     </div>
                 </AccordionContent>
@@ -77,9 +91,5 @@ import AccordionContent from 'primevue/accordioncontent';
     padding: 1.5rem;
     border-bottom: 1px solid black;
     background-color: var(--white);
-}
-
-.accordion-content.no-border {
-    border-bottom: 0px;
 }
 </style>

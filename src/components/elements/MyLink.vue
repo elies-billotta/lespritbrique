@@ -1,21 +1,39 @@
 <template>
-  <RouterLink v-if="isInternal" :to="href" @click="handleScroll">
-    <slot></slot>
-  </RouterLink>
-  <a v-else class="animate__animated animate__wobble" :href="href" target="_blank" rel="noopener">
-    <slot></slot>
-  </a>
+  <div @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
+    <RouterLink v-if="isInternal" :to="href" @click="handleScroll">
+      <slot></slot>
+    </RouterLink>
+    <a v-else :href="href" target="_blank" rel="noopener">
+      <slot></slot>
+    </a>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { defineProps, PropType } from 'vue';
-import { useRouter } from 'vue-router';
+
+import 'animate.css';
+
+const handleMouseEnter = (event: MouseEvent) => {
+  if (!props.anim) return;
+  const target = event.currentTarget as HTMLElement;
+  target.classList.add('animate__animated', 'animate__swing');
+};
+
+const handleMouseLeave = (event: MouseEvent) => {
+  const target = event.currentTarget as HTMLElement;
+  target.classList.remove('animate__animated', 'animate__swing');
+};
 
 const props = defineProps({
   href: {
     type: String as PropType<string>,
     required: true,
+  },
+  anim: {
+    type: Boolean,
+    default: true,
   }
 });
 
@@ -37,25 +55,16 @@ const isInternal = computed((): boolean => {
 
 const handleScroll = (event: MouseEvent) => {
   if (props.href.startsWith('#')) {
-    event.preventDefault(); // Empêche la navigation par défaut
+    event.preventDefault();
 
-    // Sélectionner l'élément cible
     const targetElement = document.querySelector(props.href);
     if (targetElement) {
-      // Récupérer la hauteur du menu
-      const menuHeight = document.querySelector('.menu-banner')?.clientHeight || 0;
-      
-      // Utilisation de scrollIntoView pour le défilement doux
       targetElement.scrollIntoView({
         behavior: 'smooth',
-        block: 'end', // Aligne le début de l'élément au début de la fenêtre
+        block: 'end',
       });
-      
-      // Ajuster la position avec window.scrollBy pour compenser la hauteur du menu
-      window.setTimeout(() => {
-        window.scrollBy(0, -menuHeight); // Défilement supplémentaire pour compenser la hauteur du menu
-      }, 500);  // Attendez un peu pour que le scrollIntoView termine son animation
     }
-  }
+  };
 };
+
 </script>

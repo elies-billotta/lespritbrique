@@ -11,7 +11,7 @@
                 <MyLink :href="'#infos'">INFOS</MyLink>      
             </li>
             <li>
-                <MyLink :href="'/contact'">CONTACT</MyLink>
+                <MyLink :href="'#contact'">CONTACT</MyLink>
             </li>
         </ul>  
     </nav>

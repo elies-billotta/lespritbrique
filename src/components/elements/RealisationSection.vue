@@ -7,8 +7,10 @@
             <template #column2>
                 <div class="title">
                     <h2>LE 4X4 DES GAZELLES</h2>
-                    <p class="description">Kit complet réalisé pour <a href="https://www.maienga.com/" target="about_blank">Maïenga Sports
-                            Events</a></p>
+                    <div class="inline">
+                    <p class="description">Kit complet réalisé pour </p><MyLink :href="'https://www.maienga.com/'">Maïenga Sports
+                        Events</MyLink>
+                    </div>
                 </div>
                 <div class="content">
                     <div class="text">
@@ -71,6 +73,12 @@ h1 {
     font-size: 1rem;
     font-style: italic;
     color: var(--black);
+}
+
+.inline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 </style>

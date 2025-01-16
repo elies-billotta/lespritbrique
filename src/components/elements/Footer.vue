@@ -1,21 +1,29 @@
 <template>
-  <footer>
-    <div class="footer-content">
-      <a class="mail" @click="onCopy('contact@lespritbrique.com')">CONTACT@LESPRITBRIQUE.COM</a>
-      <div class="social-icons">
-        <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-          <i class="fab fa-facebook-f fa-sm"></i>
-        </a>
-        <a href="https://www.instagram.com/lesprit.brique" target="_blank" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <div @click="onCopy('lespritbrique.com')" role="button" aria-label="lespritbrique.com" tabindex="0">
-          <i class="fa-solid fa-globe"></i>
+  <footer class="footer-content">
+      <div class="footer-line">
+        <div class="logo">
+          <img src="@/assets/images/logo-color.png" alt="logo" />
+        </div>
+        <div class="contact">
+          <a class="mail" @click="onCopy('contact@lespritbrique.com')">CONTACT@LESPRITBRIQUE.COM</a>
+          <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+              <i class="fab fa-facebook-f fa-sm"></i>
+            </a>
+            <a href="https://www.instagram.com/lesprit.brique" target="_blank" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <div @click="onCopy('lespritbrique.com')" role="button" aria-label="lespritbrique.com" tabindex="0">
+              <i class="fa-solid fa-globe"></i>
+            </div>
+          </div>
         </div>
       </div>
-      <p>L'ESPRIT BRIQUE® est une marque déposée.</p>
-      <p> Personnages réalisés par <a href="https://www.instagram.com/meli_melodraw/" target="_blank">@meli_melodraw</a>. Tous droits réservés. Ne pas reproduire.</p>
-    </div>
+      <div class="line">
+        <p>L'ESPRIT BRIQUE® est une marque déposée.Personnages réalisés par <a href="https://www.instagram.com/meli_melodraw/"
+          target="_blank">@meli_melodraw</a></p>
+        <p>Tous droits réservés. Ne pas reproduire.</p>
+      </div>
     <NotificationPopup v-if="showNotification" :message="notificationMessage" :type="notificationType" />
   </footer>
 </template>
@@ -50,29 +58,35 @@ const onCopy = (source) => {
 </script>
 
 <style scoped>
- .mail {
+.mail {
   font-size: 20px;
-  color: var(--white);
+  color: var(--black);
 }
 
 .mail:hover {
   color: var(--secondary-color);
 }
 
-
-footer {
-  background-color: var(--black);
+.footer-content {
+  background-color: var(--primary-color);
   padding: 2rem 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }
 
-.footer-content {
+
+.footer-line {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: column;
-  gap : 10px;
+  width: 100%;
 }
 
 .social-icons {
@@ -81,8 +95,8 @@ footer {
 }
 
 .social-icons a,
-.social-icons div {
-  color: var(--white);
+.social-icons div, a {
+  color: var(--black);
   margin-right: 10px;
   font-size: 1.2rem;
   transition: color 0.3s ease;
@@ -90,7 +104,8 @@ footer {
 }
 
 .social-icons a:hover,
-.social-icons div:hover, p > a:hover {
+.social-icons div:hover,
+p>a:hover {
   color: var(--secondary-color);
 }
 
@@ -99,8 +114,21 @@ footer {
   outline-offset: 2px;
 }
 
-p, p > a {
-  color : var(--white);
+p,
+p>a {
+  color: var(--black);
   text-align: center;
+}
+
+.line {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+img {
+  width: 200px;
+  height: auto;
 }
 </style>

@@ -1,5 +1,5 @@
     <template>
-      <OldTvShader />
+      <!-- <OldTvShader /> -->
       <Loader @cardsLoaded="handleCardsLoaded" @modalLoaded="handleModalLoaded"
         @loadingComplete="handleLoadingComplete" />
 
@@ -14,10 +14,9 @@
         <RealisationSection id="realisations" />
         <Gallery />
         <InfoSection id="infos"/>
+        <ContactSection id="contact"/>
         <BrickSeparator />
-        <AboutSection />
-        <ContactSection />
-
+        <Footer/>
         <audio ref="audioElement" @ended="handleMusicEnd"></audio>
         <audio ref="clickSoundElement" :src="StartSound"></audio>
       </div>
@@ -33,10 +32,10 @@ import OldTvShader from '@/components/OldTvShader.vue';
 import BrickSeparator from '@/components/elements/BrickSeparator/BrickSeparator.vue';
 import RealisationSection from '@/components/elements/RealisationSection.vue';
 import Gallery from '@/components/elements/Gallery.vue';
-import AboutSection from '@/components/sections/AboutSection.vue';
-import ContactSection from '@/components/sections/ContactSection.vue';
+import ContactSection from '@/components/elements/ContactSection.vue';
 import MyMenuBanner from '@/components/elements/MyMenuBanner.vue';
 import InfoSection from '@/components/elements/InfoSection.vue';
+import Footer from '@/components/elements/Footer.vue';
 
 const isPlaying = ref(false);
 const volume = ref(0.2);
@@ -170,7 +169,7 @@ const toggleShader = () => {
 #app {
   width: 100%;
   height: 100vh;
-  background-color: var(--primary-color);
+  background-color: var(--black);
 }
 
 .fade-enter-active,

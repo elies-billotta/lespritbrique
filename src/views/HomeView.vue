@@ -5,7 +5,7 @@ import AboutColumn from '@/components/elements/AboutColumn.vue'
 
 <template>
   <main>
-    <HomeSection/>
+    <HomeSection id="home"/>
     <AboutColumn/>
   </main>
 </template>

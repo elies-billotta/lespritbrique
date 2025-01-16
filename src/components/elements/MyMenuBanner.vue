@@ -1,7 +1,7 @@
 <template>
     <header class="menu-banner">
         <div class="menu-left">
-            <myLink :href="'/'"><img class="logo" src="@/assets/images/logo-color.png"></img></myLink>
+            <myLink :anim="false" :href="'#home'"><img class="logo" src="@/assets/images/logo-color.png"></img></myLink>
             <!-- <MyButton :text="'Commande Personnalisée'"/> -->
         </div>
         <MyMenu class="menu-right" />

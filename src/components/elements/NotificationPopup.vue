@@ -8,7 +8,6 @@
 
 <script setup>
 import { ref, watch } from 'vue';
-import Bubble from '@/components/buttons/Bubble.vue';
 
 const props = defineProps({
   message: {
@@ -42,37 +41,37 @@ watch(() => props.message, () => {
 <style scoped>
 .notification {
   position: fixed;
-  top: 20px;
+  bottom: 100px;
   right: 20px;
   background-color: #444;
-  color: white;
+  color: black;
   padding: 10px 20px;
-  border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid black;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  animation: slide-in 0.3s ease-out;
+  animation: slide-in 0.5s ease-out;
   z-index: 1000;
   gap: 10px;
 }
 
 .notification.success {
-  background-color: #4CAF50;
+  background-color: var(--white)
 }
 
 .notification.error {
-  background-color: #F44336;
+  background-color: var(--red);
 }
 
 .notification.info {
-  background-color: #2196F3;
+  background-color: var(--primary-color)
 }
 
 .notification button {
   background: none;
   border: none;
-  color: white;
+  color: black;
   font-size: 16px;
   cursor: pointer;
 }

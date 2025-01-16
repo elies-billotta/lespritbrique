@@ -1,21 +1,20 @@
 <template>
   <div class="email-form">
     <div class="form-content">
-      <Title class="title-form" :title="'CONTACT'" :description="'UNE DEMANDE PERSONNALISÉE ? CONTACTEZ NOUS !'" :icon="Brick"/>
       <form @submit.prevent="sendEmail">
         <div class="line1">
           <div>
-            <label for="name">Nom<span class="required-asterisk">*</span>:</label>
+            <label for="name">NOM<span class="required-asterisk">*</span>:</label>
             <input type="text" v-model="formData.name" :disabled="formDisabled" id="name" required />
           </div>
           <div>
-            <label for="email">Email<span class="required-asterisk">*</span>:</label>
+            <label for="email">EMAIL<span class="required-asterisk">*</span>:</label>
             <input type="email" v-model="formData.email" :disabled="formDisabled" id="email" required />
           </div>
         </div>
         <div class="line2">
           <div>
-            <label for="entity">Je suis<span class="required-asterisk">*</span>:</label>
+            <label for="entity">JE SUIS<span class="required-asterisk">*</span>:</label>
             <select v-model="selectedEntity" :disabled="formDisabled" id="entity" required>
               <option value="" disabled>Sélectionnez une entité</option>
               <option value="particulier">Un.e particulier·ère</option>
@@ -23,7 +22,7 @@
             </select>
           </div>
           <div>
-            <label for="subject">Sujet<span class="required-asterisk">*</span>:</label>
+            <label for="subject">SUJET<span class="required-asterisk">*</span>:</label>
             <select v-model="formData.subject" :disabled="formDisabled" id="subject" required>
               <option value="" disabled>Sélectionnez un sujet</option>
               <option v-for="subject in availableSubjects" :key="subject" :value="subject">{{ subject }}</option>
@@ -31,8 +30,8 @@
           </div>
         </div>
         <div>
-          <label for="message">Message<span class="required-asterisk">*</span>:</label>
-          <textarea v-model="formData.message" :disabled="formDisabled" id="message" required
+          <label for="message">MESSAGE<span class="required-asterisk">*</span>:</label>
+          <textarea class="message" v-model="formData.message" :disabled="formDisabled" id="message" required
             placeholder="Saisissez un message d'au moins 30 caractères"></textarea>
         </div>
         <div class="inline">
@@ -45,7 +44,6 @@
           </div>
         </div>
       </form>
-      <CardRow class="row" :title="'CONTACT'" />
     </div>
   </div>
 </template>
@@ -53,10 +51,7 @@
 <script setup>
 import { reactive, ref, watch } from 'vue';
 import MyButton from '@/components/buttons/MyButton.vue';
-import Title from '@/components/elements/Title.vue';
-import Brick from '@/assets/icons/brick.svg';
 import axios from 'axios';
-import CardRow from './CardRow.vue';
 
 const formData = reactive({
   name: '',
@@ -114,7 +109,6 @@ async function sendEmail() {
 
   const payload = {
     ...formData,
-    // recaptchaToken // Retirer le token du payload
   };
 
   try {
@@ -122,7 +116,6 @@ async function sendEmail() {
     if (response.status === 200) {
       emailSent.value = true;
       formDisabled.value = true;
-      // grecaptcha.reset(); // Retirer la réinitialisation du reCAPTCHA
       startResetTimer();
     } else {
       throw new Error('Échec lors de l\'envoi de l\'email.');
@@ -145,140 +138,50 @@ function startResetTimer() {
     formData.email = '';
     formData.subject = '';
     formData.message = '';
-  }, 300000); // Réinitialiser après 5 minutes
+  }, 300000);
 }
 </script>
 
 <style scoped>
 .email-form {
-  max-width: 100%;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-image: url('@/assets/images/paperboard-yellow-texture.png');
-  background-size: cover;
-  padding: 10px;
-  border-radius: 3px;
-  transform: rotate(-2deg);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.form-content {
-  padding: 10px;
-  border: 3px solid var(--black);
-  border-radius: 3px;
-  
-}
-
-.title-form {
-  margin-bottom: 10px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.required-asterisk {
-  color: red;
-  margin-right: 5px;
-}
-
-.row {
-  margin-top: 10px;
-}
-
-textarea {
-  resize: none;
-  height: 150px;
-}
-
-.inline {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
-  gap: 10px;
-}
-
-.line1,
-.line2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex;
-  gap: 10px;
-}
-
-.line1>div,
-.line2>div {
-  flex: 1;
-}
-
-.inline>div {
-  flex: 1;
-}
-
-.submit-section {
-  display: flex;
-  flex-direction: row;
-  justify-content: center; 
-}
-
-.button{
   width: 100%;
 }
 
-.loader {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid var(--secondary-color);
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  animation: spin 1s linear infinite;
-  opacity: 0;
-  transition: opacity 0.5s ease;
+input, select, .message {
+  border: 1px solid var(--black);
+  padding: 0.5rem;
+  background-color: var(--white);
 }
 
-.loader.fade-in {
-  opacity: 1;
+.form-content {
+  width: 100%;
+  max-width: 800px;
 }
 
-.sent,
-.error {
-  opacity: 0;
-  transition: opacity 0.5s ease;
+label {
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
-.sent.fade-in,
-.error.fade-in {
-  opacity: 1;
+.message {
+  border-radius: 0px;
+  border: 1px solid var(--black);
+  width: 100%;
+  height: 150px;
+  flex-grow: 1;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+.message::placeholder {
+  color: black;
+  font-style: italic;
 }
 
-.sent {
-  color: var(--white);
-  cursor: not-allowed;
-}
-
-.error {
-  background-color: red;
-  color: var(--white);
-  border-color: red;
-}
-
-.error:hover {
-  background-color: transparent;
-  color: red;
-  border-color: red;
+.required-asterisk {
+  color: var(--red);
+  vertical-align: top;
 }
 </style>
