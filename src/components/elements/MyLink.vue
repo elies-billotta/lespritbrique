@@ -6,9 +6,10 @@
     <a v-else :href="href" target="_blank" rel="noopener">
       <slot></slot>
     </a>
-      <img v-if="anim && isAnchor" src="@/assets/icons/hashtag.svg" class="icon" alt="anchor link" />
-      <img v-else-if="anim && !isInternal" src="@/assets/icons/external-link.svg" class="icon" alt="external link" />
-      <img v-else-if="anim && isInternal" src="@/assets/icons/internal-link.svg" class="icon" alt="internal link" />
+    <!-- Affichage de l'icône en fonction du type de lien -->
+    <img v-if="anim && isAnchor" src="@/assets/icons/hashtag.svg" class="icon" alt="anchor link" />
+    <img v-else-if="anim && !isInternal" src="@/assets/icons/external-link.svg" class="icon" alt="external link" />
+    <img v-else-if="anim && isInternal" src="@/assets/icons/internal-link.svg" class="icon" alt="internal link" />
   </div>
 </template>
 
@@ -42,7 +43,7 @@ const props = defineProps({
   },
 });
 
-// Vérifie si le lien est interne (autre page du site) ou une ancre (avec #)
+// Vérifie si le lien est interne (autre page du site)
 const isInternal = computed((): boolean => {
   if (props.href.startsWith('http')) {
     let url = null;
@@ -58,13 +59,13 @@ const isInternal = computed((): boolean => {
   return true;
 });
 
-// Vérifie si le lien est une ancre
+// Vérifie si le lien est une ancre (commence par #)
 const isAnchor = computed(() => props.href.startsWith('#'));
 
+// Gère le comportement du scroll pour les liens internes
 const handleScroll = (event: MouseEvent) => {
   if (props.href.startsWith('#')) {
     event.preventDefault();
-
     const targetElement = document.querySelector(props.href);
     if (targetElement) {
       targetElement.scrollIntoView({
@@ -72,7 +73,15 @@ const handleScroll = (event: MouseEvent) => {
         block: 'end',
       });
     }
-  };
+  }
+  if (props.href.startsWith('/')) {
+    if (isInternal.value) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+  }
 };
 </script>
 
