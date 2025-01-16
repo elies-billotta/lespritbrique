@@ -1,29 +1,34 @@
 <template>
-  <div @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
+  <div class="inline" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
     <RouterLink v-if="isInternal" :to="href" @click="handleScroll">
       <slot></slot>
     </RouterLink>
     <a v-else :href="href" target="_blank" rel="noopener">
       <slot></slot>
     </a>
+      <img v-if="anim && isAnchor" src="@/assets/icons/hashtag.svg" class="icon" alt="anchor link" />
+      <img v-else-if="anim && !isInternal" src="@/assets/icons/external-link.svg" class="icon" alt="external link" />
+      <img v-else-if="anim && isInternal" src="@/assets/icons/internal-link.svg" class="icon" alt="internal link" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { defineProps, PropType } from 'vue';
-
 import 'animate.css';
 
 const handleMouseEnter = (event: MouseEvent) => {
-  if (!props.anim) return;
-  const target = event.currentTarget as HTMLElement;
-  target.classList.add('animate__animated', 'animate__swing');
+  if (props.anim) {
+    const target = event.currentTarget as HTMLElement;
+    target.classList.add('animate__animated', 'animate__swing');
+  }
 };
 
 const handleMouseLeave = (event: MouseEvent) => {
   const target = event.currentTarget as HTMLElement;
-  target.classList.remove('animate__animated', 'animate__swing');
+  target.addEventListener('animationend', () => {
+    target.classList.remove('animate__animated', 'animate__swing');
+  }, { once: true });
 };
 
 const props = defineProps({
@@ -34,9 +39,10 @@ const props = defineProps({
   anim: {
     type: Boolean,
     default: true,
-  }
+  },
 });
 
+// Vérifie si le lien est interne (autre page du site) ou une ancre (avec #)
 const isInternal = computed((): boolean => {
   if (props.href.startsWith('http')) {
     let url = null;
@@ -45,13 +51,15 @@ const isInternal = computed((): boolean => {
     } catch (err) {
       return false;
     }
-
     if (url.hostname !== window.location.hostname) {
       return false;
     }
   }
   return true;
 });
+
+// Vérifie si le lien est une ancre
+const isAnchor = computed(() => props.href.startsWith('#'));
 
 const handleScroll = (event: MouseEvent) => {
   if (props.href.startsWith('#')) {
@@ -66,5 +74,28 @@ const handleScroll = (event: MouseEvent) => {
     }
   };
 };
-
 </script>
+
+<style scoped>
+.inline {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 1.5rem;
+  height: auto;
+}
+
+a,
+.router-link {
+  text-decoration: underline;
+  font-weight: bold;
+  color: var(--black);
+}
+
+a,
+.router-link {
+  pointer-events: auto;
+}
+</style>

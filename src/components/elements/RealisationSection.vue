@@ -56,29 +56,29 @@ h1 {
 }
 
 .content > .text {
-    flex: 1; /* Cette colonne prend 50% de la largeur */
+    flex: 1;
 }
 
 .content > .btn-container {
-    flex: 0.4; /* Cette colonne prend 50% de la largeur */
+    flex: 0.4;
     display: flex;
-    justify-content: flex-end; /* Cela aligne le bouton à droite */
+    justify-content: flex-end;
 }
 
 .btn {
-    align-self: flex-end; /* Assure que le bouton reste à droite */
+    align-self: flex-end;
 }
 
 .description {
     font-size: 1rem;
     font-style: italic;
     color: var(--black);
+    margin-right: 8px;
 }
 
 .inline {
     display: flex;
     align-items: center;
-    gap: 8px;
 }
 
 </style>

@@ -58,15 +58,6 @@
     text-align: center;
   }
 
-  a {
-    text-decoration:underline;
-    font-weight: bold;
-    color: var(--black);
-  }
-
-  a, .router-link {
-    pointer-events: auto; /* Assurez que l'élément peut recevoir les événements */
-  }
 
   h1 {
     font-family: 'Helvetica', sans-serif;

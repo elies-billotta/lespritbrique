@@ -1,14 +1,12 @@
 <template>
     <header class="menu-banner">
         <div class="menu-left">
-            <myLink :anim="false" :href="'#home'"><img class="logo" src="@/assets/images/logo-color.png"></img></myLink>
-            <!-- <MyButton :text="'Commande Personnalisée'"/> -->
+            <myLink :anim="false" :href="'/home'"><img class="logo" src="@/assets/images/logo-color.png"></img></myLink>
         </div>
         <MyMenu class="menu-right" />
     </header>
 </template>
 <script setup>
-import MyButton from '../buttons/MyButton.vue';
 import MyMenu from './MyMenu.vue';
 import myLink from './MyLink.vue';
 </script>

@@ -23,7 +23,7 @@ const router = createRouter({
       component: ContactView,
     },
     {
-      path: '/realisations',
+      path: '/realisations/0',
       name: 'Réalisations',
       component: RealisationView,
     },

@@ -20,8 +20,9 @@
         </div>
       </div>
       <div class="line">
-        <p>L'ESPRIT BRIQUE® est une marque déposée.Personnages réalisés par <a href="https://www.instagram.com/meli_melodraw/"
-          target="_blank">@meli_melodraw</a></p>
+        <div class="inline">
+        <p class="space">L'ESPRIT BRIQUE® est une marque déposée.Personnages réalisés par</p> <MyLink href="https://www.instagram.com/meli_melodraw/">meli_melodraw</MyLink>
+      </div>
         <p>Tous droits réservés. Ne pas reproduire.</p>
       </div>
     <NotificationPopup v-if="showNotification" :message="notificationMessage" :type="notificationType" />
@@ -32,6 +33,7 @@
 import { useClipboard } from '@vueuse/core';
 import { ref } from 'vue';
 import NotificationPopup from '@/components/elements/NotificationPopup.vue';
+import MyLink from '@/components/elements/MyLink.vue';
 
 const { copy } = useClipboard();
 const showNotification = ref(false);
@@ -58,6 +60,15 @@ const onCopy = (source) => {
 </script>
 
 <style scoped>
+.space{
+  margin-right: 6px;
+}
+.inline{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
 .mail {
   font-size: 20px;
   color: var(--black);
