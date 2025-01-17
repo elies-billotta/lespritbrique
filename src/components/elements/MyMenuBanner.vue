@@ -44,7 +44,7 @@ export default {
     padding-left: var(--margin);
     padding-right: var(--margin);
     border-bottom: 1px solid var(--black);
-    width: 100vw;
+    width: 100%;
     display: flex;
     position: fixed;
     align-items: center;
