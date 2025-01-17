@@ -1,9 +1,11 @@
 <template>
     <header class="menu-banner">
         <div class="menu-left">
-            <my-link :anim="false" :href="'/home'">
-                <img class="logo" src="@/assets/images/logo-color.png" alt="Logo">
-            </my-link>
+            <div class="imgContainer">
+                <my-link :anim="false" :href="'/home'">
+                    <img class="logo" src="@/assets/icons/logo.svg" alt="Logo">
+                </my-link>
+            </div>
         </div>
         <MyMenu v-if="!isMobile" class="menu-right" />
         <div class="menu-right" v-else>
@@ -32,7 +34,7 @@ export default {
             isMobile.value = window.matchMedia('(max-width: 768px)').matches;
         };
         onMounted(() => {
-            updateIsMobile(); 
+            updateIsMobile();
             window.addEventListener('resize', updateIsMobile);
         });
 
@@ -48,6 +50,15 @@ export default {
 </script>
 
 <style scoped>
+.imgContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+.inline > a {
+    height: 0%;
+}
 .menu-banner {
     background-color: var(--primary-color);
     padding-left: 1.5rem;

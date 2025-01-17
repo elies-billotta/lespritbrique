@@ -1,5 +1,6 @@
 <template>
-  <div class="inline" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
+  <div class="inline" :class="{ 'has-image': containsImage }" @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave">
     <RouterLink v-if="isInternal" :to="href" @click="handleScroll">
       <slot></slot>
     </RouterLink>
@@ -10,12 +11,24 @@
     <img v-else-if="anim && !isInternal" src="@/assets/icons/external-link.svg" class="icon" alt="external link" />
     <img v-else-if="anim && isInternal" src="@/assets/icons/internal-link.svg" class="icon" alt="internal link" />
   </div>
+
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, } from 'vue';
 import { defineProps, PropType } from 'vue';
 import 'animate.css';
+import { ref, onMounted } from 'vue';
+
+const containsImage = ref(false);
+
+onMounted(() => {
+  const slotElement = document.querySelector('.inline > *:first-child');
+  if (slotElement?.querySelector('img')) {
+    containsImage.value = true;
+  }
+});
+
 
 const handleMouseEnter = (event: MouseEvent) => {
   if (props.anim) {
@@ -106,5 +119,10 @@ a,
 a,
 .router-link {
   pointer-events: auto;
+}
+
+.inline.has-image a,
+.inline.has-image .router-link {
+  line-height: 0;
 }
 </style>
