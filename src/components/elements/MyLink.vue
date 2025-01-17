@@ -1,12 +1,6 @@
 <template>
-  <div 
-    class="inline" 
-    :class="{ 'has-image': containsImage }" 
-    @mouseenter="handleMouseEnter" 
-    @mouseleave="handleMouseLeave" 
-    @click="handleClick" 
-    v-bind="$attrs"
-  >
+  <div class="inline" :class="{ 'has-image': containsImage }" @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave" @click="handleClick" v-bind="$attrs">
     <RouterLink v-if="isInternal && !copyOnClick" :to="href" @click="handleScroll">
       <slot></slot>
     </RouterLink>
@@ -95,7 +89,9 @@ const handleMouseLeave = (event: MouseEvent) => {
 };
 
 const handleScroll = (event: MouseEvent) => {
-  if (props.href.startsWith('/') && isInternal.value) {
+  const menuBanner = document.getElementById('menuBanner');
+  const menuBannerHeight = menuBanner ? menuBanner.getBoundingClientRect().height : 0;
+  if (props.href.startsWith('/')) {
     if (isInternal.value) {
       event.preventDefault();
       window.scrollTo({
@@ -103,18 +99,23 @@ const handleScroll = (event: MouseEvent) => {
         behavior: 'smooth',
       });
     }
-  }
-  else if (props.href.startsWith('#')) {
+  } else if (props.href.startsWith('#')) {
     event.preventDefault();
     const targetElement = document.querySelector(props.href);
     if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'end',
-      });
+      const targetPosition = targetElement.getBoundingClientRect();
+      const targetTop = targetPosition.top + window.scrollY;
+      const scrollToPosition = targetTop - menuBannerHeight;
+      if (Math.abs(window.scrollY - scrollToPosition) > 1) {
+        window.scrollTo({
+          top: scrollToPosition,
+          behavior: 'smooth',
+        });
+      }
     }
-  } 
+  }
 };
+
 
 const handleClick = (event: MouseEvent) => {
   if (props.copyOnClick) {
@@ -151,14 +152,16 @@ const handleClick = (event: MouseEvent) => {
 }
 
 a,
-.router-link, span {
+.router-link,
+span {
   text-decoration: underline;
   font-weight: bold;
   color: var(--black);
 }
 
 a,
-.router-link, span {
+.router-link,
+span {
   pointer-events: auto;
 }
 

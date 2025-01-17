@@ -1,4 +1,5 @@
 <template>
+  <OldTvShader />
   <Loader v-show="!isLoadingComplete" />
   <div v-show="isLoadingComplete" id="app">
     <MyMenuBanner />
@@ -28,6 +29,7 @@ import ContactSection from '@/components/sections/ContactSection.vue';
 import MyMenuBanner from '@/components/elements/MyMenuBanner.vue';
 import InfoSection from '@/components/sections/InfoSection.vue';
 import Footer from '@/components/elements/Footer.vue';
+import OldTvShader from './components/OldTvShader.vue';
 
 const isLoadingComplete = ref(false);
 

@@ -1,5 +1,5 @@
 <template>
-    <header class="menu-banner">
+    <header id="menuBanner" class="menu-banner">
         <div class="menu-left">
             <div class="imgContainer">
                 <my-link :anim="false" :href="'/'">

@@ -25,19 +25,14 @@
     },
     methods: {
       handleResize() {
-        // Arrêter l'animation pendant le redimensionnement
         cancelAnimationFrame(this.animationFrameId);
-        clearTimeout(this.resizeTimeout); // Annuler tout redimensionnement en cours
-  
-        this.resizeTimeout = setTimeout(() => {
-          this.resizeCanvas();
-          // Relancer l'animation après un délai
-          this.startAnimation();
-        }, 700); // Attendre 200 ms après le redimensionnement pour relancer
+        clearTimeout(this.resizeTimeout);
+        this.resizeCanvas();
+        this.startAnimation();
       },
       initCanvas() {
         const canvas = this.$refs.canvas;
-        this.resizeCanvas(); // Appeler resizeCanvas pour initialiser le canvas
+        this.resizeCanvas();
   
         const gl = canvas.getContext("webgl");
         if (!gl) {
@@ -165,17 +160,13 @@
   
   <style scoped>
   .shader-container {
-    position: absolute; /* Le shader reste au-dessus */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw; /* Remplit toute la largeur de la fenêtre */
-    height: 100vh; /* Remplit toute la hauteur de la fenêtre */
-    z-index: 9999; /* Assurez-vous qu'il est au-dessus des autres éléments */
-    pointer-events: none; /* Permet l'interaction avec les éléments derrière */
-  }
-  
-  canvas {
-    display: block; /* Pour enlever l'espace autour du canvas */
+    width: 100%;
+    height: 100%; 
+    z-index: 9999;
+    pointer-events: none; 
   }
   </style>
   
