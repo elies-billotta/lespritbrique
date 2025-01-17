@@ -33,8 +33,10 @@ import MyLink from '@/components/elements/MyLink.vue';
 
 <style scoped>
 h1 {
-    font-size: 5rem;
+    font-size: clamp(1rem, 10vw, 5rem);
     text-wrap: nowrap;
+    max-width: 100%;
+    text-align: center;
     padding: 1.5rem;
 }
 
@@ -46,7 +48,10 @@ h1 {
     margin-right: 1.5rem;
     border-left: 1px solid black;
     border-right: 1px solid black;
+    padding: 1.5rem 0; /* Utilisez du padding pour l'espacement interne */
+    overflow: hidden; /* Évite que les marges débordent */
 }
+
 
 .content {
     display: flex;
@@ -79,6 +84,15 @@ h1 {
 .inline {
     display: flex;
     align-items: center;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 3rem;
+        text-wrap: wrap;
+        text-align: left;
+        padding: 1.5rem;
+    }
 }
 
 </style>

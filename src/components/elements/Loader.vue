@@ -1,32 +1,13 @@
 <template>
   <transition name="fade">
-    <div class="loader-container" v-if="!isLoaded">
+    <div class="loader-container" v-show="!isLoaded">
       <div class="spinner"></div>
     </div>
   </transition>
 </template>
 
 <script setup>
-import { ref, onMounted, defineEmits } from 'vue';
-import { fetchCardsData } from '@/services/fetchCardsData.js';
-import { fetchModalData } from '@/services/fetchModalData.js';
-
-const emit = defineEmits(['cardsLoaded', 'modalLoaded']);
-const isLoaded = ref(false);
-
-onMounted(async () => {
-  try {
-    const [data, modalData] = await Promise.all([fetchCardsData(), fetchModalData()]);
-      emit('cardsLoaded', data);
-      emit('modalLoaded', modalData);
-  } catch (error) {
-    console.log('Error fetching data', error);
-  } finally {
-    if (document.readyState === 'complete') {
-        isLoaded.value = true;
-      }
-  }
-});
+// Aucune modification ici, car l'état `isLoaded` est contrôlé depuis App.vue
 </script>
 
 <style scoped>
@@ -58,9 +39,10 @@ onMounted(async () => {
   }
 }
 
+/* Gestion des transitions */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 1s;
+  transition: opacity 1s ease;
 }
 
 .fade-enter,

@@ -1,37 +1,43 @@
 <template>
-  <Section class="text-section" :background-color="'var(--white)'" :columns="2" :icon="BrickIcon">
-    <template #columns>
-      <EmailForm />
-      <div class="img-column">
-        <img class="responsive-image" src="@/assets/images/contact.png" alt="Contact us" />
-      </div>
-    </template>
-  </Section>
+    <ColumnSection>
+        <template #column1>
+            <EmailForm/>       
+        </template>
+        <template #column2>
+            <h2>CONTACTEZ-NOUS</h2>
+            <p>Une commande personnalisée ?</p>
+            <img src="../../assets/images/contact.png" alt="logo">
+        </template>
+    </ColumnSection>
 </template>
-
 <script setup>
-import Section from '@/components/sections/Section.vue';
+import ColumnSection from '@/components/elements/ColumnSection.vue';
 import EmailForm from '@/components/elements/EmailForm.vue';
-import BrickIcon from '@/assets/icons/brick.svg';
 </script>
-
 <style scoped>
-.text-column h2 {
-  margin-bottom: 20px;
+img {
+    width: 400px;
+    height: auto;
+    max-width: 500px;
 }
+img {
+        width: 70%;
+        height: auto;
+    }
 
-.text-column p {
-  margin-bottom: 20px;
-}
+    @media (max-width: 768px) {
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2rem;
+        }
+    }
 
-/* Cacher l'image sur les écrans de mobile */
-.responsive-image {
-  display: block; /* Par défaut, afficher l'image */
-}
-
-@media (max-width: 768px) {
-  .responsive-image {
-    display: none; /* Cacher l'image sur mobile */
-  }
-}
+    @media (max-width: 768px) {
+        .column-section {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+    }
 </style>

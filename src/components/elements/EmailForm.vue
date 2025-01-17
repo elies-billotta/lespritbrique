@@ -159,7 +159,6 @@ input, select, .message {
 
 .form-content {
   width: 100%;
-  max-width: 800px;
 }
 
 label {

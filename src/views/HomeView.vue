@@ -1,6 +1,6 @@
 <script setup>
-import HomeSection from '@/components/elements/HomeSection.vue'
-import AboutColumn from '@/components/elements/AboutColumn.vue'
+import HomeSection from '@/components/sections/HomeSection.vue'
+import AboutColumn from '@/components/sections/AboutSection.vue'
 </script>
 
 <template>

@@ -6,7 +6,6 @@
     <a v-else :href="href" target="_blank" rel="noopener">
       <slot></slot>
     </a>
-    <!-- Affichage de l'icône en fonction du type de lien -->
     <img v-if="anim && isAnchor" src="@/assets/icons/hashtag.svg" class="icon" alt="anchor link" />
     <img v-else-if="anim && !isInternal" src="@/assets/icons/external-link.svg" class="icon" alt="external link" />
     <img v-else-if="anim && isInternal" src="@/assets/icons/internal-link.svg" class="icon" alt="internal link" />
@@ -21,9 +20,12 @@ import 'animate.css';
 const handleMouseEnter = (event: MouseEvent) => {
   if (props.anim) {
     const target = event.currentTarget as HTMLElement;
+    target.classList.remove('animate__animated', 'animate__swing'); // Réinitialise les classes
+    void target.offsetWidth; // Force le reflow
     target.classList.add('animate__animated', 'animate__swing');
   }
 };
+
 
 const handleMouseLeave = (event: MouseEvent) => {
   const target = event.currentTarget as HTMLElement;
@@ -43,7 +45,6 @@ const props = defineProps({
   },
 });
 
-// Vérifie si le lien est interne (autre page du site)
 const isInternal = computed((): boolean => {
   if (props.href.startsWith('http')) {
     let url = null;
@@ -59,10 +60,8 @@ const isInternal = computed((): boolean => {
   return true;
 });
 
-// Vérifie si le lien est une ancre (commence par #)
 const isAnchor = computed(() => props.href.startsWith('#'));
 
-// Gère le comportement du scroll pour les liens internes
 const handleScroll = (event: MouseEvent) => {
   if (props.href.startsWith('#')) {
     event.preventDefault();
@@ -89,6 +88,7 @@ const handleScroll = (event: MouseEvent) => {
 .inline {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .icon {

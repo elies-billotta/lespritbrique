@@ -23,15 +23,17 @@ export default {
 .card-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: 400px;
+    max-height: 500px;
     background-color: var(--primary-color);
     justify-items: center;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .column {
+    width: 100%;
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
@@ -50,6 +52,19 @@ export default {
 video {
     width: 100%;
     height: 100%;
-    object-fit: cover;  /* Ajuste la vidéo pour couvrir tout l'espace sans déformation */
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .card-section {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .video-container {
+        height: 250px; 
+        border-right: none;
+        border-bottom: 1px solid black;
+    }
 }
 </style>

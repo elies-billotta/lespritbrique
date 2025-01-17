@@ -1,14 +1,56 @@
 <template>
     <header class="menu-banner">
         <div class="menu-left">
-            <myLink :anim="false" :href="'/home'"><img class="logo" src="@/assets/images/logo-color.png"></img></myLink>
+            <myLink :anim="false" :href="'/home'">
+                <img class="logo" src="@/assets/images/logo-color.png" alt="Logo">
+            </myLink>
         </div>
-        <MyMenu class="menu-right" />
+
+        <!-- Affichage du menu classique sur grand écran -->
+        <MyMenu v-if="!isMobile" class="menu-right" />
+
+        <!-- Affichage du menu burger sur mobile -->
+        <div class="menu-right" v-else>
+            <Slide>
+                <a id="home" href="#">
+                    <span>Home</span>
+                </a>
+            </Slide>
+        </div>
     </header>
 </template>
-<script setup>
+
+<script>
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import MyMenu from './MyMenu.vue';
 import myLink from './MyLink.vue';
+import { Slide } from 'vue3-burger-menu';
+
+export default {
+    components: {
+        Slide,
+        myLink,
+        MyMenu
+    },
+    setup() {
+        const isMobile = ref(false);
+        const updateIsMobile = () => {
+            isMobile.value = window.matchMedia('(max-width: 768px)').matches;
+        };
+        onMounted(() => {
+            updateIsMobile(); 
+            window.addEventListener('resize', updateIsMobile);
+        });
+
+        onBeforeUnmount(() => {
+            window.removeEventListener('resize', updateIsMobile);
+        });
+
+        return {
+            isMobile
+        };
+    }
+};
 </script>
 
 <style scoped>
@@ -23,6 +65,7 @@ import myLink from './MyLink.vue';
     z-index: 1000;
     align-items: center;
     justify-content: space-between;
+    box-sizing: border-box;
 }
 
 .menu-left {
@@ -33,5 +76,25 @@ import myLink from './MyLink.vue';
 .logo {
     width: 80px;
     height: 80px;
+}
+
+@media (max-width: 768px) {
+    .menu-banner {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        box-sizing: border-box;
+    }
+
+    .menu-left {
+        flex: 1;
+        /* Permet au logo de s'ajuster */
+        justify-content: flex-start;
+    }
+
+    .menu-right {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+    }
 }
 </style>

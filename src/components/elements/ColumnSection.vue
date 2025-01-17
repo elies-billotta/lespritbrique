@@ -17,7 +17,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: var(--primary-color);
   justify-items: center;
   margin-left: 1.5rem;
@@ -32,5 +32,15 @@
   flex-direction: column;
   justify-content: space-between;
   width:100%;
+}
+
+@media (max-width: 768px) {
+  .column-section {
+    grid-template-columns: 1fr;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 }
 </style>
