@@ -16,9 +16,6 @@
         </ul>  
     </nav>
 </template>
-<script setup>
-import "animate.css"
-</script>
 <style scoped>
 .menu {
     display: flex;
@@ -26,4 +23,12 @@ import "animate.css"
     flex-direction: row;
     gap: 1.5rem;
 }
+
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+    }
+}
+
+
 </style>

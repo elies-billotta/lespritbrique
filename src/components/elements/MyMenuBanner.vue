@@ -7,42 +7,62 @@
                 </my-link>
             </div>
         </div>
-        <MyMenu class="menu-right" />
-        <!-- <div class="menu-right" v-else>
-            <Slide>
-                <a id="home" href="#">
-                    <span>Home</span>
-                </a>
-            </Slide>
-        </div> -->
+        <div v-if="!isMobile" class="menu-right">
+            <MyMenu />
+        </div>
+        <div v-else class="menu-right">
+            <BurgerMenu @click="toggleMobileMenu"/>
+        </div>
     </header>
+    <transition name="slide">
+        <div v-if="showMobileMenu" class="mobile-menu-container">
+            <MyMenuMobile @click="toggleMobileMenu"/>
+        </div>
+    </transition>
 </template>
 
+
 <script>
-import MyMenu from './MyMenu.vue';
-import { Slide } from 'vue3-burger-menu';
+import MyMenu from '@/components/elements/MyMenu.vue';
+import BurgerMenu from '@/components/elements/BurgerMenu.vue';
+import MyMenuMobile from './MyMenuMobile.vue';
 
 export default {
     components: {
-        Slide,
-        MyMenu
+        BurgerMenu,
+        MyMenu, 
+        MyMenuMobile,
+    },
+    data() {
+        return {
+            isMobile: window.innerWidth <= 768,
+            showMobileMenu: false,
+        };
+    },
+    methods: {
+        handleResize() {
+            this.isMobile = window.innerWidth <= 768;
+            if (!this.isMobile) {
+                this.showMobileMenu = false;
+            }
+        },
+        toggleMobileMenu() {
+            this.showMobileMenu = !this.showMobileMenu;
+        },
+    },
+    mounted() {
+        window.addEventListener('resize', this.handleResize);
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize', this.handleResize);
     },
 };
 </script>
 
 <style scoped>
-.imgContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.inline > a {
-    height: 0%;
-}
 .menu-banner {
     background-color: var(--primary-color);
-    padding-left: var(--margin);
-    padding-right: var(--margin);
+    padding: var(--margin);
     border-bottom: 1px solid var(--black);
     width: 100%;
     display: flex;
@@ -53,33 +73,39 @@ export default {
     z-index: 1000;
 }
 
-.menu-left {
-    display: flex;
-    align-items: center;
+.menu-right {
+    position: relative;
 }
 
-.logo {
+.mobile-menu-container {
+    position: fixed;
+    top: 113px;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    z-index: 999;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.slide-enter-active,
+.slide-leave-active {
+    transition: transform 0.5s ease-out;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+    transform: translateY(-100%);
+}
+
+.slide-enter-to,
+.slide-leave-from {
+    transform: translateY(0);
+}
+
+img {
     width: 80px;
-    height: 80px;
+    height: auto;
 }
 
-@media (max-width: 768px) {
-    .menu-banner {
-        padding-left: 1rem;
-        padding-right: 1rem;
-        box-sizing: border-box;
-    }
 
-    .menu-left {
-        flex: 1;
-        justify-content: flex-start;
-    }
-
-    .menu-right {
-        flex: 1;
-        display: flex;
-        justify-content: flex-end;
-        padding-right: var(--margin);
-    }
-}
 </style>
