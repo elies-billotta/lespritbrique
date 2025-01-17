@@ -1,30 +1,37 @@
 <template>
-  <div class="inline" :class="{ 'has-image': containsImage }" 
-       @mouseenter="handleMouseEnter" 
-       @mouseleave="handleMouseLeave" 
-       @click="handleClick">
+  <div 
+    class="inline" 
+    :class="{ 'has-image': containsImage }" 
+    @mouseenter="handleMouseEnter" 
+    @mouseleave="handleMouseLeave" 
+    @click="handleClick" 
+    v-bind="$attrs"
+  >
     <RouterLink v-if="isInternal && !copyOnClick" :to="href" @click="handleScroll">
       <slot></slot>
     </RouterLink>
-    <a v-else :href="href" target="_blank" rel="noopener">
+    <a v-else-if="!isInternal && !copyOnClick" :href="href" target="_blank" rel="noopener">
       <slot></slot>
     </a>
-    <img v-if="anim && isAnchor && !copyOnClick" src="@/assets/icons/hashtag.svg" class="icon" alt="anchor link" />
-    <img v-else-if="anim && !isInternal && !copyOnClick" src="@/assets/icons/external-link.svg" class="icon" alt="external link" />
-    <img v-else-if="anim && isInternal && !copyOnClick" src="@/assets/icons/internal-link.svg" class="icon" alt="internal link" />
-    <img v-else-if="copyOnClick" src="@/assets/icons/copy.svg" class="icon" alt="copy to clipboard" />
+    <span v-else>
+      <slot></slot>
+    </span>
+    <img v-if="anim && isAnchor" src="@/assets/icons/hashtag.svg" class="icon" alt="anchor link" />
+    <img v-else-if="anim && !isInternal" src="@/assets/icons/external-link.svg" class="icon" alt="external link" />
+    <img v-else-if="anim && isInternal" src="@/assets/icons/internal-link.svg" class="icon" alt="internal link" />
   </div>
   <NotificationPopup v-if="showNotification" :message="notificationMessage" :type="notificationType" />
 </template>
 
 <script lang="ts" setup>
 import { computed, ref, onMounted } from 'vue';
-import { defineProps, PropType } from 'vue';
+import { defineProps, useAttrs, PropType } from 'vue';
 import NotificationPopup from '@/components/elements/NotificationPopup.vue';
 import { useClipboard } from '@vueuse/core';
 import 'animate.css';
 
 const { copy } = useClipboard();
+const attrs = useAttrs(); // Récupère les attributs non-props
 
 const props = defineProps({
   href: {
@@ -142,14 +149,14 @@ const handleClick = (event: MouseEvent) => {
 }
 
 a,
-.router-link {
+.router-link, span {
   text-decoration: underline;
   font-weight: bold;
   color: var(--black);
 }
 
 a,
-.router-link {
+.router-link, span {
   pointer-events: auto;
 }
 
