@@ -1,51 +1,30 @@
 <template>
-  <div class="inline" :class="{ 'has-image': containsImage }" @mouseenter="handleMouseEnter"
-    @mouseleave="handleMouseLeave">
-    <RouterLink v-if="isInternal" :to="href" @click="handleScroll">
+  <div class="inline" :class="{ 'has-image': containsImage }" 
+       @mouseenter="handleMouseEnter" 
+       @mouseleave="handleMouseLeave" 
+       @click="handleClick">
+    <RouterLink v-if="isInternal && !copyOnClick" :to="href" @click="handleScroll">
       <slot></slot>
     </RouterLink>
     <a v-else :href="href" target="_blank" rel="noopener">
       <slot></slot>
     </a>
-    <img v-if="anim && isAnchor" src="@/assets/icons/hashtag.svg" class="icon" alt="anchor link" />
-    <img v-else-if="anim && !isInternal" src="@/assets/icons/external-link.svg" class="icon" alt="external link" />
-    <img v-else-if="anim && isInternal" src="@/assets/icons/internal-link.svg" class="icon" alt="internal link" />
+    <img v-if="anim && isAnchor && !copyOnClick" src="@/assets/icons/hashtag.svg" class="icon" alt="anchor link" />
+    <img v-else-if="anim && !isInternal && !copyOnClick" src="@/assets/icons/external-link.svg" class="icon" alt="external link" />
+    <img v-else-if="anim && isInternal && !copyOnClick" src="@/assets/icons/internal-link.svg" class="icon" alt="internal link" />
+    <img v-else-if="copyOnClick" src="@/assets/icons/copy.svg" class="icon" alt="copy to clipboard" />
   </div>
-
+  <NotificationPopup v-if="showNotification" :message="notificationMessage" :type="notificationType" />
 </template>
 
 <script lang="ts" setup>
-import { computed, } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import { defineProps, PropType } from 'vue';
+import NotificationPopup from '@/components/elements/NotificationPopup.vue';
+import { useClipboard } from '@vueuse/core';
 import 'animate.css';
-import { ref, onMounted } from 'vue';
 
-const containsImage = ref(false);
-
-onMounted(() => {
-  const slotElement = document.querySelector('.inline > *:first-child');
-  if (slotElement?.querySelector('img')) {
-    containsImage.value = true;
-  }
-});
-
-
-const handleMouseEnter = (event: MouseEvent) => {
-  if (props.anim) {
-    const target = event.currentTarget as HTMLElement;
-    target.classList.remove('animate__animated', 'animate__swing'); // Réinitialise les classes
-    void target.offsetWidth; // Force le reflow
-    target.classList.add('animate__animated', 'animate__swing');
-  }
-};
-
-
-const handleMouseLeave = (event: MouseEvent) => {
-  const target = event.currentTarget as HTMLElement;
-  target.addEventListener('animationend', () => {
-    target.classList.remove('animate__animated', 'animate__swing');
-  }, { once: true });
-};
+const { copy } = useClipboard();
 
 const props = defineProps({
   href: {
@@ -56,6 +35,22 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  copyOnClick: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const containsImage = ref(false);
+const showNotification = ref(false);
+const notificationMessage = ref('');
+const notificationType = ref('info');
+
+onMounted(() => {
+  const slotElement = document.querySelector('.inline > *:first-child');
+  if (slotElement?.querySelector('img')) {
+    containsImage.value = true;
+  }
 });
 
 const isInternal = computed((): boolean => {
@@ -75,6 +70,22 @@ const isInternal = computed((): boolean => {
 
 const isAnchor = computed(() => props.href.startsWith('#'));
 
+const handleMouseEnter = (event: MouseEvent) => {
+  if (props.anim) {
+    const target = event.currentTarget as HTMLElement;
+    target.classList.remove('animate__animated', 'animate__swing');
+    void target.offsetWidth;
+    target.classList.add('animate__animated', 'animate__swing');
+  }
+};
+
+const handleMouseLeave = (event: MouseEvent) => {
+  const target = event.currentTarget as HTMLElement;
+  target.addEventListener('animationend', () => {
+    target.classList.remove('animate__animated', 'animate__swing');
+  }, { once: true });
+};
+
 const handleScroll = (event: MouseEvent) => {
   if (props.href.startsWith('#')) {
     event.preventDefault();
@@ -93,6 +104,27 @@ const handleScroll = (event: MouseEvent) => {
         behavior: 'smooth',
       });
     }
+  }
+};
+
+const handleClick = (event: MouseEvent) => {
+  if (props.copyOnClick) {
+    event.preventDefault();
+    copy(props.href).then(() => {
+      notificationMessage.value = `${props.href} copié dans le presse-papier`;
+      notificationType.value = 'success';
+      showNotification.value = true;
+      setTimeout(() => {
+        showNotification.value = false;
+      }, 3000);
+    }).catch(() => {
+      notificationMessage.value = 'Échec de la copie';
+      notificationType.value = 'error';
+      showNotification.value = true;
+      setTimeout(() => {
+        showNotification.value = false;
+      }, 3000);
+    });
   }
 };
 </script>

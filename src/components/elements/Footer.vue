@@ -1,133 +1,85 @@
 <template>
-  <footer class="footer-content">
-      <div class="footer-line">
+  <footer>
+    <ColumnSection>
+      <template #column1>
         <div class="logo">
-          <img src="@/assets/images/logo-color.png" alt="logo" />
+          <img class="turn" src="@/assets/icons/logo.svg" alt="logo" />
         </div>
-        <div class="contact">
-          <a class="mail" @click="onCopy('contact@lespritbrique.com')">CONTACT@LESPRITBRIQUE.COM</a>
-          <div class="social-icons">
-            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-              <i class="fab fa-facebook-f fa-sm"></i>
-            </a>
-            <a href="https://www.instagram.com/lesprit.brique" target="_blank" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <div @click="onCopy('lespritbrique.com')" role="button" aria-label="lespritbrique.com" tabindex="0">
-              <i class="fa-solid fa-globe"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="line">
+        <p>© 2025 L'ESPRIT BRIQUE</p>
+        <p>L'ESPRIT BRIQUE® est une marque déposée. Tous droits réservés. Ne pas reproduire.</p>
         <div class="inline">
-        <p class="space">L'ESPRIT BRIQUE® est une marque déposée.Personnages réalisés par</p> <my-link href="https://www.instagram.com/meli_melodraw/">meli_melodraw</my-link>
-      </div>
-        <p>Tous droits réservés. Ne pas reproduire.</p>
-      </div>
-    <NotificationPopup v-if="showNotification" :message="notificationMessage" :type="notificationType" />
+          <p class="space">Personnages et designs réalisés par</p><my-link
+            href="https://www.instagram.com/meli_melodraw/">meli_melodraw</my-link>
+        </div>
+      </template>
+      <template #column2>
+        <h3>CONTACTEZ-NOUS</h3>
+        <ul class="menu">
+          <li>
+            <my-link :href="'https://www.facebook.com/lesprit.brique'">FACEBOOK</my-link>
+          </li>
+          <li>
+            <my-link :href="'https://www.instagram.com/lesprit.brique'">INSTAGRAM</my-link>
+          </li>
+          <li>
+            <my-link :copyOnClick="true" :href="'contact@lespritbrique.com'">CONTACT@LESPRITBRIQUE.COM</my-link>
+          </li>
+        </ul>
+      </template>
+    </ColumnSection>
   </footer>
 </template>
 
-<script setup>
-import { useClipboard } from '@vueuse/core';
-import { ref } from 'vue';
-import NotificationPopup from '@/components/elements/NotificationPopup.vue';
-
-const { copy } = useClipboard();
-const showNotification = ref(false);
-const notificationMessage = ref('');
-const notificationType = ref('info');
-
-const onCopy = (source) => {
-  copy(source).then(() => {
-    notificationMessage.value = `${source} copié dans le presse-papier`;
-    notificationType.value = 'success';
-    showNotification.value = true;
-    setTimeout(() => {
-      showNotification.value = false;
-    }, 3000);
-  }).catch(() => {
-    notificationMessage.value = 'Échec de la copie';
-    notificationType.value = 'error';
-    showNotification.value = true;
-    setTimeout(() => {
-      showNotification.value = false;
-    }, 3000);
-  });
-};
+<script>
+import ColumnSection from '@/components/elements/columns/ColumnSection.vue';
 </script>
 
 <style scoped>
-.space{
-  margin-right: 6px;
-}
-.inline{
+.align-left {
   display: flex;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-}
-.mail {
-  font-size: 20px;
-  color: var(--black);
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
-.mail:hover {
-  color: var(--secondary-color);
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style-type: none;
+  gap: 1.5rem;
+}
+
+.space {
+  margin-right: 6px;
+}
+
+.inline {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
 }
 
 .footer-content {
   background-color: var(--primary-color);
-  padding: 2rem 0;
+  padding: 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid black;
   border-left: 1px solid black;
   border-right: 1px solid black;
 }
-
 
 .footer-line {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-}
-
-.social-icons {
-  display: flex;
-  justify-content: center;
-}
-
-.social-icons a,
-.social-icons div, a {
-  color: var(--black);
-  margin-right: 10px;
-  font-size: 1.2rem;
-  transition: color 0.3s ease;
-  cursor: pointer;
-}
-
-.social-icons a:hover,
-.social-icons div:hover,
-p>a:hover {
-  color: var(--secondary-color);
-}
-
-.social-icons div[role="button"]:focus {
-  outline: 2px solid var(--secondary-color);
-  outline-offset: 2px;
-}
-
-p,
-p>a {
-  color: var(--black);
-  text-align: center;
 }
 
 .line {
@@ -140,5 +92,19 @@ p>a {
 img {
   width: 200px;
   height: auto;
+}
+
+.turn {
+  animation: turn 20s linear infinite;
+}
+
+@keyframes turn {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

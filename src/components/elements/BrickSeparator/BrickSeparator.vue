@@ -6,7 +6,7 @@
   
   <script setup>
   import { ref, onMounted, onBeforeUnmount } from 'vue';
-  import Stud from './Stud.vue';
+  import Stud from '@/components/elements/BrickSeparator/Stud.vue';
   
   const numberOfStuds = ref(0); // Nombre dynamique de studs
   const container = ref(null);

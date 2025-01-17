@@ -47,8 +47,8 @@ h1 {
     margin-right: 1.5rem;
     border-left: 1px solid black;
     border-right: 1px solid black;
-    padding: 1.5rem 0; /* Utilisez du padding pour l'espacement interne */
-    overflow: hidden; /* Évite que les marges débordent */
+    padding: 1.5rem 0;
+    overflow: hidden; 
 }
 
 

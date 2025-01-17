@@ -12,7 +12,7 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    width: 10%; /* Chaque stud occupe 10% de la largeur du conteneur */
+    width: 10%;
   }
   
   .brick-separator__brick {
