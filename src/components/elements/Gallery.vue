@@ -31,7 +31,7 @@
       },
       async mounted() {
           this.images = await fetchCardsData();
-          this.$emit('imagesLoaded'); // Émettre un événement personnalisé
+          this.$emit('imagesLoaded');
       },
   }
   </script>
@@ -41,8 +41,8 @@
 
 .flicking-viewport {
     padding-bottom: 3rem !important;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    margin-left: var(--margin);
+    margin-right: var(--margin);
     border: 1px solid black;
     border-bottom: 0px;
 }
@@ -63,6 +63,7 @@
     background-position: center;
     background-repeat: no-repeat;
     border-bottom: 1px solid black;
+    padding: 1rem;
 }
 
 .card-panel:hover{
@@ -77,8 +78,6 @@
     position: relative;
     min-width: 60px;
     text-align: center;
-    padding-bottom: 10px;
-    padding-left: 10px;
 }
 
 .controls {
@@ -88,7 +87,9 @@
 
 @media (max-width: 768px) {
     .card-panel {
-        height: 200px;
+        height: 300px;
+        width : 100%;
+        gap : 0;
     }
 }
 </style>

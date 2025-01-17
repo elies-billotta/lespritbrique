@@ -37,4 +37,9 @@
 .home-section__description{
     color : white;
 }
+
+img {
+    width: 50%;
+    height: auto;
+}
 </style>

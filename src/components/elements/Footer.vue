@@ -1,30 +1,48 @@
 <template>
   <footer>
-    <ColumnSection>
+    <ColumnSection class="footer">
       <template #column1>
         <div class="logo">
           <img class="turn" src="@/assets/icons/logo.svg" alt="logo" />
         </div>
-        <p>© 2025 L'ESPRIT BRIQUE</p>
-        <p>L'ESPRIT BRIQUE® est une marque déposée. Tous droits réservés. Ne pas reproduire.</p>
+        <p class="text-line">© 2025 L'ESPRIT BRIQUE</p>
+        <p class="text-line">L'ESPRIT BRIQUE<sup>®</sup> est une marque déposée. Tous droits réservés. Ne pas
+          reproduire.</p>
         <div class="inline">
           <p class="space">Personnages et designs réalisés par</p><my-link
             href="https://www.instagram.com/meli_melodraw/">meli_melodraw</my-link>
         </div>
       </template>
       <template #column2>
-        <h3>CONTACTEZ-NOUS</h3>
-        <ul class="menu">
-          <li>
-            <my-link :href="'https://www.facebook.com/lesprit.brique'">FACEBOOK</my-link>
-          </li>
-          <li>
-            <my-link :href="'https://www.instagram.com/lesprit.brique'">INSTAGRAM</my-link>
-          </li>
-          <li>
-            <my-link :copyOnClick="true" :href="'contact@lespritbrique.com'">CONTACT@LESPRITBRIQUE.COM</my-link>
-          </li>
-        </ul>
+        <div class="info-section">
+          <div class="column">
+            <h3>NOS RÉSEAUX</h3>
+            <ul class="menu">
+              <li>
+                <my-link :href="'https://www.facebook.com/lesprit.brique'">FACEBOOK</my-link>
+              </li>
+              <li>
+                <my-link :href="'https://www.instagram.com/lesprit.brique'">INSTAGRAM</my-link>
+              </li>
+            </ul>
+          </div>
+          <div class="column">
+            <h3>MAIL</h3>
+            <ul class="menu">
+              <li>
+                <my-link :copyOnClick="true" :href="'contact@lespritbrique.com'">CONTACT@LESPRITBRIQUE.COM</my-link>
+              </li>
+            </ul>
+          </div>
+          <div class="column">
+            <h3>AUTRES LIENS</h3>
+            <ul class="menu">
+              <li>
+                <my-link :href="'https://www.instagram.com/bricktendo'">BRICKTENDO</my-link>
+              </li>
+            </ul>
+          </div>
+        </div>
       </template>
     </ColumnSection>
   </footer>
@@ -41,17 +59,25 @@ export default {
 </script>
 
 <style scoped>
-.align-left {
-  display: flex;
+sup {
+  font-size: 12px;
+}
+
+.column {
+  display : flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+  justify-self: flex-end;
+  justify-items: flex-end;
+}
+
+.text-line {
+  margin-top: 0.5rem;
 }
 
 .menu {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   list-style-type: none;
   gap: 1.5rem;
 }
@@ -62,37 +88,18 @@ export default {
 
 .inline {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: row;
   align-items: center;
 }
 
-.footer-content {
-  background-color: var(--primary-color);
-  padding: 1.5rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-}
-
-.footer-line {
+.info-section {
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
   align-items: center;
-  width: 100%;
-}
-
-.line {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  text-align: center;
+  gap: 2rem;
+  margin-top: auto;
 }
 
 img {
@@ -112,5 +119,27 @@ img {
   to {
     transform: rotate(360deg);
   }
+}
+
+@media (max-width: 600px) {
+  img {
+    width: 100px;
+  }
+
+  .footer {
+    display : flex;
+    flex-direction: column;
+  }
+
+  .info-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .info-section > .column {
+    align-items:flex-start;
+  }
+
+
 }
 </style>

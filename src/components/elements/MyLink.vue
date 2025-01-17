@@ -17,6 +17,7 @@
       <slot></slot>
     </span>
     <img v-if="anim && isAnchor" src="@/assets/icons/hashtag.svg" class="icon" alt="anchor link" />
+    <img v-else-if="anim && copyOnClick" src="@/assets/icons/copy.svg" class="icon" alt="copy link" />
     <img v-else-if="anim && !isInternal" src="@/assets/icons/external-link.svg" class="icon" alt="external link" />
     <img v-else-if="anim && isInternal" src="@/assets/icons/internal-link.svg" class="icon" alt="internal link" />
   </div>
@@ -31,7 +32,7 @@ import { useClipboard } from '@vueuse/core';
 import 'animate.css';
 
 const { copy } = useClipboard();
-const attrs = useAttrs(); // Récupère les attributs non-props
+const attrs = useAttrs();
 
 const props = defineProps({
   href: {
@@ -94,7 +95,16 @@ const handleMouseLeave = (event: MouseEvent) => {
 };
 
 const handleScroll = (event: MouseEvent) => {
-  if (props.href.startsWith('#')) {
+  if (props.href.startsWith('/') && isInternal.value) {
+    if (isInternal.value) {
+      event.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+  }
+  else if (props.href.startsWith('#')) {
     event.preventDefault();
     const targetElement = document.querySelector(props.href);
     if (targetElement) {
@@ -103,15 +113,7 @@ const handleScroll = (event: MouseEvent) => {
         block: 'end',
       });
     }
-  }
-  if (props.href.startsWith('/')) {
-    if (isInternal.value) {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    }
-  }
+  } 
 };
 
 const handleClick = (event: MouseEvent) => {

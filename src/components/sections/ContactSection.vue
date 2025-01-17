@@ -16,21 +16,14 @@ import EmailForm from '@/components/elements/EmailForm.vue';
 </script>
 <style scoped>
 img {
-    width: 400px;
     height: auto;
-    max-width: 500px;
-}
-
-img {
-    width: 70%;
-    height: auto;
+    max-width: 400px;
+    align-self: flex-end;
 }
 
 @media (max-width: 768px) {
     img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+        width: 200px;
         margin-top: 2rem;
     }
 }

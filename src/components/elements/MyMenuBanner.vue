@@ -2,24 +2,23 @@
     <header class="menu-banner">
         <div class="menu-left">
             <div class="imgContainer">
-                <my-link :anim="false" :href="'/home'">
-                    <img class="logo" src="@/assets/icons/logo.svg" alt="Logo">
+                <my-link :anim="false" :href="'/'">
+                    <img class="logo" src="@/assets/images/logo-color.png" alt="Logo">
                 </my-link>
             </div>
         </div>
-        <MyMenu v-if="!isMobile" class="menu-right" />
-        <div class="menu-right" v-else>
+        <MyMenu class="menu-right" />
+        <!-- <div class="menu-right" v-else>
             <Slide>
                 <a id="home" href="#">
                     <span>Home</span>
                 </a>
             </Slide>
-        </div>
+        </div> -->
     </header>
 </template>
 
 <script>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
 import MyMenu from './MyMenu.vue';
 import { Slide } from 'vue3-burger-menu';
 
@@ -28,24 +27,6 @@ export default {
         Slide,
         MyMenu
     },
-    setup() {
-        const isMobile = ref(false);
-        const updateIsMobile = () => {
-            isMobile.value = window.matchMedia('(max-width: 768px)').matches;
-        };
-        onMounted(() => {
-            updateIsMobile();
-            window.addEventListener('resize', updateIsMobile);
-        });
-
-        onBeforeUnmount(() => {
-            window.removeEventListener('resize', updateIsMobile);
-        });
-
-        return {
-            isMobile
-        };
-    }
 };
 </script>
 
@@ -54,23 +35,22 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
 }
 .inline > a {
     height: 0%;
 }
 .menu-banner {
     background-color: var(--primary-color);
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: var(--margin);
+    padding-right: var(--margin);
     border-bottom: 1px solid var(--black);
+    width: 100vw;
     display: flex;
-    width: 100%;
     position: fixed;
-    z-index: 1000;
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
+    z-index: 1000;
 }
 
 .menu-left {
@@ -92,7 +72,6 @@ export default {
 
     .menu-left {
         flex: 1;
-        /* Permet au logo de s'ajuster */
         justify-content: flex-start;
     }
 
@@ -100,6 +79,7 @@ export default {
         flex: 1;
         display: flex;
         justify-content: flex-end;
+        padding-right: var(--margin);
     }
 }
 </style>

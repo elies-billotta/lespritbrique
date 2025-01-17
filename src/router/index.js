@@ -31,7 +31,7 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       redirect: { name: 'home' },
     }
-  ],
+  ]
 })
 
 export default router

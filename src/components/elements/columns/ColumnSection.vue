@@ -19,11 +19,11 @@
   gap: 2rem;
   background-color: var(--primary-color);
   justify-items: center;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+  margin-left: var(--margin);
+  margin-right: var(--margin);
   border-left: 1px solid black;
   border-right: 1px solid black;
-  padding: 1.5rem;
+  padding: var(--margin);
 }
 
 .column {
@@ -32,16 +32,14 @@
   justify-content: space-between;
   align-items: flex-start;
   width:100%;
-  flex: 1;
+  overflow: hidden;
+  word-wrap: break-word;
 }
 
 @media (max-width: 768px) {
   .column-section {
-    grid-template-columns: 1fr;
-    height: auto;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
 }
 </style>

@@ -1,14 +1,14 @@
 <template>
     <ColumnSection>
         <template #column1>
-            <h2>BIENVENUE SUR L'ESPRIT BRIQUE</h2>
+            <h2>BIENVENUE SUR<br> L'ESPRIT BRIQUE<sup>®</sup></h2>
             <img src="../../assets/images/coffee.png" alt="logo">
         </template>
         <template #column2>
             <h2>VOTRE SERVICE D'IMPRESSION UV SUR BRIQUES</h2>
             <p>L'Esprit Brique, c'est une entreprise fondée par Eliès, finaliste de la saison 4 de l'émission Lego
                 Masters</p>
-            <div class="center"><my-link :href="'/'">Test</my-link></div>
+            <div class="center"><my-link :href="'/'">Lire la suite</my-link></div>
         </template>
     </ColumnSection>
 </template>
@@ -16,10 +16,19 @@
 import ColumnSection from '@/components/elements/columns/ColumnSection.vue';
 </script>
 <style scoped>
+sup {
+    font-size: 20px;
+}
+
+p {
+    margin-top: var(--margin);
+    margin-bottom : var(--margin);
+}
+
 img {
     width: 70%;
     height: auto;
-    max-width: 500px;
+    max-width: 400px;
 }
 
 .center {

@@ -42,12 +42,6 @@ const handleLoadingComplete = () => {
 </script>
 
 <style scoped>
-#app {
-  width: 100%;
-  height: 100vh;
-  background-color: var(--black);
-}
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;

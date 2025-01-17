@@ -36,7 +36,7 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 1.5rem;
+    padding: var(--margin);
     background-color: var(--white);
     justify-content: space-between;
 }

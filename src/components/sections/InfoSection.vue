@@ -64,8 +64,8 @@ import AccordionContent from 'primevue/accordioncontent';
 </script>
 <style scoped>
 .container {
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    margin-left: var(--margin);
+    margin-right: var(--margin);
     border: 1px solid black;
     border-bottom: 0px;
 }
@@ -83,12 +83,12 @@ import AccordionContent from 'primevue/accordioncontent';
     justify-content: space-between;
     border: 0px;
     border-bottom: 1px solid black;
-    padding: 1.5rem;
+    padding: var(--margin);
     cursor: pointer;
 }
 
 .accordion-content {
-    padding: 1.5rem;
+    padding: var(--margin);
     border-bottom: 1px solid black;
     background-color: var(--white);
 }

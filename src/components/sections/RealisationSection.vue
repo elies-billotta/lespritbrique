@@ -36,26 +36,24 @@ h1 {
     text-wrap: nowrap;
     max-width: 100%;
     text-align: center;
-    padding: 1.5rem;
+    padding : var(--margin);
 }
 
 .realisation-section {
     display: flex;
-    align-items: center;
     flex-direction: column;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    margin-left: var(--margin);
+    margin-right: var(--margin);
     border-left: 1px solid black;
     border-right: 1px solid black;
-    padding: 1.5rem 0;
-    overflow: hidden; 
+    padding: var(--margin) 0;
 }
 
 
 .content {
     display: flex;
     flex-direction: row;
-    gap: 1.5rem;
+    gap: var(--margin);
     width: 100%;
 }
 
@@ -87,10 +85,17 @@ h1 {
 
 @media (max-width: 600px) {
     h1 {
-        font-size: 3rem;
         text-wrap: wrap;
         text-align: left;
-        padding: 1.5rem;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .inline {
+        align-items: flex-start;
+        flex-direction: column;
     }
 }
 
