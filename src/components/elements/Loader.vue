@@ -1,14 +1,10 @@
 <template>
   <transition name="fade">
-    <div class="loader-container" v-show="!isLoaded">
+    <div class="loader-container">
       <div class="spinner"></div>
     </div>
   </transition>
 </template>
-
-<script setup>
-// Aucune modification ici, car l'état `isLoaded` est contrôlé depuis App.vue
-</script>
 
 <style scoped>
 .loader-container {

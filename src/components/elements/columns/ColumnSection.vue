@@ -17,7 +17,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  /* height: 100vh; */
   background-color: var(--primary-color);
   justify-items: center;
   margin-left: 1.5rem;
@@ -31,7 +30,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: flex-start;
   width:100%;
+  flex: 1;
 }
 
 @media (max-width: 768px) {

@@ -1,15 +1,11 @@
 <template>
     <header class="menu-banner">
         <div class="menu-left">
-            <myLink :anim="false" :href="'/home'">
+            <my-link :anim="false" :href="'/home'">
                 <img class="logo" src="@/assets/images/logo-color.png" alt="Logo">
-            </myLink>
+            </my-link>
         </div>
-
-        <!-- Affichage du menu classique sur grand écran -->
         <MyMenu v-if="!isMobile" class="menu-right" />
-
-        <!-- Affichage du menu burger sur mobile -->
         <div class="menu-right" v-else>
             <Slide>
                 <a id="home" href="#">
@@ -23,13 +19,11 @@
 <script>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import MyMenu from './MyMenu.vue';
-import myLink from './MyLink.vue';
 import { Slide } from 'vue3-burger-menu';
 
 export default {
     components: {
         Slide,
-        myLink,
         MyMenu
     },
     setup() {

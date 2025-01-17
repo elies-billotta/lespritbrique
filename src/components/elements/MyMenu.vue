@@ -2,22 +2,21 @@
     <nav>
         <ul class="menu">
             <li>
-                <MyLink :href="'https://shop.lespritbrique.com'">BOUTIQUE</MyLink>
+                <my-link :href="'https://shop.lespritbrique.com'">BOUTIQUE</my-link>
             </li>
             <li>
-                <MyLink :href="'#realisations'">REALISATIONS</MyLink>
+                <my-link :href="'#realisations'">REALISATIONS</my-link>
             </li>
             <li>
-                <MyLink :href="'#infos'">INFOS</MyLink>      
+                <my-link :href="'#infos'">INFOS</my-link>      
             </li>
             <li>
-                <MyLink :href="'#contact'">CONTACT</MyLink>
+                <my-link :href="'#contact'">CONTACT</my-link>
             </li>
         </ul>  
     </nav>
 </template>
 <script setup>
-import MyLink from './MyLink.vue';
 import "animate.css"
 </script>
 <style scoped>

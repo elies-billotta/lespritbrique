@@ -3,7 +3,7 @@
       <Flicking ref="flicking" :options="{ circular: true, align: 'prev' }" :plugins="plugins">
           <div class="card-panel" v-for="image in images" :key="image.card_id"
               :style="{ backgroundImage: 'url(' + image.imageSrc + ')' }">
-             <MyLink :href="'/realisations/'+image.card_id" class="flicking-index">{{ image.title }}</MyLink>
+             <my-link :href="'/realisations/'+image.card_id" class="flicking-index">{{ image.title }}</my-link>
           </div>
           <template #viewport>
               <div class="flicking-pagination"></div>
@@ -18,12 +18,10 @@
   import { Pagination } from "@egjs/flicking-plugins";
   import { fetchCardsData } from "@/services/fetchCardsData";
   import "@egjs/flicking-plugins/dist/pagination.css";
-  import MyLink from "./MyLink.vue";
-  
+
   export default {
       components: {
           Flicking,
-          MyLink,
       },
       data() {
           return {

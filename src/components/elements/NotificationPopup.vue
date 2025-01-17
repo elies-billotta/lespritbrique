@@ -1,4 +1,3 @@
-<!-- src/components/NotificationPopup.vue -->
 <template>
   <div v-if="visible" class="notification" :class="type">
     <p>{{ message }}</p>

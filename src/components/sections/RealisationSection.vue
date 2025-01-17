@@ -8,8 +8,8 @@
                 <div class="title">
                     <h2>LE 4X4 DES GAZELLES</h2>
                     <div class="inline">
-                    <p class="description">Kit complet réalisé pour </p><MyLink :href="'https://www.maienga.com/'">Maïenga Sports
-                        Events</MyLink>
+                    <p class="description">Kit complet réalisé pour </p><my-link :href="'https://www.maienga.com/'">Maïenga Sports
+                        Events</my-link>
                     </div>
                 </div>
                 <div class="content">
@@ -17,7 +17,7 @@
                         <p>En partenariat avec l'agence Maïenga, L'Esprit Brique a pu concevoir</p>
                     </div>
                     <div class="btn-container">
-                        <MyLink class="btn" :href="'/'">Lire la suite</MyLink>
+                        <my-link class="btn" :href="'/'">Lire la suite</my-link>
                     </div>
                 </div>
             </template>
@@ -27,8 +27,7 @@
 
 
 <script setup>
-import ImageColumn from '@/components/elements/ImageColumn.vue';
-import MyLink from '@/components/elements/MyLink.vue';
+import ImageColumn from '@/components/elements/columns/ImageColumn.vue';
 </script>
 
 <style scoped>

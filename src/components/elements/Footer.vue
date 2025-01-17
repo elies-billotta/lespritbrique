@@ -21,7 +21,7 @@
       </div>
       <div class="line">
         <div class="inline">
-        <p class="space">L'ESPRIT BRIQUE® est une marque déposée.Personnages réalisés par</p> <MyLink href="https://www.instagram.com/meli_melodraw/">meli_melodraw</MyLink>
+        <p class="space">L'ESPRIT BRIQUE® est une marque déposée.Personnages réalisés par</p> <my-link href="https://www.instagram.com/meli_melodraw/">meli_melodraw</my-link>
       </div>
         <p>Tous droits réservés. Ne pas reproduire.</p>
       </div>
@@ -33,7 +33,6 @@
 import { useClipboard } from '@vueuse/core';
 import { ref } from 'vue';
 import NotificationPopup from '@/components/elements/NotificationPopup.vue';
-import MyLink from '@/components/elements/MyLink.vue';
 
 const { copy } = useClipboard();
 const showNotification = ref(false);
