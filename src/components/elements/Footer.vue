@@ -32,6 +32,12 @@
 
 <script>
 import ColumnSection from '@/components/elements/columns/ColumnSection.vue';
+
+export default {
+  components: {
+    ColumnSection
+  }
+};
 </script>
 
 <style scoped>
