@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <section class="container">
         <Accordion value="0" unstyled>
             <AccordionPanel value="0">
                 <AccordionHeader class="button">
@@ -51,7 +51,7 @@
                 </AccordionContent>
             </AccordionPanel>
         </Accordion>
-    </div>
+    </section>
 </template>
 
 <script setup>

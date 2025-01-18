@@ -96,7 +96,7 @@ const handleScroll = (event: MouseEvent) => {
       event.preventDefault();
       window.scrollTo({
         top: 0,
-        behavior: 'smooth',
+        behavior : "smooth"
       });
     }
   } else if (props.href.startsWith('#')) {

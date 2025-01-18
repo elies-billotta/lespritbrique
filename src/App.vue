@@ -1,47 +1,34 @@
 <template>
   <OldTvShader />
-  <Loader v-show="!isLoadingComplete" />
-  <div v-show="isLoadingComplete" id="app">
-    <MyMenuBanner />
+  <Loader v-show="!loadingStore.isAppLoaded" />
+  <div v-show="loadingStore.isAppLoaded" id="app">
     <RouterView v-slot="{ Component }" :key="$router.push">
       <Transition name="fade" mode="out-in">
         <component :is="Component" />
       </Transition>
     </RouterView>
-    <BrickSeparator />
-    <RealisationSection id="realisations" />
-    <Gallery @imagesLoaded="handleGalleryLoaded" />
-    <InfoSection id="infos" />
-    <ContactSection id="contact" />
-    <BrickSeparator />
-    <Footer />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { RouterView } from 'vue-router';
-import Loader from '@/components/elements/Loader.vue';
-import BrickSeparator from '@/components/elements/BrickSeparator/BrickSeparator.vue';
-import RealisationSection from '@/components/sections/RealisationSection.vue';
-import Gallery from '@/components/elements/Gallery.vue';
-import ContactSection from '@/components/sections/ContactSection.vue';
-import MyMenuBanner from '@/components/elements/MyMenuBanner.vue';
-import InfoSection from '@/components/sections/InfoSection.vue';
-import Footer from '@/components/elements/Footer.vue';
-import OldTvShader from './components/OldTvShader.vue';
+import { onMounted } from 'vue';
+import { useDataStore } from '@/stores/data';
+import { useLoadingStore } from '@/stores/loading';
+import Loader from '@/components/elements/Loader.vue'
 
-const isLoadingComplete = ref(false);
+const dataStore = useDataStore();
+const loadingStore = useLoadingStore();
 
-const handleGalleryLoaded = () => {
-  handleLoadingComplete();
-};
+onMounted(async () => {
+  const taskName = 'initial-data-loading';
+  loadingStore.startLoading(taskName);
 
-const handleLoadingComplete = () => {
-  isLoadingComplete.value = true;
-};
+  await dataStore.loadGalleryData();
 
+  loadingStore.finishLoading(taskName);
+});
 </script>
+
 
 <style scoped>
 .fade-enter-active,

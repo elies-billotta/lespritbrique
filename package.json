@@ -25,6 +25,7 @@
     "express-rate-limit": "^7.4.0",
     "multer": "^1.4.5-lts.1",
     "node-fetch": "^3.3.2",
+    "pinia": "^2.3.0",
     "primevue": "^4.2.5",
     "swiper": "^11.1.14",
     "vue": "^3.4.29",
