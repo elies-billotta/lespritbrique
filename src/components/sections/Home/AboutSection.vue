@@ -17,7 +17,7 @@
             </p>
             <p class="inline">Notre service est divisé en deux parties : un premier consacré uniquement aux briques
                 personnalisées, que vous pouvez retrouver
-                sur <my-link :href="'https://www.shop.lespritbrique.com'">notre boutique en ligne</my-link>
+                sur <my-link :anim="false" :href="'https://shop.lespritbrique.com'">notre boutique en ligne</my-link>
             </p>
             <div class="center"><my-link :href="'#realisations'">Découvrir</my-link></div>
         </template>

@@ -44,10 +44,16 @@
                     <div class="accordion-content">
                         <p class="m-0">
                             Vous avez une idée précise en tête ? Faites-nous part de votre projet et nous créerons des
-                            designs sur mesure pour vos briques ! Grâce à <my-link :href="'#contact'">notre service de
-                                personnalisation</my-link>,nous pouvons créer ensemble le design de vos rêves. Que ce soit pour un
+                            designs sur mesure pour vos briques ! Grâce à <my-link :anim="false" :href="'#contact'">notre service de
+                                personnalisation</my-link>,nous pouvons créer ensemble le design de vos rêves. Que ce
+                            soit pour un
                             événement particulier, une entreprise, ou simplement pour ajouter une touche personnelle à
                             vos créations, nous réalisons des impressions UV de haute qualité sur vos briques.</p>
+                        <p class="m-0">
+                            Découvrez nos modèles de briques déjà personnalisées, disponibles à la vente. Que ce soit
+                            pour un cadeau spécial, une décoration originale ou une collection unique, vous trouverez
+                            des créations originales qui s'adaptent à tous vos besoins.
+                        </p>
                     </div>
                 </AccordionContent>
             </AccordionPanel>
@@ -92,5 +98,8 @@ import AccordionContent from 'primevue/accordioncontent';
     padding: var(--margin);
     border-bottom: 1px solid black;
     background-color: var(--white);
+    display : flex;
+    flex-direction: column;
+    gap: var(--margin)
 }
 </style>
