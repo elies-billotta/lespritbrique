@@ -1,18 +1,24 @@
-// src/stores/data.js
 import { defineStore } from 'pinia';
-import { fetchCardsData } from '@/services/fetchCardsData';
+import { fetchCreationData } from '@/api/fetchCreationData';
 
 export const useDataStore = defineStore('data', {
-  state: () => ({
-    galleryImages: null,
-  }),
-  actions: {
-    async loadGalleryData() {
-      if (!this.galleryImages) {
-        const data = await fetchCardsData();
-        this.galleryImages = data;
-        console.log(this.galleryImages);
-      }
+    state: () => ({
+        creationData: null,
+    }),
+    actions: {
+        async loadCreationData() {
+            if (!this.creationData) {
+                const data = await fetchCreationData();
+                this.creationData = data;
+            }
+        },
+        getCreationImagesById(id) {
+            const creation = this.creationData?.find(creation => creation.id === id);
+            return creation ? creation.images : [];
+        },
+        getCreationById(id) {
+            const creation = this.creationData?.find(creation => creation.id === id);
+            return creation ? creation : [];
+        },
     },
-  },
 });

@@ -1,20 +1,20 @@
 <script setup>
 import MyMenuBanner from '@/components/elements/MyMenuBanner.vue';
 import KitSection from '@/components/sections/KitSection.vue';
-import AboutColumn from '@/components/sections/Home/AboutSection.vue';
 import BrickSeparator from '@/components/elements/BrickSeparator/BrickSeparator.vue';
 import RealisationSection from '@/components/sections/RealisationSection.vue';
 import Gallery from '@/components/elements/Gallery.vue';
 import ContactSection from '@/components/sections/ContactSection.vue';
 import InfoSection from '@/components/sections/InfoSection.vue';
 import Footer from '@/components/elements/Footer.vue';
+import DescriptionSection from '@/components/sections/DescriptionSection.vue';
 </script>
 
 <template>
     <main>
         <MyMenuBanner />
         <KitSection />
-        <AboutColumn />
+        <DescriptionSection />
         <BrickSeparator />
         <RealisationSection id="realisations" />
         <Gallery />

@@ -24,7 +24,7 @@ onMounted(async () => {
   const taskName = 'initial-data-loading';
   loadingStore.startLoading(taskName);
 
-  await dataStore.loadGalleryData();
+  await dataStore.loadCreationData();
 
   loadingStore.finishLoading(taskName);
 });

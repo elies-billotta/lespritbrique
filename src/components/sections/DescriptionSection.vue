@@ -1,8 +1,17 @@
 <template>
+    <ColumnSection>
+        <template #column1>
+            <img :src="mainImage"/>
+        </template>
+        <template #column2>
+            <h2>DESCRIPTION</h2>
+            <p> {{ text }}</p>
+        </template>
+    </ColumnSection>
     <Flicking ref="flicking" :options="{ circular: true, align: 'prev' }" :plugins="plugins">
-        <div class="card-panel" v-for="creation in creations" :key="creation.id"
-            :style="{ backgroundImage: 'url(' + creation.mainImage + ')' }">
-            <my-link v-if="label" :href="'/about'" class="flicking-index">{{ creation.title }}</my-link>
+        <div class="card-panel" v-for="image in images" :key="image.id"
+            :style="{ backgroundImage: 'url(' + image.url + ')' }">
+            <my-link v-if="label" :href="'/about'" class="flicking-index">{{ image.title }}</my-link>
         </div>
         <template #viewport>
             <div class="flicking-pagination"></div>
@@ -16,19 +25,11 @@ import "@egjs/vue3-flicking/dist/flicking.css";
 import { Pagination } from "@egjs/flicking-plugins";
 import "@egjs/flicking-plugins/dist/pagination.css";
 import { useDataStore } from '@/stores/data';
+import ColumnSection from '@/components/elements/columns/ColumnSection.vue';
 
 export default {
-    props: {
-        // images: {
-        //     type: Array,
-        //     //required: true,
-        // },
-        label : {
-            type : Boolean,
-           // required : true
-        }
-    },
     components: {
+        ColumnSection,
         Flicking,
     },
     data() {
@@ -37,14 +38,27 @@ export default {
         };
     },
     computed: {
-        creations() {
+        images() {
             const dataStore = useDataStore();
-            return dataStore.creationData;
+            let imagesObject = dataStore.getCreationImagesById(0);
+            return Object.entries(imagesObject).map(([key, value]) => ({
+            id: key,
+            url: value,
+        }));
         },
+        text(){
+            const dataStore = useDataStore();
+            let data = dataStore.getCreationById(0);
+            return data.description;
+        }, 
+        mainImage(){
+            const dataStore = useDataStore();
+            let data = dataStore.getCreationById(0);
+            return data.mainImage;
+        }
     },
 };
 </script>
-
 <style scoped>
 .flicking-viewport {
     padding-bottom: 3rem !important;
