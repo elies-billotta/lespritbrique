@@ -1,5 +1,5 @@
 <template>
-    <div class="realisation-section">
+    <div class="realisation-section" v-bind="$attrs">
         <h1>DERNIÈRES RÉALISATIONS</h1>
         <ImageColumn :bgVideo="'src/assets/videos/4x4.mp4'">
             <template #column1>
@@ -31,11 +31,28 @@
             </template>
         </ImageColumn>
     </div>
+    <Gallery :images="creations"/>
 </template>
 
 
-<script setup>
+<script>
 import ImageColumn from '@/components/elements/columns/ImageColumn.vue';
+import Gallery from '@/components/elements/Gallery.vue';
+import { useDataStore } from '@/stores/data';
+
+export default {
+    inheritAttrs: false,
+    components: {
+        ImageColumn,
+        Gallery
+    },
+    computed: {
+        creations() {
+            const dataStore = useDataStore();
+            return dataStore.creationData || [];
+        },
+    },
+}
 </script>
 
 <style scoped>

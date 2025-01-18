@@ -1,9 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import AboutView from '../views/AboutView.vue'
-import ContactView from '@/views/ContactView.vue'
-import RealisationView from '@/views/RealisationView.vue'
-import KitView from '@/views/KitView.vue'
+import CreationView from '@/views/CreationView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,24 +11,10 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/about',
-      name: 'about',
-      component: AboutView,
-    },
-    {
-      path: '/contact',
-      name: 'Contact',
-      component: ContactView,
-    },
-    {
-      path: '/realisations/0',
-      name: 'Réalisations',
-      component: RealisationView,
-    },
-    {
-      path : '/kit-4x4',
-      name : "Le 4x4 des Gazelles",
-      component : KitView,
+      path: '/realisations/:id',
+      name: 'creation',
+      component: CreationView, // Vue qui gère l'affichage de la création
+      props: true, // Permet de passer l'id comme prop
     },
     {
       path: '/:pathMatch(.*)*',

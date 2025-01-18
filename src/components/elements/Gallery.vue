@@ -1,8 +1,8 @@
 <template>
     <Flicking ref="flicking" :options="{ circular: true, align: 'prev' }" :plugins="plugins">
-        <div class="card-panel" v-for="creation in creations" :key="creation.id"
-            :style="{ backgroundImage: 'url(' + creation.mainImage + ')' }">
-            <my-link v-if="label" :href="'/about'" class="flicking-index">{{ creation.title }}</my-link>
+        <div class="card-panel" v-for="image in images" :key="image.id"
+            :style="{ backgroundImage: 'url(' + image.mainImage + ')' }">
+            <my-link v-if="label" :href="'/realisations/'+image.id" class="flicking-index">{{ image.title }}</my-link>
         </div>
         <template #viewport>
             <div class="flicking-pagination"></div>
@@ -15,17 +15,17 @@ import Flicking from "@egjs/vue3-flicking";
 import "@egjs/vue3-flicking/dist/flicking.css";
 import { Pagination } from "@egjs/flicking-plugins";
 import "@egjs/flicking-plugins/dist/pagination.css";
-import { useDataStore } from '@/stores/data';
 
 export default {
     props: {
-        // images: {
-        //     type: Array,
-        //     //required: true,
-        // },
+        images: {
+            type: Array,
+            required: true,
+            default: () => [],
+        },
         label : {
             type : Boolean,
-           // required : true
+            default : true,
         }
     },
     components: {
@@ -36,12 +36,7 @@ export default {
             plugins: [new Pagination({ type: 'bullet' })],
         };
     },
-    computed: {
-        creations() {
-            const dataStore = useDataStore();
-            return dataStore.creationData;
-        },
-    },
+    
 };
 </script>
 

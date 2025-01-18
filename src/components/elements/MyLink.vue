@@ -1,7 +1,7 @@
 <template>
   <div class="inline" :class="{ 'has-image': containsImage }" @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave" @click="handleClick" v-bind="$attrs">
-    <RouterLink v-if="isInternal && !copyOnClick" :to="href" @click="handleScroll">
+    <RouterLink v-if="isInternal && !copyOnClick" :to="href || test" @click="handleScroll">
       <slot></slot>
     </RouterLink>
     <a v-else-if="!isInternal && !copyOnClick" :href="href" target="_blank" rel="noopener">
@@ -32,6 +32,9 @@ const props = defineProps({
   href: {
     type: String as PropType<string>,
     required: true,
+  },
+  test : {
+    
   },
   anim: {
     type: Boolean,

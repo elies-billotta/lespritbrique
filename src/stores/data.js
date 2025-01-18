@@ -13,6 +13,7 @@ export const useDataStore = defineStore('data', {
             }
         },
         getCreationImagesById(id) {
+            console.log(id);
             const creation = this.creationData?.find(creation => creation.id === id);
             return creation ? creation.images : [];
         },

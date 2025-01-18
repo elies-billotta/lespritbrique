@@ -5,7 +5,6 @@ const url = 'https://script.googleusercontent.com/macros/echo?user_content_key=B
 export const fetchCreationData = async () => {
   try {
     const response = await axios.get(url);
-    console.log(response.data);
     const creationData = response.data.map(creation => {
       return {
         ...creation,
