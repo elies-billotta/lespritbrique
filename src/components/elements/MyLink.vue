@@ -141,7 +141,7 @@ const handleClick = (event: MouseEvent) => {
 
 <style scoped>
 .inline {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   cursor: pointer;
 }

@@ -1,5 +1,5 @@
 <template>
-    <FullScreenBanner :src="imageSrc" :text="'Des créations à votre image'" :background="background"/>
+    <FullScreenBanner :src="imageSrc" :text="'Un kit pas mal'" :background="videoSrc"/>
 </template>
 <script>
     import FullScreenBanner from '@/components/elements/FullScreenBanner.vue';
@@ -12,7 +12,6 @@
             return {
                 imageSrc: new URL('@/assets/images/logo-color.png', import.meta.url).href,
                 videoSrc : new URL('@/assets/videos/4x4.mp4', import.meta.url ).href,
-                background : new URL('@/assets/images/lm.jpg', import.meta.url ).href,
             };
         }
     }

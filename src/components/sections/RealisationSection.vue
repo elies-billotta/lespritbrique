@@ -8,16 +8,24 @@
                 <div class="title">
                     <h2>LE 4X4 DES GAZELLES</h2>
                     <div class="inline">
-                    <p class="description">Kit complet réalisé pour </p><my-link :href="'https://www.maienga.com/'">Maïenga Sports
-                        Events</my-link>
+                        <p class="description">Kit complet réalisé pour </p><my-link
+                            :href="'https://www.maienga.com/'">Maïenga Sports
+                            Events</my-link>
                     </div>
                 </div>
                 <div class="content">
                     <div class="text">
-                        <p>En partenariat avec l'agence Maïenga, L'Esprit Brique a pu concevoir</p>
+                        <p>Réalisé à l’occasion du futur Rallye des Gazelles 2025, le 4x4 des Gazelles est le fruit d’un
+                            partenariat entre Maienga et L’Esprit Brique.
+                            Constitué de 337 pièces, dont
+                            certaines customisées, ce kit unique
+                            est le symbole de cette aventure
+                            humaine unique, rassemblant des
+                            femmes du monde entier dans le
+                            Sahara Marocain.</p>
                     </div>
                     <div class="btn-container">
-                        <my-link class="btn" :href="'/'">Lire la suite</my-link>
+                        <my-link class="btn" :href="'/kit-4x4'">Lire la suite</my-link>
                     </div>
                 </div>
             </template>
@@ -31,12 +39,16 @@ import ImageColumn from '@/components/elements/columns/ImageColumn.vue';
 </script>
 
 <style scoped>
+
+.italic {
+    font-style: italic;
+}
 h1 {
     font-size: clamp(1rem, 10vw, 5rem);
     text-wrap: nowrap;
     max-width: 100%;
     text-align: center;
-    padding : var(--margin);
+    padding: var(--margin);
 }
 
 .realisation-section {
@@ -57,14 +69,19 @@ h1 {
     width: 100%;
 }
 
-.content > .text {
+.content>.text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     flex: 1;
+    gap : 1.5rem;
 }
 
-.content > .btn-container {
-    flex: 0.4;
+.content>.btn-container {
+
     display: flex;
     justify-content: flex-end;
+    align-items: flex-end;
 }
 
 .btn {
@@ -98,5 +115,4 @@ h1 {
         flex-direction: column;
     }
 }
-
 </style>

@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <ColumnSection class="footer">
+    <ColumnSection class="footer" :right="true">
       <template #column1>
         <div class="logo">
           <img class="turn" src="@/assets/icons/logo.svg" alt="logo" />
@@ -96,8 +96,8 @@ sup {
 .info-section {
   display: flex;
   justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 2rem;
   margin-top: auto;
 }
@@ -139,7 +139,5 @@ img {
   .info-section > .column {
     align-items:flex-start;
   }
-
-
 }
 </style>

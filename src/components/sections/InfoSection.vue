@@ -38,15 +38,16 @@
             </AccordionPanel>
             <AccordionPanel value="2">
                 <AccordionHeader class="button">
-                    <h2>CUSTOMISATION</h2>
+                    <h2>PERSONNALISATION SUR MESURE</h2>
                 </AccordionHeader>
                 <AccordionContent>
                     <div class="accordion-content">
                         <p class="m-0">
-                            L'Esprit Brique vous offre la possibilité de <strong>personnaliser vos briques et figurines</strong> selon vos envies.
-              Que vous souhaitiez ajouter un texte ou une image, nous sommes là pour vous
-              concevoir des designs conformes à votre vision.
-                        </p>
+                            Vous avez une idée précise en tête ? Faites-nous part de votre projet et nous créerons des
+                            designs sur mesure pour vos briques ! Grâce à <my-link :href="'#contact'">notre service de
+                                personnalisation</my-link>,nous pouvons créer ensemble le design de vos rêves. Que ce soit pour un
+                            événement particulier, une entreprise, ou simplement pour ajouter une touche personnelle à
+                            vos créations, nous réalisons des impressions UV de haute qualité sur vos briques.</p>
                     </div>
                 </AccordionContent>
             </AccordionPanel>

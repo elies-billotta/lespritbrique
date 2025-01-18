@@ -15,6 +15,7 @@ import { onMounted } from 'vue';
 import { useDataStore } from '@/stores/data';
 import { useLoadingStore } from '@/stores/loading';
 import Loader from '@/components/elements/Loader.vue'
+import OldTvShader from '@/components/OldTvShader.vue';
 
 const dataStore = useDataStore();
 const loadingStore = useLoadingStore();

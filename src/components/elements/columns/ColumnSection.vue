@@ -1,15 +1,34 @@
 <template>
   <section class="column-section">
-    <div class="column">
+    <div class="column1">
       <slot name="column1"></slot>
     </div>
-    <div class="column">
+    <div :style="{ alignItems: alignItems }" class="column2">
       <slot name="column2"></slot>
     </div>
   </section>
 </template>
 
-<script setup>
+<script>
+import { computed } from 'vue';
+
+export default {
+  props : {
+    right : {
+      type : Boolean,
+      default : false,
+    }
+  },
+  setup(props) {
+    const alignItems = computed(() => {
+      return props.right ? 'flex-end' : 'flex-start';
+    });
+
+    return {
+      alignItems
+    };
+  }
+}
 </script>
 
 <style scoped>
@@ -26,20 +45,20 @@
   padding: var(--margin);
 }
 
-.column {
+.column1, .column2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  width:100%;
+  width: 100%;
   overflow: hidden;
   word-wrap: break-word;
 }
 
 @media (max-width: 768px) {
   .column-section {
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-}
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 </style>
