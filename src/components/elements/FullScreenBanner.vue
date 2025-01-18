@@ -26,12 +26,21 @@ export default {
     mounted() {
         this.loadBackground();
     },
+    watch: {
+        background(newBackground) {
+            this.loadBackground();
+        },
+    },
     methods: {
         loadBackground() {
             const container = this.$refs.bannerContainer;
+            const content = this.$refs.bannerContent;
             if (container) {
+                const existingVideo = container.querySelector('video');
+                if (existingVideo) {
+                    existingVideo.remove();
+                }
                 if (this.background.endsWith('.mp4')) {
-                    const content = this.$refs.bannerContent;
                     content.style.zIndex = '100'; 
                     const video = document.createElement('video');
                     video.src = this.background;
@@ -46,7 +55,8 @@ export default {
                     video.style.zIndex = "0";
                     video.style.objectFit = 'cover';
                     container.appendChild(video);
-                } else if (this.background.endsWith('.jpg') || this.background.endsWith('.JPG')  || this.background.endsWith('.png')) {
+                }
+                else if (this.background.endsWith('.jpg') || this.background.endsWith('.JPG') || this.background.endsWith('.png')) {
                     container.style.backgroundImage = `url(${this.background})`;
                     container.style.backgroundSize = 'cover';
                     container.style.backgroundPosition = 'top';
@@ -55,7 +65,6 @@ export default {
             }
         },
     },
-
 };
 </script>
 

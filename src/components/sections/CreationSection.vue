@@ -1,14 +1,15 @@
 <template>
+    <FullScreenBanner :src="mainImage" :text="subtitle" :background="mainImage" />
     <ColumnSection>
         <template #column1>
-            <img :src="mainImage"/>
+            <img :src="mainImage" />
         </template>
         <template #column2>
             <h2>DESCRIPTION</h2>
-            <p> {{ text }}</p>
+            <p>{{ text }}</p>
         </template>
     </ColumnSection>
-   <Gallery :images="images" :label="false"/>
+    <Gallery :images="images" :label="false" />
 </template>
 
 <script>
@@ -16,55 +17,47 @@ import Flicking from "@egjs/vue3-flicking";
 import "@egjs/vue3-flicking/dist/flicking.css";
 import { Pagination } from "@egjs/flicking-plugins";
 import "@egjs/flicking-plugins/dist/pagination.css";
-import { useDataStore } from '@/stores/data';
-import ColumnSection from '@/components/elements/columns/ColumnSection.vue';
+import { useDataStore } from "@/stores/data";
+import ColumnSection from "@/components/elements/columns/ColumnSection.vue";
 import Gallery from "@/components/elements/Gallery.vue";
+import FullScreenBanner from "@/components/elements/FullScreenBanner.vue";
 
 export default {
     components: {
         ColumnSection,
         Flicking,
         Gallery,
+        FullScreenBanner,
     },
     data() {
         return {
-            plugins: [new Pagination({ type: 'bullet' })],
-            currentCreationID: Number(this.$route.params.id)
+            plugins: [new Pagination({ type: "bullet" })],
         };
     },
     computed: {
-        images() {
+        currentData() {
             const dataStore = useDataStore();
-            console.log(this.currentCreationID);
-            let imagesObject = dataStore.getCreationImagesById(this.currentCreationID);
+            return dataStore.getCreationBySlug(this.$route.params.slug) || {};
+        },
+        images() {
+            const imagesObject = this.currentData.images || {};
             return Object.entries(imagesObject).map(([key, value]) => ({
-                id: key,
+                slug: key,
                 mainImage: value,
             }));
         },
         text() {
-            const dataStore = useDataStore();
-            let data = dataStore.getCreationById(this.currentCreationID);
-            return data.description;
+            return this.currentData.description || "";
         },
         mainImage() {
-            const dataStore = useDataStore();
-            let data = dataStore.getCreationById(this.currentCreationID);
-            return data.mainImage;
+            return this.currentData.mainImage || "";
         },
-    },
-    watch: {
-        '$route.params.id': {
-            handler(newId) {
-                console.log(`Route ID changé : ${newId}`);
-                this.currentCreationID = Number(newId);
-            },
-            immediate: true,
+        subtitle() {
+            return this.currentData.subtitle || "";
         },
     },
 };
 </script>
-
 
 <style scoped>
 img {

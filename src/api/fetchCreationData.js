@@ -10,6 +10,8 @@ export const fetchCreationData = async () => {
         ...creation,
         id: parseInt(creation.id, 10),
         title: creation.title,
+        slug : creation.slug,
+        subtitle : creation.subtitle,
         mainImage: creation.mainImage,
         description: creation.description,
         images: creation.images,

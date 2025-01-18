@@ -12,7 +12,6 @@ import DescriptionSection from '@/components/sections/CreationSection.vue';
 <template>
     <main>
         <MyMenuBanner />
-        <KitSection />
         <DescriptionSection/>
         <BrickSeparator />
         <RealisationSection id="realisations" />

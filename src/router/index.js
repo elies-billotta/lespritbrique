@@ -11,10 +11,10 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/realisations/:id',
+      path: '/:slug',
       name: 'creation',
-      component: CreationView, // Vue qui gère l'affichage de la création
-      props: true, // Permet de passer l'id comme prop
+      component: CreationView,
+      props: true, 
     },
     {
       path: '/:pathMatch(.*)*',

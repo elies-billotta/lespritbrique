@@ -12,13 +12,12 @@ export const useDataStore = defineStore('data', {
                 this.creationData = data;
             }
         },
-        getCreationImagesById(id) {
-            console.log(id);
-            const creation = this.creationData?.find(creation => creation.id === id);
+        getCreationImagesBySlug(slug) {
+            const creation = this.creationData?.find(creation => creation.slug === slug);
             return creation ? creation.images : [];
         },
-        getCreationById(id) {
-            const creation = this.creationData?.find(creation => creation.id === id);
+        getCreationBySlug(slug) {
+            const creation = this.creationData?.find(creation => creation.slug === slug);
             return creation ? creation : [];
         },
     },
