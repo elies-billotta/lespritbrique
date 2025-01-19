@@ -1,7 +1,7 @@
 <template>
     <div class="realisation-section" v-bind="$attrs">
         <h1>DERNIÈRES RÉALISATIONS</h1>
-        <ImageColumn :bgVideo="'src/assets/videos/4x4.mp4'">
+        <ImageColumn :bgVideo="'src/assets/videos/4x4-des-gazelles.mp4'">
             <template #column1>
             </template>
             <template #column2>
@@ -25,7 +25,7 @@
                             Sahara Marocain.</p>
                     </div>
                     <div class="btn-container">
-                        <my-link class="btn" :href="'/kit-4x4'">Lire la suite</my-link>
+                        <my-link class="btn" :href="'/4x4-des-gazelles'">Lire la suite</my-link>
                     </div>
                 </div>
             </template>

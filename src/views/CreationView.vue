@@ -1,6 +1,5 @@
 <script setup>
 import MyMenuBanner from '@/components/elements/MyMenuBanner.vue';
-import KitSection from '@/components/sections/KitSection.vue';
 import BrickSeparator from '@/components/elements/BrickSeparator/BrickSeparator.vue';
 import RealisationSection from '@/components/sections/RealisationSection.vue';
 import ContactSection from '@/components/sections/ContactSection.vue';
