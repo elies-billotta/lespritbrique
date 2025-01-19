@@ -70,6 +70,8 @@ export default {
 <style scoped>
 img {
     max-height: 500px;
+    width : 100%;
     border: 1px solid black;
+    object-fit: cover;
 }
 </style>
