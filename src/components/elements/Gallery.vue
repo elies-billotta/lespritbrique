@@ -1,8 +1,8 @@
 <template>
     <Flicking ref="flicking" :options="{ circular: true, align: 'prev' }" :plugins="plugins">
-        <div class="card-panel" v-for="image in images" :key="image.slug"
+        <div class="card-panel" v-for="image in images" :key="image.id"
             :style="{ backgroundImage: 'url(' + image.mainImage + ')' }">
-            <my-link v-if="label" :href="'/'+image.slug" class="flicking-index">{{ image.title }}</my-link>
+            <my-link v-if="label && image.slug" :href="'/'+image.slug" class="flicking-index">{{ image.title }}</my-link>
         </div>
         <template #viewport>
             <div class="flicking-pagination"></div>
@@ -23,10 +23,10 @@ export default {
             required: true,
             default: () => [],
         },
-        label : {
-            type : Boolean,
-            default : true,
-        }
+        label: {
+            type: Boolean,
+            default: true,
+        },
     },
     components: {
         Flicking,

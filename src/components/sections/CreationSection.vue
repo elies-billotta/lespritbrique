@@ -5,11 +5,11 @@
             <img :src="mainImage" />
         </template>
         <template #column2>
-            <h2>DESCRIPTION</h2>
+            <h2>{{title}}</h2>
             <p>{{ text }}</p>
         </template>
     </ColumnSection>
-    <Gallery :images="images" :label="false" />
+    <Gallery :images="images" :label="false"/>
 </template>
 
 <script>
@@ -42,7 +42,7 @@ export default {
         images() {
             const imagesObject = this.currentData.images || {};
             return Object.entries(imagesObject).map(([key, value]) => ({
-                slug: key,
+                id: key,
                 mainImage: value,
             }));
         },
@@ -55,6 +55,9 @@ export default {
         subtitle() {
             return this.currentData.subtitle || "";
         },
+        title() {
+            return this.currentData.title || "";
+        },
     },
 };
 </script>
@@ -62,5 +65,6 @@ export default {
 <style scoped>
 img {
     max-height: 500px;
+    border: 1px solid black;
 }
 </style>
