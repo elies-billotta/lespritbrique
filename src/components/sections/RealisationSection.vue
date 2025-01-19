@@ -1,7 +1,7 @@
 <template>
     <div class="realisation-section" v-bind="$attrs">
         <h1>DERNIÈRES RÉALISATIONS</h1>
-        <ImageColumn :bgVideo="'src/assets/videos/4x4-des-gazelles.mp4'">
+        <ImageColumn :bgVideo="videoSrc">
             <template #column1>
             </template>
             <template #column2>
@@ -31,9 +31,8 @@
             </template>
         </ImageColumn>
     </div>
-    <Gallery :images="creations"/>
+    <Gallery :images="creations" />
 </template>
-
 
 <script>
 import ImageColumn from '@/components/elements/columns/ImageColumn.vue';
@@ -46,6 +45,11 @@ export default {
         ImageColumn,
         Gallery
     },
+    data() {
+        return {
+            videoSrc: new URL('@/assets/videos/4x4-des-gazelles.mp4', import.meta.url).href,
+        }
+    },
     computed: {
         creations() {
             const dataStore = useDataStore();
@@ -56,16 +60,16 @@ export default {
 </script>
 
 <style scoped>
-
 .italic {
     font-style: italic;
 }
+
 h1 {
-    font-size: clamp(1rem, 10vw, 5rem);
-    text-wrap: nowrap;
+    font-size: min(10vw, 6rem);
     max-width: 100%;
     text-align: center;
     padding: var(--margin);
+    display: inline-block;
 }
 
 .realisation-section {
@@ -91,7 +95,7 @@ h1 {
     flex-direction: column;
     align-items: flex-end;
     flex: 1;
-    gap : 1.5rem;
+    gap: 1.5rem;
 }
 
 .content>.btn-container {

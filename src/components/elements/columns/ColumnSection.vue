@@ -1,9 +1,9 @@
 <template>
-  <section class="column-section">
-    <div class="column1">
+  <section class="column-section" :class="{ 'reverse-mobile': reverseMobile}">
+    <div class="column1" :class="{'center-mobile': centerMobile}">
       <slot name="column1"></slot>
     </div>
-    <div :style="{ alignItems: alignItems }" class="column2">
+    <div :style="{ alignItems: alignItems}" class="column2" :class="{'center-mobile': centerMobile}">
       <slot name="column2"></slot>
     </div>
   </section>
@@ -15,6 +15,14 @@ import { computed } from 'vue';
 export default {
   props : {
     right : {
+      type : Boolean,
+      default : false,
+    },
+    reverseMobile : {
+      type : Boolean,
+      default : false,
+    }, 
+    centerMobile : {
       type : Boolean,
       default : false,
     }
@@ -59,6 +67,15 @@ export default {
   .column-section {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+  .reverse-mobile {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .center-mobile {
+    justify-items: center;
+    align-items: center;
   }
 }
 </style>

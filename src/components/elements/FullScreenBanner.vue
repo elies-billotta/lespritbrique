@@ -1,8 +1,9 @@
 <template>
     <section ref="bannerContainer" class="home-section">
+        <div class="home-section__overlay" :style="overlayStyle"></div>
         <div ref="bannerContent" class="home-section__content">
             <img :src="src" alt="logo" width="500" height="500">
-            <h3 class="home-section__description">{{ text }}</h3>
+            <h3 class="home-section__description">{{ subtitle }}</h3>
         </div>
     </section>
 </template>
@@ -22,6 +23,10 @@ export default {
             type: String,
             required: true,
         },
+        backgroundOpacity: {
+            type: Number,
+            default: 0,
+        },
     },
     mounted() {
         this.loadBackground();
@@ -29,6 +34,21 @@ export default {
     watch: {
         background(newBackground) {
             this.loadBackground();
+        },
+    },
+    computed: {
+        overlayStyle() {
+            if (this.backgroundOpacity == 0) {
+                return {
+                    display: 'none',
+                };
+            }
+            return {
+                backgroundColor: `rgba(0, 0, 0, ${this.backgroundOpacity})`,
+            };
+        },
+        subtitle() {
+            return this.text.toUpperCase();
         },
     },
     methods: {
@@ -41,7 +61,7 @@ export default {
                     existingVideo.remove();
                 }
                 if (this.background.endsWith('.mp4')) {
-                    content.style.zIndex = '100'; 
+                    content.style.zIndex = '100';
                     const video = document.createElement('video');
                     video.src = this.background;
                     video.autoplay = true;
@@ -52,8 +72,10 @@ export default {
                     video.style.left = '0';
                     video.style.width = '100%';
                     video.style.height = '100%';
-                    video.style.zIndex = "0";
+                    video.style.zIndex = "1";
                     video.style.objectFit = 'cover';
+                    video.style.pointerEvents = 'none';
+                    video.playsInline = true;
                     container.appendChild(video);
                 }
                 else if (this.background.endsWith('.jpg') || this.background.endsWith('.JPG') || this.background.endsWith('.png')) {
@@ -81,11 +103,23 @@ export default {
     border-bottom: 1px solid black;
 }
 
+.home-section__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+}
+
 .home-section__content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 100;
+    position: relative;
     gap: 1rem;
 }
 
@@ -96,5 +130,11 @@ export default {
 img {
     width: 50%;
     height: auto;
+    min-width: 400px;
 }
+
+
+
+
+
 </style>

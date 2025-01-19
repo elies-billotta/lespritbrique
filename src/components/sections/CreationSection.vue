@@ -1,5 +1,5 @@
 <template>
-    <FullScreenBanner :src="mainImage" :text="subtitle" :background="cover" />
+    <FullScreenBanner :src="coverImage" :text="subtitle" :background="cover" />
     <ColumnSection>
         <template #column1>
             <img :src="mainImage" />
@@ -63,6 +63,9 @@ export default {
                return new URL(`../../assets/videos/${this.currentData.slug}.mp4`, import.meta.url).href || "";
             return this.currentData.cover || this.currentData.mainImage || "";
         },
+        coverImage(){
+            return this.currentData.coverImage || "";
+        }
     },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <ColumnSection class="footer" :right="true">
+    <ColumnSection class="footer" :right="true" :reverseMobile="true" :centerMobile="true">
       <template #column1>
         <div class="logo">
           <img class="turn" src="@/assets/icons/logo.svg" alt="logo" />
@@ -128,16 +128,27 @@ img {
 
   .footer {
     display : flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .info-section {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
+    width:100%;
   }
 
   .info-section > .column {
-    align-items:flex-start;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .text-line{
+    text-align: center;
+  }
+  .inline {
+    padding-top: 8px;
+    flex-direction: column;
   }
 }
 </style>

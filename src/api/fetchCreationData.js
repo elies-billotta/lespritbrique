@@ -13,6 +13,7 @@ export const fetchCreationData = async () => {
         slug : creation.slug,
         subtitle : creation.subtitle,
         cover : creation.cover,
+        coverImage : creation.coverImage,
         mainImage: creation.mainImage,
         description: creation.description,
         images: creation.images,

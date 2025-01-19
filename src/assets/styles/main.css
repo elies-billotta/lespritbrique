@@ -39,7 +39,7 @@
 
   h2 {
     font-family: 'Helvetica', sans-serif;
-    font-size: 4rem;
+    font-size: min(10vw, 4rem);
     color: var(--black);
   }
   
