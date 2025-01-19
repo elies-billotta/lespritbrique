@@ -8,6 +8,7 @@
         <p class="text-line">© 2025 L'ESPRIT BRIQUE</p>
         <p class="text-line">L'ESPRIT BRIQUE<sup>®</sup> est une marque déposée. Tous droits réservés. Ne pas
           reproduire.</p>
+          <p class="text-line">LEGO® est une marque déposée par The LEGO Group qui ne sponsorise pas, n'autorise pas et n'approuve pas ce site.</p>
         <div class="inline">
           <p class="space">Personnages et designs réalisés par</p><my-link
             href="https://www.instagram.com/meli_melodraw/">meli_melodraw</my-link>
