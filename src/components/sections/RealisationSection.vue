@@ -88,7 +88,6 @@ h1 {
     flex-direction: row;
     gap: var(--margin);
     width: 100%;
-    flex-wrap: wrap;
 }
 
 .content>.text {
@@ -103,8 +102,6 @@ h1 {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    flex: 1;
-    position: relative;
 }
 
 .btn {
