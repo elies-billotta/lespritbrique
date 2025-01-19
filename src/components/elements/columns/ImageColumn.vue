@@ -66,5 +66,9 @@ video {
         border-right: none;
         border-bottom: 1px solid black;
     }
+
+    .column{
+        min-height: 100%;
+    }
 }
 </style>

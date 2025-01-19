@@ -80,6 +80,7 @@ h1 {
     border-left: 1px solid black;
     border-right: 1px solid black;
     padding: var(--margin) 0;
+    min-height: 100%;
 }
 
 

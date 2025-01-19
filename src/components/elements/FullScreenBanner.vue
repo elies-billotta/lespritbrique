@@ -2,7 +2,7 @@
     <section ref="bannerContainer" class="home-section">
         <div class="home-section__overlay" :style="overlayStyle"></div>
         <div ref="bannerContent" class="home-section__content">
-            <img :src="src" alt="logo" width="500" height="500">
+            <img :src="src" alt="logo">
             <h3 class="home-section__description">{{ subtitle }}</h3>
         </div>
     </section>
@@ -130,7 +130,7 @@ export default {
 img {
     width: 50%;
     height: auto;
-    min-width: 400px;
+    min-width: 300px;
 }
 
 
