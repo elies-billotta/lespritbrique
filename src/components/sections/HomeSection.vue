@@ -10,9 +10,9 @@
         },
         data() {
             return {
-                imageSrc: new URL('@/assets/images/logo-color.png', import.meta.url).href,
+                imageSrc: new URL('@/assets/icons/logo.svg', import.meta.url).href,
                 videoSrc : new URL('@/assets/videos/4x4.mp4', import.meta.url ).href,
-                background : new URL('@/assets/images/lm.jpg', import.meta.url ).href,
+                background : new URL('@/assets/images/cover.png', import.meta.url ).href,
             };
         }
     }

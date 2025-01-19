@@ -7,14 +7,22 @@
                 </AccordionHeader>
                 <AccordionContent>
                     <div class="accordion-content">
-                        <p class="m-0">
-                            En choisissant L'Esprit Brique, vous optez pour un service qui respecte <strong>l’art et la
+                        <div class="column">
+                            <div class="image-container">
+                                <img class= "robot" src="../../assets/icons/robot.png" alt="stand">
+                            </div>
+                            <div class="text-column">
+                                <h2>UNE CRÉATIVITÉ HUMAINE</h2>
+                                <p class="m-0 text">
+                                    En choisissant L'Esprit Brique, vous optez pour un service qui respecte <strong>l’art et la
                                 créativité</strong>.
                             Par gage de qualité et par respect pour les artistes, <strong>nous banissons l'utilisation
                                 de l'intelligence
                                 artificielle dans le processus de création</strong>. Tous nos designs sont fait à la
                             main et c'est mieux ainsi !
-                        </p>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </AccordionContent>
             </AccordionPanel>
@@ -24,15 +32,21 @@
                 </AccordionHeader>
                 <AccordionContent>
                     <div class="accordion-content">
-                        <p class="m-0">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                            officia
-                            deserunt mollit anim id est laborum.
-                        </p>
+                        <div class="column">
+                            <div class="image-container">
+                                <img class="stand-image" src="../../assets/images/stand.jpg" alt="stand">
+                            </div>
+                            <div class="text-column">
+                                <h2>RETROUVEZ NOUS EN EXPO !</h2>
+                                <p class="m-0 text">
+                                    En plus de la <my-link :anim="false"
+                                        :href="'https://shop.lespritbrique.com'">boutique
+                                        en ligne</my-link>, L'Esprit Brique est présent sur de nombreux salons
+                                    dédiés à la brique. Présentation des produits, exposition de créations, vente de pièces... N'hésitez pas à venir nous rencontrer (en plus, on propose des
+                                    tarifs spéciaux et ça c'est pas mal !).
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </AccordionContent>
             </AccordionPanel>
@@ -44,7 +58,8 @@
                     <div class="accordion-content">
                         <p class="m-0">
                             Vous avez une idée précise en tête ? Faites-nous part de votre projet et nous créerons des
-                            designs sur mesure pour vos briques ! Grâce à <my-link :anim="false" :href="'#contact'">notre service de
+                            designs sur mesure pour vos briques ! Grâce à <my-link :anim="false"
+                                :href="'#contact'">notre service de
                                 personnalisation</my-link>,nous pouvons créer ensemble le design de vos rêves. Que ce
                             soit pour un
                             événement particulier, une entreprise, ou simplement pour ajouter une touche personnelle à
@@ -98,8 +113,68 @@ import AccordionContent from 'primevue/accordioncontent';
     padding: var(--margin);
     border-bottom: 1px solid black;
     background-color: var(--white);
-    display : flex;
+    display: flex;
     flex-direction: column;
     gap: var(--margin)
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 50%;
+    max-height: 400px;
+    overflow: hidden;
+}
+
+.robot {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.column {
+    display: flex;
+    flex-direction: row;
+    gap: var(--margin);
+}
+
+.stand-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain; 
+}
+
+
+.text-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text {
+    max-width: 75%;
+}
+
+@media (max-width: 768px) {
+    .image-container {
+        max-width: 100%;
+    }
+
+    .text-column {
+        gap: 1rem;
+    }
+
+    .column {
+        flex-direction: column;
+    }
+
+    .text {
+        max-width : 100%;
+    }
+
+    .robot {
+        width : 75%;
+    }
 }
 </style>

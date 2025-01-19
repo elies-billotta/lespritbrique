@@ -99,10 +99,10 @@ h1 {
 }
 
 .content>.btn-container {
-
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    flex: 1;
 }
 
 .btn {
@@ -134,6 +134,18 @@ h1 {
     .inline {
         align-items: flex-start;
         flex-direction: column;
+    }
+
+    .btn-container {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: auto;
+    }
+
+    .btn {
+        width: max-content;
     }
 }
 </style>
