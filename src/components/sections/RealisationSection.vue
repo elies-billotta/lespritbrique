@@ -80,7 +80,6 @@ h1 {
     border-left: 1px solid black;
     border-right: 1px solid black;
     padding: var(--margin) 0;
-    min-height: 100%;
 }
 
 
@@ -89,6 +88,7 @@ h1 {
     flex-direction: row;
     gap: var(--margin);
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .content>.text {
@@ -104,6 +104,7 @@ h1 {
     justify-content: flex-end;
     align-items: flex-end;
     flex: 1;
+    position: relative;
 }
 
 .btn {
@@ -142,7 +143,8 @@ h1 {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        margin-top: auto;
+        justify-content: center; /* ✅ Centre le bouton */
+        margin-top: auto; /* ✅ Force le bouton à rester dans la section */
     }
 
     .btn {

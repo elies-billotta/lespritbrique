@@ -23,7 +23,6 @@ export default {
 .card-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    max-height: 500px;
     background-color: var(--primary-color);
     justify-items: center;
     border-top: 1px solid black;
