@@ -20,7 +20,7 @@
             <h3>NOS RÉSEAUX</h3>
             <ul class="menu">
               <li>
-                <my-link :href="'https://www.facebook.com/lesprit.brique'">FACEBOOK</my-link>
+                <my-link :href="'https://www.facebook.com/share/186Bds2xX5/?mibextid=wwXIfr'">FACEBOOK</my-link>
               </li>
               <li>
                 <my-link :href="'https://www.instagram.com/lesprit.brique'">INSTAGRAM</my-link>
