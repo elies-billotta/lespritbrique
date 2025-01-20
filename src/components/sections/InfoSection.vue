@@ -52,7 +52,7 @@
             </AccordionPanel>
             <AccordionPanel value="2">
                 <AccordionHeader class="button">
-                    <h2>PERSONNALISATION SUR MESURE</h2>
+                    <h2>DEMANDE SUR MESURE</h2>
                 </AccordionHeader>
                 <AccordionContent>
                     <div class="accordion-content">
