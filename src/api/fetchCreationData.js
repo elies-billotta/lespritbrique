@@ -1,27 +1,45 @@
-import axios from 'axios';
+import * as XLSX from 'xlsx';
 
-const url = 'https://script.google.com/macros/s/AKfycbwZ7Y533-5n8V8R6IEL7WMUrV9NJ8XJZ5RHO-WMcSL-36rJWcMxL_AJfa7At4FUjKDQ/exec';
+const XLSX_URL = '/data.xlsx';
 
 export const fetchCreationData = async () => {
   try {
-    const response = await axios.get(url);
-    const creationData = response.data.map(creation => {
+    const response = await fetch(XLSX_URL);
+    const arrayBuffer = await response.arrayBuffer();
+    const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+
+    // Feuille Creation
+    const creationSheet = workbook.Sheets['Creation'];
+    if (!creationSheet) throw new Error('Feuille "Creation" introuvable');
+    const creationRows = XLSX.utils.sheet_to_json(creationSheet);
+
+    // Feuille ImageGallery
+    const imageGallerySheet = workbook.Sheets['ImageGallery'];
+    if (!imageGallerySheet) throw new Error('Feuille "ImageGallery" introuvable');
+    const imageRows = XLSX.utils.sheet_to_json(imageGallerySheet);
+
+    const creations = creationRows.map(creation => {
+      const images = imageRows
+        .filter(img => img.creation_id === creation.id)
+        .map(img => img.image_link);
+
       return {
         ...creation,
         id: parseInt(creation.id, 10),
         title: creation.title,
-        slug : creation.slug,
-        subtitle : creation.subtitle,
-        cover : creation.cover,
-        coverImage : creation.coverImage,
+        slug: creation.slug,
+        subtitle: creation.subtitle,
+        cover: creation.cover,
+        coverImage: creation.coverImage,
         mainImage: creation.mainImage,
         description: creation.description,
-        images: creation.images,
+        images,
       };
     });
-    return creationData;
+
+    return creations;
   } catch (error) {
-    console.error('Error fetching creations data:', error);
+    console.error('Erreur lors du chargement du fichier XLSX :', error);
     return [];
   }
 };

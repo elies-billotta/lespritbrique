@@ -5,7 +5,7 @@
         </template>
         <template #column2>
             <h2>CONTACTEZ-NOUS</h2>
-            <p>Une commande personnalisée ?</p>
+            <p>Vous avez un projet unique en tête ? Contactez-nous dès maintenant pour en discuter et concrétiser vos idées sur mesure !</p>
             <img src="../../assets/images/contact.png" alt="logo">
         </template>
     </ColumnSection>
